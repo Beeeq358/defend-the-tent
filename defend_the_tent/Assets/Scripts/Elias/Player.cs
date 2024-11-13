@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,11 +10,37 @@ public class Player : MonoBehaviour
     private bool inputJumped;
     private bool inputBuilded;
     private float inputGrabStrength;
+    private bool isFrame = true;
 
     private void Awake()
     {
-        transform.position = new Vector3(Random.Range(-spawnRange, spawnRange), 1, Random.Range(-spawnRange, spawnRange));
+        transform.position = GetSpawnPosition();
+        StartCoroutine(FrameCheck());
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //check if a player is already colliding with me and if this is a frame i need to check
+        if (collision.gameObject.CompareTag("Player") && isFrame)
+        {
+            transform.position = GetSpawnPosition();
+            StartCoroutine(FrameCheck());
+        }
+    }
+    //returns a random spawn position in the middle of the arena
+    private Vector3 GetSpawnPosition()
+    {
+        return new Vector3(Random.Range(-spawnRange, spawnRange), 1, Random.Range(-spawnRange, spawnRange));
+    }
+
+    //wait a frame after spawn
+    private IEnumerator FrameCheck()
+    {
+        isFrame = true;
+        yield return new WaitForEndOfFrame();
+        isFrame = false;
+    }
+
     private void OnMove(InputAction.CallbackContext context)
     {
         inputMovement = context.ReadValue<Vector2>();
