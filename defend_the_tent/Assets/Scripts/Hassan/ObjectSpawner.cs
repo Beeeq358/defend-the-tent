@@ -10,6 +10,8 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField]
     private List<GameObject> spawnPoints = new List<GameObject>();
 
+    [SerializeField]
+
     private void Start()
     {
         StartCoroutine(SpawnObjects());
