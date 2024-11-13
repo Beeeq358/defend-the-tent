@@ -1,0 +1,16 @@
+using UnityEngine;
+
+public enum ObjectType
+{
+    Buildable,
+    Throwable,
+    Damaging
+}
+
+[CreateAssetMenu(fileName = "ObjectSO", menuName = "Scriptable Objects/ new ObjectSO")]
+public class ObjectSO : ScriptableObject
+{
+    public GameObject objectPrefab;
+    public string objectName;
+    public ObjectType objectType;
+}
