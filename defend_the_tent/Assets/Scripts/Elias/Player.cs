@@ -4,17 +4,19 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour, IObjectParent
 {
+    [Header("Config")]
     public float spawnRange;
+    public float throwStrength;
 
     public Vector2 inputMovement;
     public bool inputJumped;
     public bool inputBuilded;
     public float inputGrabStrength;
-
-
     private Vector3 lastInteractDir;
     public BaseObject selectedBaseObject;
     private BaseObject baseObject;
+    private float recentGrabStrength;
+    private float frameCounter;
     [SerializeField]
     private LayerMask objectLayerMask;
     [SerializeField]
@@ -31,6 +33,7 @@ public class Player : MonoBehaviour, IObjectParent
     private void Update()
     {
         HandleInteractions();
+        CalculateRecentGrabStrength();
         if (inputGrabStrength > 0)
         {
             Debug.Log("Interacted!");
@@ -48,9 +51,26 @@ public class Player : MonoBehaviour, IObjectParent
         }
         if (inputGrabStrength == 0 && baseObject != null)
         {
+            baseObject.rb.AddForce((transform.forward + new Vector3(-20, 0, 0)) * recentGrabStrength * throwStrength, ForceMode.Impulse);
+            Debug.Log(recentGrabStrength * throwStrength);
             Debug.Log("Dropping Object");
             baseObject.ClearObjectParent(this);
         }
+    }
+
+    private void CalculateRecentGrabStrength()
+    {
+        if (inputGrabStrength > 0 && inputGrabStrength >= recentGrabStrength)
+        {
+            recentGrabStrength = inputGrabStrength;
+            frameCounter = 0;
+        }
+        frameCounter++;
+        if (frameCounter > 30)
+        {
+            recentGrabStrength = 0;
+        }
+        Debug.Log(recentGrabStrength);
     }
 
     private void OnCollisionEnter(Collision collision)

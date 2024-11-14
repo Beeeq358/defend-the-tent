@@ -6,7 +6,7 @@ public class BaseObject : MonoBehaviour
 
     private IObjectParent objectParent;
 
-    private Rigidbody rb;
+    public Rigidbody rb;
 
     private void Start()
     {
