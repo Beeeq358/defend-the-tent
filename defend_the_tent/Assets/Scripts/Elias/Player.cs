@@ -31,17 +31,25 @@ public class Player : MonoBehaviour, IObjectParent
     private void Update()
     {
         HandleInteractions();
-        if (Input.GetMouseButtonDown(0))
+        if (inputGrabStrength > 0)
         {
-            if (selectedBaseObject != null)
+            Debug.Log("Interacted!");
+            if (baseObject == null)
             {
-                baseObject.ClearObjectParent(this);
-                Interact(this, selectedBaseObject);
+                if (selectedBaseObject != null)
+                {
+                    Interact(this, selectedBaseObject);
+                }
+                else
+                {
+                    Debug.LogWarning("No Object selected!");
+                }
             }
-            else
-            {
-                Debug.LogWarning("No Object selected!");
-            }
+        }
+        if (inputGrabStrength == 0 && baseObject != null)
+        {
+            Debug.Log("Dropping Object");
+            baseObject.ClearObjectParent(this);
         }
     }
 
@@ -100,12 +108,6 @@ public class Player : MonoBehaviour, IObjectParent
         baseObject.SetObjectParent(player);
     }
 
-    public void InteractAlternate()
-    {
-        Destroy(baseObject);
-        ClearObject();
-    }
-
     private void HandleInteractions()
     {
         Vector2 inputVector = GetMovementVectorNormalized();
@@ -158,6 +160,7 @@ public class Player : MonoBehaviour, IObjectParent
     }
     public void ClearObject()
     {
+        Debug.Log("Object cleared!");
         baseObject = null;
     }
     public bool HasObject()

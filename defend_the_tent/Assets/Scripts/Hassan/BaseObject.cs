@@ -6,31 +6,55 @@ public class BaseObject : MonoBehaviour
 
     private IObjectParent objectParent;
 
+    private Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
     private void Update()
     {
-
+        if (objectParent != null)
+        {
+            rb.useGravity = false;
+            rb.isKinematic = true;
+        }
+        else
+        {
+            rb.useGravity = true;
+            rb.isKinematic = false;
+        }
     }
 
     public void SetObjectParent(IObjectParent parent)
     {
-        if (this.objectParent != null)
-        {
-            // If the object already has a parent, remove it before setting a new one
-            this.objectParent.ClearObject();
-        }
-        // Grab the transform of the parent that the object should follow
+        // Clear existing parent if present
+        this.objectParent?.ClearObject();
+
+        // Set new parent
         Transform parentTransform = parent.GetObjectFollowTransform();
         transform.parent = parentTransform;
         transform.localPosition = Vector3.zero;
         parent.SetObject(this);
+
+        // Debug the assignment
+        this.objectParent = parent;
+        Debug.Log($"Object parent set to: {this.objectParent}");
     }
 
-    public void ClearObjectParent(IObjectParent parent)
+    public void ClearObjectParent(Player parent)
     {
         if (this.objectParent != null)
         {
+            Debug.Log("Calling ClearObject on objectParent.");
             this.objectParent.ClearObject();
             transform.parent = null;
+            this.objectParent = null;
+        }
+        else
+        {
+            Debug.LogWarning("objectParent is null!");
         }
     }
 
