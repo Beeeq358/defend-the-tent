@@ -7,6 +7,7 @@ public class Player : MonoBehaviour, IObjectParent
     [Header("Config")]
     public float spawnRange;
     public float throwStrength;
+    public float throwHeight;
 
     public Vector2 inputMovement;
     public bool inputJumped;
@@ -51,10 +52,11 @@ public class Player : MonoBehaviour, IObjectParent
         }
         if (inputGrabStrength == 0 && baseObject != null)
         {
-            baseObject.rb.AddForce((transform.forward + new Vector3(-20, 0, 0)) * recentGrabStrength * throwStrength, ForceMode.Impulse);
-            Debug.Log(recentGrabStrength * throwStrength);
+            Rigidbody tempRB = baseObject.rb;
             Debug.Log("Dropping Object");
             baseObject.ClearObjectParent(this);
+            tempRB.isKinematic = false;
+            tempRB.AddForce((transform.forward + new Vector3(0, throwHeight, 0)) * recentGrabStrength * throwStrength, ForceMode.Impulse);
         }
     }
 

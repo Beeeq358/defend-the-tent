@@ -154,6 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRange: 3
+  throwStrength: 7
+  throwHeight: 2
   inputMovement: {x: 0, y: 0}
   inputJumped: 0
   inputBuilded: 0
