@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public float inputGrabStrength;
 
     private bool isFrame = true;
-    private Vector3 moveVector = Vector3.zero;
+    public Vector3 moveVector = Vector3.zero;
     private void Awake()
     {
         transform.position = GetSpawnPosition();
