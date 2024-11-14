@@ -6,10 +6,10 @@ public class Player : MonoBehaviour
 {
     public float spawnRange;
 
-    private Vector2 inputMovement;
-    private bool inputJumped;
-    private bool inputBuilded;
-    private float inputGrabStrength;
+    public Vector2 inputMovement;
+    public bool inputJumped;
+    public bool inputBuilded;
+    public float inputGrabStrength;
     private bool isFrame = true;
 
     private void Awake()
