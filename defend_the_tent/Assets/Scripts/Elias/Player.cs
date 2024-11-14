@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IObjectParent
 {
     public float spawnRange;
 
@@ -13,8 +13,10 @@ public class Player : MonoBehaviour
 
 
     private Vector3 lastInteractDir;
-    private BaseObject selectedBaseObject;
+    public BaseObject selectedBaseObject;
     private BaseObject baseObject;
+    [SerializeField]
+    private LayerMask objectLayerMask;
     [SerializeField]
     private Transform objectHoldPoint;
 
@@ -24,6 +26,23 @@ public class Player : MonoBehaviour
     {
         transform.position = GetSpawnPosition();
         StartCoroutine(FrameCheck());
+    }
+
+    private void Update()
+    {
+        HandleInteractions();
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (selectedBaseObject != null)
+            {
+                baseObject.ClearObjectParent(this);
+                Interact(this, selectedBaseObject);
+            }
+            else
+            {
+                Debug.LogWarning("No Object selected!");
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -71,13 +90,78 @@ public class Player : MonoBehaviour
         inputGrabStrength = context.ReadValue<float>();
     }
 
-    //private Vector2 GetMovementVectorNormalized()
-    //{
-        //Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
-    //}
+    public Vector2 GetMovementVectorNormalized()
+    {
+        return inputMovement.normalized;
+    }
+
+    public void Interact(Player player, BaseObject baseObject)
+    {
+        baseObject.SetObjectParent(player);
+    }
+
+    public void InteractAlternate()
+    {
+        Destroy(baseObject);
+        ClearObject();
+    }
+
+    private void HandleInteractions()
+    {
+        Vector2 inputVector = GetMovementVectorNormalized();
+
+        Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
+
+        if (moveDir != Vector3.zero)
+        {
+            lastInteractDir = moveDir;
+        }
+
+        float interactDistance = 2f;
+        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, objectLayerMask))
+        {
+            if (raycastHit.transform.TryGetComponent(out BaseObject baseObject))
+            {
+                if (baseObject != selectedBaseObject)
+                {
+                    SetSelectedObject(baseObject);
+                }
+            }
+            else
+            {
+                SetSelectedObject(null); 
+            }
+        }
+        else
+        {
+            SetSelectedObject(null);
+        }
+    }
 
     private void SetSelectedObject(BaseObject selectedObject)
     {
         this.selectedBaseObject = selectedObject;
+    }
+
+    public Transform GetObjectFollowTransform()
+    {
+        return objectHoldPoint;
+    }
+
+    public void SetObject(BaseObject baseObject)
+    {
+        this.baseObject = baseObject;
+    }
+    public Object GetObject()
+    {
+        return baseObject;
+    }
+    public void ClearObject()
+    {
+        baseObject = null;
+    }
+    public bool HasObject()
+    {
+        return baseObject != null;
     }
 }
