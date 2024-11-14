@@ -10,7 +10,7 @@ public enum ObjectType
 [CreateAssetMenu(fileName = "ObjectSO", menuName = "Scriptable Objects/ new ObjectSO")]
 public class ObjectSO : ScriptableObject
 {
-    public GameObject objectPrefab;
+    public Transform objectPrefab;
     public string objectName;
     public ObjectType objectType;
 }

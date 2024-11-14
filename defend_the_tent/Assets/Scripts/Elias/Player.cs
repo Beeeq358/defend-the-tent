@@ -2,20 +2,47 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IObjectParent
 {
     public float spawnRange;
 
-    private Vector2 inputMovement;
-    private bool inputJumped;
-    private bool inputBuilded;
-    private float inputGrabStrength;
-    private bool isFrame = true;
+    public Vector2 inputMovement;
+    public bool inputJumped;
+    public bool inputBuilded;
+    public float inputGrabStrength;
 
+
+    private Vector3 lastInteractDir;
+    public BaseObject selectedBaseObject;
+    private BaseObject baseObject;
+    [SerializeField]
+    private LayerMask objectLayerMask;
+    [SerializeField]
+    private Transform objectHoldPoint;
+
+    private bool isFrame = true;
+    public Vector3 moveVector = Vector3.zero;
     private void Awake()
     {
         transform.position = GetSpawnPosition();
         StartCoroutine(FrameCheck());
+    }
+
+    private void Update()
+    {
+        HandleInteractions();
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (selectedBaseObject != null)
+            {
+                baseObject.ClearObjectParent(this);
+                Interact(this, selectedBaseObject);
+            }
+            else
+            {
+                Debug.LogWarning("No Object selected!");
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -41,20 +68,100 @@ public class Player : MonoBehaviour
         isFrame = false;
     }
 
-    private void OnMove(InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext context)
     {
         inputMovement = context.ReadValue<Vector2>();
+        Vector3 localMove = new Vector3(inputMovement.x, 0, inputMovement.y);
+
+        //get the current rotation from the camera and rotate the movement inputs so forward is forward relative to the camera
+        float rotationalOffset = Camera.main.transform.rotation.eulerAngles.y;
+        moveVector = Quaternion.AngleAxis(rotationalOffset, Vector3.up) * localMove;
     }
-    private void OnJump(InputAction.CallbackContext context)
+    public void OnJump(InputAction.CallbackContext context)
     {
         inputJumped = context.action.triggered;
     }
-    private void OnBuild(InputAction.CallbackContext context)
+    public void OnBuild(InputAction.CallbackContext context)
     {
         inputBuilded = context.action.triggered;
     }
-    private void OnGrab(InputAction.CallbackContext context)
+    public void OnGrab(InputAction.CallbackContext context)
     {
         inputGrabStrength = context.ReadValue<float>();
+    }
+
+    public Vector2 GetMovementVectorNormalized()
+    {
+        return inputMovement.normalized;
+    }
+
+    public void Interact(Player player, BaseObject baseObject)
+    {
+        baseObject.SetObjectParent(player);
+    }
+
+    public void InteractAlternate()
+    {
+        Destroy(baseObject);
+        ClearObject();
+    }
+
+    private void HandleInteractions()
+    {
+        Vector2 inputVector = GetMovementVectorNormalized();
+
+        Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
+
+        if (moveDir != Vector3.zero)
+        {
+            lastInteractDir = moveDir;
+        }
+
+        float interactDistance = 2f;
+        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, objectLayerMask))
+        {
+            if (raycastHit.transform.TryGetComponent(out BaseObject baseObject))
+            {
+                if (baseObject != selectedBaseObject)
+                {
+                    SetSelectedObject(baseObject);
+                }
+            }
+            else
+            {
+                SetSelectedObject(null); 
+            }
+        }
+        else
+        {
+            SetSelectedObject(null);
+        }
+    }
+
+    private void SetSelectedObject(BaseObject selectedObject)
+    {
+        this.selectedBaseObject = selectedObject;
+    }
+
+    public Transform GetObjectFollowTransform()
+    {
+        return objectHoldPoint;
+    }
+
+    public void SetObject(BaseObject baseObject)
+    {
+        this.baseObject = baseObject;
+    }
+    public Object GetObject()
+    {
+        return baseObject;
+    }
+    public void ClearObject()
+    {
+        baseObject = null;
+    }
+    public bool HasObject()
+    {
+        return baseObject != null;
     }
 }
