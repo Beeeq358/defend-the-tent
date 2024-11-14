@@ -25,6 +25,15 @@ public class BaseObject : MonoBehaviour
         parent.SetObject(this);
     }
 
+    public void ClearObjectParent(IObjectParent parent)
+    {
+        if (this.objectParent != null)
+        {
+            this.objectParent.ClearObject();
+            transform.parent = null;
+        }
+    }
+
     public GameObject GetObjectParent()
     {
         return transform.parent.gameObject;
