@@ -6,11 +6,10 @@ public class Player : MonoBehaviour
 {
     public float spawnRange;
 
-    private Vector2 inputMovement;
-    private bool inputJumped;
-    private bool inputBuilded;
-    private float inputGrabStrength;
-    private bool isFrame = true;
+    public Vector2 inputMovement;
+    public bool inputJumped;
+    public bool inputBuilded;
+    public float inputGrabStrength;
 
 
     private Vector3 lastInteractDir;
@@ -19,6 +18,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Transform objectHoldPoint;
 
+    private bool isFrame = true;
+    public Vector3 moveVector = Vector3.zero;
     private void Awake()
     {
         transform.position = GetSpawnPosition();
@@ -51,6 +52,11 @@ public class Player : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         inputMovement = context.ReadValue<Vector2>();
+        Vector3 localMove = new Vector3(inputMovement.x, 0, inputMovement.y);
+
+        //get the current rotation from the camera and rotate the movement inputs so forward is forward relative to the camera
+        float rotationalOffset = Camera.main.transform.rotation.eulerAngles.y;
+        moveVector = Quaternion.AngleAxis(rotationalOffset, Vector3.up) * localMove;
     }
     public void OnJump(InputAction.CallbackContext context)
     {
