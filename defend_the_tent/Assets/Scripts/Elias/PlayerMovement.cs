@@ -11,11 +11,11 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
-        moveVector = player.moveVector;
     }
 
     private void FixedUpdate()
     {
-        rb.AddForce(moveVector * moveSpeed);
+        moveVector = player.moveVector;
+        rb.linearVelocity += moveVector * moveSpeed;
     }
 }
