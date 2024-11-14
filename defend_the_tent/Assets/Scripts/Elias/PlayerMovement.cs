@@ -2,19 +2,20 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Player playerScript;
-    private Vector3 moveVector = Vector3.zero;
+    public float moveSpeed;
+
+    private Player player;
+    private Vector3 moveVector;
+    private Rigidbody rb;
     private void Awake()
     {
-        playerScript = GetComponent<Player>();
+        rb = GetComponent<Rigidbody>();
+        player = GetComponent<Player>();
+        moveVector = player.moveVector;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        Vector3 localMove = new Vector3(playerScript.inputMovement.x, 0, playerScript.inputMovement.y);
-
-        //get the current rotation from the camera and rotate the movement inputs so forward is forward relative to the camera
-        float rotationalOffset = Camera.main.transform.rotation.eulerAngles.y;
-        moveVector = Quaternion.AngleAxis(rotationalOffset, Vector3.up) * localMove;
+        rb.AddForce(moveVector * moveSpeed);
     }
 }
