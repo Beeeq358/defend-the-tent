@@ -12,6 +12,13 @@ public class Player : MonoBehaviour
     private float inputGrabStrength;
     private bool isFrame = true;
 
+
+    private Vector3 lastInteractDir;
+    private BaseObject selectedBaseObject;
+    private BaseObject baseObject;
+    [SerializeField]
+    private Transform objectHoldPoint;
+
     private void Awake()
     {
         transform.position = GetSpawnPosition();
@@ -41,20 +48,30 @@ public class Player : MonoBehaviour
         isFrame = false;
     }
 
-    private void OnMove(InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext context)
     {
         inputMovement = context.ReadValue<Vector2>();
     }
-    private void OnJump(InputAction.CallbackContext context)
+    public void OnJump(InputAction.CallbackContext context)
     {
         inputJumped = context.action.triggered;
     }
-    private void OnBuild(InputAction.CallbackContext context)
+    public void OnBuild(InputAction.CallbackContext context)
     {
         inputBuilded = context.action.triggered;
     }
-    private void OnGrab(InputAction.CallbackContext context)
+    public void OnGrab(InputAction.CallbackContext context)
     {
         inputGrabStrength = context.ReadValue<float>();
+    }
+
+    //private Vector2 GetMovementVectorNormalized()
+    //{
+        //Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
+    //}
+
+    private void SetSelectedObject(BaseObject selectedObject)
+    {
+        this.selectedBaseObject = selectedObject;
     }
 }
