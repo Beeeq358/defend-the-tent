@@ -40,7 +40,7 @@ public class Player : MonoBehaviour, IObjectParent
         targetTransform.position = GetSpawnPosition(false);
         StartCoroutine(FrameCheck());
         isBoss = false;
-        BecomeBoss();
+        //BecomeBoss();
     }
 
     public void BecomeBoss()
@@ -138,10 +138,10 @@ public class Player : MonoBehaviour, IObjectParent
         if (isBoss)
         {
             Vector3 spawnPos;
-            spawnPos = new Vector3(Random.Range(-bossSpawnRange, bossSpawnRange), 1, Random.Range(-bossSpawnRange, bossSpawnRange));
+            spawnPos = new Vector3(Random.Range(-bossSpawnRange, bossSpawnRange), 2, Random.Range(-bossSpawnRange, bossSpawnRange));
             while (Vector3.Distance(spawnPos, Vector3.zero) < 15)
             {
-                spawnPos = new Vector3(Random.Range(-bossSpawnRange, bossSpawnRange), 1, Random.Range(-bossSpawnRange, bossSpawnRange));
+                spawnPos = new Vector3(Random.Range(-bossSpawnRange, bossSpawnRange), 2, Random.Range(-bossSpawnRange, bossSpawnRange));
             }
             return spawnPos;
         }
