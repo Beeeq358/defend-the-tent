@@ -18,12 +18,13 @@ public class Player : MonoBehaviour, IObjectParent
     private BaseObject baseObject;
     private float recentGrabStrength;
     private float frameCounter;
+    private Transform targetTransform;
     [SerializeField]
     private LayerMask objectLayerMask;
     [SerializeField]
     private Transform objectHoldPoint;
     [SerializeField]
-    private Transform normalTransform;
+    private Transform normalTransform, bossTransform;
 
     private PlayerMovement playerMovement;
 
@@ -32,7 +33,9 @@ public class Player : MonoBehaviour, IObjectParent
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
-        normalTransform.position = GetSpawnPosition();
+        targetTransform = normalTransform;
+        targetTransform.gameObject.SetActive(true);
+        targetTransform.position = GetSpawnPosition();
         StartCoroutine(FrameCheck());
     }
 
@@ -78,7 +81,7 @@ public class Player : MonoBehaviour, IObjectParent
             Debug.Log("Dropping Object");
             baseObject.ClearObjectParent(this);
             tempRB.isKinematic = false;
-            tempRB.AddForce((normalTransform.forward + new Vector3(0, throwHeight, 0)) * recentGrabStrength * throwStrength, ForceMode.Impulse);
+            tempRB.AddForce((targetTransform.forward + new Vector3(0, throwHeight, 0)) * recentGrabStrength * throwStrength, ForceMode.Impulse);
         }
     }
 
@@ -102,7 +105,7 @@ public class Player : MonoBehaviour, IObjectParent
         //check if a player is already colliding with me and if this is a frame i need to check
         if (collision.gameObject.CompareTag("Player") && isFrame)
         {
-            normalTransform.position = GetSpawnPosition();
+            targetTransform.position = GetSpawnPosition();
             StartCoroutine(FrameCheck());
         }
     }
@@ -170,7 +173,7 @@ public class Player : MonoBehaviour, IObjectParent
         }
 
         float interactDistance = 2f;
-        if (Physics.Raycast(normalTransform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, objectLayerMask))
+        if (Physics.Raycast(targetTransform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, objectLayerMask))
         {
             if (raycastHit.transform.TryGetComponent(out BaseObject baseObject))
             {
