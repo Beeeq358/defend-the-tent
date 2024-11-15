@@ -14,8 +14,9 @@ public class Player : MonoBehaviour, IObjectParent
     public bool inputJumped;
     public bool inputBuilded;
     public float inputGrabStrength;
-    private Vector3 lastInteractDir;
     public BaseObject selectedBaseObject;
+    public bool isBoss;
+    private Vector3 lastInteractDir;
     private BaseObject baseObject;
     private float recentGrabStrength;
     private float frameCounter;
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour, IObjectParent
         targetTransform.gameObject.SetActive(true);
         targetTransform.position = GetSpawnPosition(false);
         StartCoroutine(FrameCheck());
+        isBoss = false;
     }
 
     public void BecomeBoss()
@@ -47,6 +49,7 @@ public class Player : MonoBehaviour, IObjectParent
         normalTransform.gameObject.SetActive(false);
         targetTransform.position = GetSpawnPosition(true);
         playerMovement.moveSpeed /= 2;
+        isBoss = true;
     }
 
     private void Update()
