@@ -22,12 +22,14 @@ public class Player : MonoBehaviour, IObjectParent
     private LayerMask objectLayerMask;
     [SerializeField]
     private Transform objectHoldPoint;
+    [SerializeField]
+    private Transform normalTransform;
 
     private bool isFrame = true;
     public Vector3 moveVector = Vector3.zero;
     private void Awake()
     {
-        transform.position = GetSpawnPosition();
+        normalTransform.position = GetSpawnPosition();
         StartCoroutine(FrameCheck());
     }
 
@@ -73,7 +75,7 @@ public class Player : MonoBehaviour, IObjectParent
             Debug.Log("Dropping Object");
             baseObject.ClearObjectParent(this);
             tempRB.isKinematic = false;
-            tempRB.AddForce((transform.forward + new Vector3(0, throwHeight, 0)) * recentGrabStrength * throwStrength, ForceMode.Impulse);
+            tempRB.AddForce((normalTransform.forward + new Vector3(0, throwHeight, 0)) * recentGrabStrength * throwStrength, ForceMode.Impulse);
         }
     }
 
@@ -97,7 +99,7 @@ public class Player : MonoBehaviour, IObjectParent
         //check if a player is already colliding with me and if this is a frame i need to check
         if (collision.gameObject.CompareTag("Player") && isFrame)
         {
-            transform.position = GetSpawnPosition();
+            normalTransform.position = GetSpawnPosition();
             StartCoroutine(FrameCheck());
         }
     }
