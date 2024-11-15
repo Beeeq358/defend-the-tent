@@ -621,18 +621,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1628712608363226833, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1628712608363226833, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1628712608363226833, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1628712608363226833, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -34.8
       objectReference: {fileID: 0}
@@ -672,17 +660,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1628712608363226833, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2240162020182468617, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
       propertyPath: m_Name
       value: P_Circus tent
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240162020182468617, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
-      propertyPath: m_TagString
-      value: Scenery
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -700,10 +680,6 @@ PrefabInstance:
     - target: {fileID: 242052607504558434, guid: 994a2ddddeeb00d4a8309c1752491570, type: 3}
       propertyPath: m_Name
       value: P_Arenabase
-      objectReference: {fileID: 0}
-    - target: {fileID: 242052607504558434, guid: 994a2ddddeeb00d4a8309c1752491570, type: 3}
-      propertyPath: m_TagString
-      value: Scenery
       objectReference: {fileID: 0}
     - target: {fileID: 514941209021195271, guid: 994a2ddddeeb00d4a8309c1752491570, type: 3}
       propertyPath: m_LocalPosition.x
