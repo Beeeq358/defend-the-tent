@@ -380,3 +380,4 @@ MonoBehaviour:
   moveSpeed: 0.5
   normalRB: {fileID: 5207495103502091086}
   isStunned: 0
+  normalTransform: {fileID: 8102731525495296334}
