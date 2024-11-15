@@ -139,7 +139,7 @@ public class Player : MonoBehaviour, IObjectParent
         {
             Vector3 spawnPos;
             spawnPos = new Vector3(Random.Range(-bossSpawnRange, bossSpawnRange), 1, Random.Range(-bossSpawnRange, bossSpawnRange));
-            while (Vector3.Distance(targetTransform.position, Vector3.zero) < 15)
+            while (Vector3.Distance(spawnPos, Vector3.zero) < 15)
             {
                 spawnPos = new Vector3(Random.Range(-bossSpawnRange, bossSpawnRange), 1, Random.Range(-bossSpawnRange, bossSpawnRange));
             }
