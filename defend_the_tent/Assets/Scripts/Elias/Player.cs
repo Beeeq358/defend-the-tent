@@ -67,6 +67,14 @@ public class Player : MonoBehaviour, IObjectParent
             {
                 if (selectedBaseObject != null)
                 {
+                    if (selectedBaseObject is BuildableObject buildableObject)
+                    {
+                        if (!buildableObject._isInteractive)
+                        {
+                            Debug.LogWarning("This object is not interactive!");
+                            return;
+                        }
+                    }
                     InteractGrab(this, selectedBaseObject);
                 }
                 else
@@ -74,6 +82,7 @@ public class Player : MonoBehaviour, IObjectParent
                     Debug.LogWarning("No Object selected!");
                 }
             }
+
         }
         if (inputGrabStrength == 0 && baseObject != null)
         {
