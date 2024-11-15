@@ -46,6 +46,7 @@ public class Player : MonoBehaviour, IObjectParent
         targetTransform.gameObject.SetActive(true);
         normalTransform.gameObject.SetActive(false);
         targetTransform.position = GetSpawnPosition(true);
+        playerMovement.moveSpeed /= 2;
     }
 
     private void Update()
