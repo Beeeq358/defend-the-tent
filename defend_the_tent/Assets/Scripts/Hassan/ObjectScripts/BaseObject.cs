@@ -45,27 +45,12 @@ public class BaseObject : MonoBehaviour
         // Set new parent
         Transform parentTransform = parent.GetObjectFollowTransform();
         transform.parent = parentTransform;
-        StartCoroutine(LerpToPosition(Vector3.zero, 0.25f));
+        transform.localPosition = Vector3.zero;
         parent.SetObject(this);
 
         // Debug the assignment
         this.objectParent = parent;
         Debug.Log($"Object parent set to: {this.objectParent}");
-    }
-
-    private IEnumerator LerpToPosition(Vector3 targetPosition, float duration)
-    {
-        Vector3 initialPosition = transform.localPosition;
-        float distanceToTarget;
-        float time = 0;
-        distanceToTarget = Vector3.Distance(targetPosition, initialPosition.normalized);
-        while (time < duration && !objectParent.HasObject() && distanceToTarget > 0.05f)
-        {
-            transform.localPosition = Vector3.Lerp(initialPosition, targetPosition, time / duration);
-            time += Time.deltaTime;
-            yield return null;
-        }
-        transform.localPosition = targetPosition;
     }
 
     public void ClearObjectParent(Player parent)

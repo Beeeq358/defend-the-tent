@@ -25,7 +25,7 @@ public class ObjectSpawner : MonoBehaviour
             int randomSpawnPointIndex = Random.Range(0, spawnPoints.Count);
 
             Instantiate(prefabs[randomPrefabIndex], spawnPoints[randomSpawnPointIndex].transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(5f);
         }
     }
 }

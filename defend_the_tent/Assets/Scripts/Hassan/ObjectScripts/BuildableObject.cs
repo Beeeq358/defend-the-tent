@@ -19,7 +19,7 @@ public class BuildableObject : BaseObject, IBuildable
 
     protected override void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Scenery") || collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Scenery") || collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Object"))
         {
 
         }

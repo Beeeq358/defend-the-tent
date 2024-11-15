@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 7225890990453697302}
   m_Layer: 3
   m_Name: BuildableWall
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,12 +170,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5076801464851286044}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1aefd4331f687b4885bc34381a7a35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upwardForceMagnitude: 5
+  upwardForceMagnitude: 20
   objectRb: {fileID: 5412668468195387589}
 --- !u!54 &5412668468195387589
 Rigidbody:
