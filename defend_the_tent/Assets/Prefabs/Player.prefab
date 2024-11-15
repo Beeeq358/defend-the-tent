@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 105076009636120323}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1529435884732440852}
@@ -365,6 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRange: 3
+  bossSpawnRange: 0
   throwStrength: 7
   throwHeight: 2
   inputMovement: {x: 0, y: 0}
@@ -372,6 +373,7 @@ MonoBehaviour:
   inputBuilded: 0
   inputGrabStrength: 0
   selectedBaseObject: {fileID: 0}
+  isBoss: 0
   objectLayerMask:
     serializedVersion: 2
     m_Bits: 8
