@@ -170,7 +170,7 @@ public class Player : MonoBehaviour, IObjectParent
         }
 
         float interactDistance = 2f;
-        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, objectLayerMask))
+        if (Physics.Raycast(normalTransform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, objectLayerMask))
         {
             if (raycastHit.transform.TryGetComponent(out BaseObject baseObject))
             {
