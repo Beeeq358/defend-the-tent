@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRange: 3
-  bossSpawnRange: 0
+  bossSpawnRange: 40
   throwStrength: 7
   throwHeight: 2
   inputMovement: {x: 0, y: 0}

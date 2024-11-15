@@ -40,6 +40,7 @@ public class Player : MonoBehaviour, IObjectParent
         targetTransform.position = GetSpawnPosition(false);
         StartCoroutine(FrameCheck());
         isBoss = false;
+        BecomeBoss();
     }
 
     public void BecomeBoss()
