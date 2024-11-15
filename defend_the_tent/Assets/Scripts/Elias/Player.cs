@@ -25,10 +25,13 @@ public class Player : MonoBehaviour, IObjectParent
     [SerializeField]
     private Transform normalTransform;
 
+    private PlayerMovement playerMovement;
+
     private bool isFrame = true;
     public Vector3 moveVector = Vector3.zero;
     private void Awake()
     {
+        playerMovement = GetComponent<PlayerMovement>();
         normalTransform.position = GetSpawnPosition();
         StartCoroutine(FrameCheck());
     }
@@ -151,7 +154,7 @@ public class Player : MonoBehaviour, IObjectParent
 
     public void InteractBuild(Player player, BuildableObject buildableObject)
     {
-        Debug.Log("Building");
+        StartCoroutine(playerMovement.StunTime(1f));
         buildableObject.SetKinematic(true);
     }
 
