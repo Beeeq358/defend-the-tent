@@ -8,6 +8,13 @@ public class BaseObject : MonoBehaviour
 
     public Rigidbody rb;
 
+    public int healthPoints;
+
+    [SerializeField]
+    private GameObject regularVisual;
+    [SerializeField]
+    private GameObject selectedVisual;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -25,6 +32,8 @@ public class BaseObject : MonoBehaviour
             rb.useGravity = true;
             rb.isKinematic = false;
         }
+
+        Die();
     }
 
     public void SetObjectParent(IObjectParent parent)
@@ -63,6 +72,20 @@ public class BaseObject : MonoBehaviour
         return transform.parent.gameObject;
     }
 
+    public void SetSelectedVisual(bool isActive)
+    {
+        if (selectedVisual != null)
+        {
+            selectedVisual.SetActive(isActive);
+        }
+
+        if (regularVisual != null)
+        {
+            regularVisual.SetActive(!isActive);
+        }
+    }
+
+
     public static BaseObject SpawnObject(ObjectSO objectSO, IObjectParent objectParent)
     {
         Transform ObjectTransform = Instantiate(objectSO.objectPrefab);
@@ -73,5 +96,33 @@ public class BaseObject : MonoBehaviour
         baseObject.SetObjectParent(objectParent);
 
         return baseObject;
+    }
+
+    protected virtual void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.gameObject.CompareTag("Scenery"))
+        {
+            TakeDamage(1);
+        }
+    }
+
+    protected virtual void TakeDamage(int damage)
+    {
+        healthPoints -= damage;
+    }
+    protected virtual void RestoreHealth(int health)
+    {
+        healthPoints += health;
+    }
+    protected virtual void Die()
+    {
+        if (healthPoints <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+    protected virtual bool IsDead()
+    {
+        return (healthPoints >= 0);
     }
 }

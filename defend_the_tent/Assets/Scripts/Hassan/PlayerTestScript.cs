@@ -49,7 +49,7 @@ public class PlayerTestScript : MonoBehaviour, IObjectParent
     {
         this.baseObject = baseObject;
     }
-    public Object GetObject()
+    public BaseObject GetObject()
     {
         return baseObject;
     }

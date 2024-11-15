@@ -35,6 +35,23 @@ public class Player : MonoBehaviour, IObjectParent
     {
         HandleInteractions();
         CalculateRecentGrabStrength();
+        if (inputBuilded )
+        {
+            if (inputBuilded)
+            {
+                if (selectedBaseObject != null && selectedBaseObject.objectSO.objectType == ObjectType.Buildable)
+                {
+                    if (selectedBaseObject is BuildableObject buildableObject)
+                    {
+                        InteractBuild(this, buildableObject);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Selected object is not a BuildableObject!");
+                    }
+                }
+            }
+        }
         if (inputGrabStrength > 0)
         {
             Debug.Log("Interacted!");
@@ -42,7 +59,7 @@ public class Player : MonoBehaviour, IObjectParent
             {
                 if (selectedBaseObject != null)
                 {
-                    Interact(this, selectedBaseObject);
+                    InteractGrab(this, selectedBaseObject);
                 }
                 else
                 {
@@ -125,9 +142,15 @@ public class Player : MonoBehaviour, IObjectParent
         return inputMovement.normalized;
     }
 
-    public void Interact(Player player, BaseObject baseObject)
+    public void InteractGrab(Player player, BaseObject baseObject)
     {
         baseObject.SetObjectParent(player);
+    }
+
+    public void InteractBuild(Player player, BuildableObject buildableObject)
+    {
+        Debug.Log("Building");
+        buildableObject.SetKinematic(true);
     }
 
     private void HandleInteractions()
@@ -164,8 +187,19 @@ public class Player : MonoBehaviour, IObjectParent
 
     private void SetSelectedObject(BaseObject selectedObject)
     {
+        if (this.selectedBaseObject != null)
+        {
+            this.selectedBaseObject.SetSelectedVisual(false);
+        }
+
         this.selectedBaseObject = selectedObject;
+
+        if (this.selectedBaseObject != null)
+        {
+            this.selectedBaseObject.SetSelectedVisual(true);
+        }
     }
+
 
     public Transform GetObjectFollowTransform()
     {
@@ -176,7 +210,7 @@ public class Player : MonoBehaviour, IObjectParent
     {
         this.baseObject = baseObject;
     }
-    public Object GetObject()
+    public BaseObject GetObject()
     {
         return baseObject;
     }
