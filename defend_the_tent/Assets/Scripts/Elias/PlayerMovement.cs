@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void IsStunned(int strength)
+    public void IsStunned(float strength)
     {
         //play stunned animation
         //play stunned effects
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(StunTime(strength));
     }
 
-    private IEnumerator StunTime(float stunTime)
+    public IEnumerator StunTime(float stunTime)
     {
         isStunned = true;
         yield return new WaitForSeconds(stunTime);
