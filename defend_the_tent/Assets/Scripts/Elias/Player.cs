@@ -6,6 +6,7 @@ public class Player : MonoBehaviour, IObjectParent
 {
     [Header("Config")]
     public float spawnRange;
+    public float bossSpawnRange;
     public float throwStrength;
     public float throwHeight;
 
@@ -13,8 +14,9 @@ public class Player : MonoBehaviour, IObjectParent
     public bool inputJumped;
     public bool inputBuilded;
     public float inputGrabStrength;
-    private Vector3 lastInteractDir;
     public BaseObject selectedBaseObject;
+    public bool isBoss;
+    private Vector3 lastInteractDir;
     private BaseObject baseObject;
     private float recentGrabStrength;
     private float frameCounter;
@@ -35,8 +37,19 @@ public class Player : MonoBehaviour, IObjectParent
         playerMovement = GetComponent<PlayerMovement>();
         targetTransform = normalTransform;
         targetTransform.gameObject.SetActive(true);
-        targetTransform.position = GetSpawnPosition();
+        targetTransform.position = GetSpawnPosition(false);
         StartCoroutine(FrameCheck());
+        isBoss = false;
+    }
+
+    public void BecomeBoss()
+    {
+        targetTransform = bossTransform;
+        targetTransform.gameObject.SetActive(true);
+        normalTransform.gameObject.SetActive(false);
+        targetTransform.position = GetSpawnPosition(true);
+        playerMovement.moveSpeed /= 2;
+        isBoss = true;
     }
 
     private void Update()
@@ -90,7 +103,7 @@ public class Player : MonoBehaviour, IObjectParent
             Debug.Log("Dropping Object");
             baseObject.ClearObjectParent(this);
             tempRB.isKinematic = false;
-            tempRB.AddForce((targetTransform.forward + new Vector3(0, throwHeight, 0)) * recentGrabStrength * throwStrength, ForceMode.Impulse);
+            tempRB.AddForce(recentGrabStrength * throwStrength * (targetTransform.forward + new Vector3(0, throwHeight, 0)), ForceMode.Impulse);
         }
     }
 
@@ -114,14 +127,25 @@ public class Player : MonoBehaviour, IObjectParent
         //check if a player is already colliding with me and if this is a frame i need to check
         if (collision.gameObject.CompareTag("Player") && isFrame)
         {
-            targetTransform.position = GetSpawnPosition();
+            targetTransform.position = GetSpawnPosition(false);
             StartCoroutine(FrameCheck());
         }
     }
     //returns a random spawn position in the middle of the arena
-    private Vector3 GetSpawnPosition()
+    private Vector3 GetSpawnPosition(bool isBoss)
     {
-        return new Vector3(Random.Range(-spawnRange, spawnRange), 1, Random.Range(-spawnRange, spawnRange));
+        if (isBoss)
+        {
+            Vector3 spawnPos;
+            spawnPos = new Vector3(Random.Range(-bossSpawnRange, bossSpawnRange), 1, Random.Range(-bossSpawnRange, bossSpawnRange));
+            while (Vector3.Distance(targetTransform.position, Vector3.zero) < 15)
+            {
+                spawnPos = new Vector3(Random.Range(-bossSpawnRange, bossSpawnRange), 1, Random.Range(-bossSpawnRange, bossSpawnRange));
+            }
+            return spawnPos;
+        }
+        else
+            return new Vector3(Random.Range(-spawnRange, spawnRange), 1, Random.Range(-spawnRange, spawnRange));
     }
 
     //wait a frame after spawn
