@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
                 break;
             case GamePhase.Action:
                 // Perform action phase actions
-                objectSpawner.SetActive(false);
                 StartCoroutine(CountDownActionPhase());
                 break;
             case GamePhase.PostAction:
