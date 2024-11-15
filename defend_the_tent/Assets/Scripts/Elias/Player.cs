@@ -45,6 +45,7 @@ public class Player : MonoBehaviour, IObjectParent
         targetTransform = bossTransform;
         targetTransform.gameObject.SetActive(true);
         normalTransform.gameObject.SetActive(false);
+        targetTransform.position = GetSpawnPosition(true);
     }
 
     private void Update()
