@@ -20,27 +20,30 @@ public class Player : MonoBehaviour, IObjectParent
     private BaseObject baseObject;
     private float recentGrabStrength;
     private float frameCounter;
-    private Transform targetTransform;
+    public Transform targetTransform;
     [SerializeField]
     private LayerMask objectLayerMask;
     [SerializeField]
     private Transform objectHoldPoint;
-    [SerializeField]
-    private Transform normalTransform, bossTransform;
+    public Transform normalTransform, bossTransform;
+    public Rigidbody normalRB, bossRB;
 
     private PlayerMovement playerMovement;
 
     private bool isFrame = true;
     public Vector3 moveVector = Vector3.zero;
+
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         targetTransform = normalTransform;
         targetTransform.gameObject.SetActive(true);
         targetTransform.position = GetSpawnPosition(false);
+    }
+    private void Start()
+    {
         StartCoroutine(FrameCheck());
         isBoss = false;
-        //BecomeBoss();
     }
 
     public void BecomeBoss()
@@ -48,8 +51,10 @@ public class Player : MonoBehaviour, IObjectParent
         targetTransform = bossTransform;
         targetTransform.gameObject.SetActive(true);
         normalTransform.gameObject.SetActive(false);
+        playerMovement.targetTransform = targetTransform;
+        playerMovement.targetRB = bossRB;
         targetTransform.position = GetSpawnPosition(true);
-        playerMovement.moveSpeed /= 2;
+        playerMovement.moveSpeed = 0.3f;
         isBoss = true;
     }
 
@@ -155,6 +160,7 @@ public class Player : MonoBehaviour, IObjectParent
         isFrame = true;
         yield return new WaitForEndOfFrame();
         isFrame = false;
+        BecomeBoss();
     }
 
     public void OnMove(InputAction.CallbackContext context)

@@ -374,12 +374,15 @@ MonoBehaviour:
   inputGrabStrength: 0
   selectedBaseObject: {fileID: 0}
   isBoss: 0
+  targetTransform: {fileID: 0}
   objectLayerMask:
     serializedVersion: 2
     m_Bits: 8
   objectHoldPoint: {fileID: 7724822326993971726}
   normalTransform: {fileID: 8102731525495296334}
   bossTransform: {fileID: 7452215328330774507}
+  normalRB: {fileID: 5207495103502091086}
+  bossRB: {fileID: 411993696112143557}
   moveVector: {x: 0, y: 0, z: 0}
 --- !u!114 &3159631538329086411
 MonoBehaviour:
@@ -488,10 +491,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.5
-  normalRB: {fileID: 5207495103502091086}
+  targetTransform: {fileID: 0}
+  targetRB: {fileID: 0}
   isStunned: 0
-  normalTransform: {fileID: 8102731525495296334}
-  bossTransform: {fileID: 7452215328330774507}
 --- !u!1 &8096206408343505631
 GameObject:
   m_ObjectHideFlags: 0

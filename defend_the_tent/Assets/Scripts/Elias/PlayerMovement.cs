@@ -7,14 +7,15 @@ public class PlayerMovement : MonoBehaviour
 
     private Player player;
     private Vector3 moveVector;
-    private Transform targetTransform;
-    [SerializeField] private Rigidbody normalRB;
+    public Transform targetTransform;
+    public Rigidbody targetRB;
+
     [SerializeField] private bool isStunned;
-    [SerializeField] private Transform normalTransform, bossTransform;
-    private void Awake()
+    private void Start()
     {
-        targetTransform = normalTransform;
         player = GetComponent<Player>();
+        targetTransform = player.normalTransform;
+        targetRB = player.normalRB;
     }
 
     private void FixedUpdate()
@@ -23,10 +24,10 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector2 inputVector = player.GetMovementVectorNormalized();
 
-            Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
+            Vector3 moveDir = new(inputVector.x, 0f, inputVector.y);
 
             moveVector = player.moveVector;
-            normalRB.linearVelocity += moveVector * moveSpeed;
+            targetRB.linearVelocity += moveVector * moveSpeed;
             float rotateSpeed = 10f;
             targetTransform.forward = Vector3.Slerp(targetTransform.forward, moveDir, Time.deltaTime * rotateSpeed);
         }
