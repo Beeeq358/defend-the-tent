@@ -49,7 +49,7 @@ ModelImporter:
       name: BuildingAnimation
       takeName: Scene
       internalID: -623603649343465320
-      firstFrame: 1
+      firstFrame: 1.3
       lastFrame: 28
       wrapMode: 0
       orientationOffsetY: 0
@@ -78,7 +78,7 @@ ModelImporter:
       name: IdleAnimation
       takeName: Scene
       internalID: -1609281748187839663
-      firstFrame: 30
+      firstFrame: 31
       lastFrame: 54
       wrapMode: 0
       orientationOffsetY: 0
