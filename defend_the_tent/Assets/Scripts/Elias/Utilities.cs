@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class Utilities : MonoBehaviour
 {
     GameManager gameManager;
+    GameObject everyonesInButton;
     public void OnStart()
     {
         SceneManager.LoadScene("Main");
@@ -12,6 +13,16 @@ public class Utilities : MonoBehaviour
     public void EveryonesIn()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameManager.gamePhase = GameManager.GamePhase.Preparation;
+        if (gameManager.GetPlayers().Count > 1)
+        {
+            gameManager.gamePhase = GameManager.GamePhase.Preparation;
+            everyonesInButton = GameObject.Find("Everyone's In");
+            everyonesInButton.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("Not enough players, 2 players are needed to play. 3 or 4 is recommended");
+        }
+
     }
 }

@@ -29,12 +29,14 @@ public class Player : MonoBehaviour, IObjectParent
     public Rigidbody normalRB, bossRB;
 
     private PlayerMovement playerMovement;
+    private GameManager gameManager;
 
     private bool isFrame = true;
     public Vector3 moveVector = Vector3.zero;
 
     private void Awake()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerMovement = GetComponent<PlayerMovement>();
         targetTransform = normalTransform;
         targetTransform.gameObject.SetActive(true);
@@ -44,6 +46,10 @@ public class Player : MonoBehaviour, IObjectParent
     {
         StartCoroutine(FrameCheck());
         isBoss = false;
+        if (gameManager.gamePhase != GameManager.GamePhase.PreGame)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void BecomeBoss()
@@ -62,11 +68,11 @@ public class Player : MonoBehaviour, IObjectParent
     {
         HandleInteractions();
         CalculateRecentGrabStrength();
-        if (inputBuilded )
+        if (inputBuilded)
         {
             if (inputBuilded)
             {
-                if (selectedBaseObject != null && selectedBaseObject.objectSO.objectType == ObjectType.Buildable)
+                if (selectedBaseObject != null && selectedBaseObject.objectSO.objectType == ObjectType.Buildable && !isBoss)
                 {
                     if (selectedBaseObject is BuildableObject buildableObject)
                     {
@@ -82,7 +88,7 @@ public class Player : MonoBehaviour, IObjectParent
         if (inputGrabStrength > 0)
         {
             Debug.Log("Interacted!");
-            if (baseObject == null)
+            if (baseObject == null && !isBoss)
             {
                 if (selectedBaseObject != null)
                 {
@@ -103,7 +109,7 @@ public class Player : MonoBehaviour, IObjectParent
             }
 
         }
-        if (inputGrabStrength == 0 && baseObject != null)
+        if (inputGrabStrength == 0 && baseObject != null && !isBoss)
         {
             Rigidbody tempRB = baseObject.rb;
             Debug.Log("Dropping Object");
@@ -125,13 +131,12 @@ public class Player : MonoBehaviour, IObjectParent
         {
             recentGrabStrength = 0;
         }
-        Debug.Log(recentGrabStrength);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         //check if a player is already colliding with me and if this is a frame i need to check
-        if (collision.gameObject.CompareTag("Player") && isFrame)
+        if ((collision.gameObject.CompareTag("Player") || collision.gameObject.name == "P_Circus tent") && isFrame)
         {
             targetTransform.position = GetSpawnPosition(false);
             StartCoroutine(FrameCheck());

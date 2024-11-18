@@ -22,7 +22,8 @@ public class GameManager : MonoBehaviour
 
     public GamePhase gamePhase;
 
-    private List<GameObject> players = new();
+    public List<GameObject> players = new();
+    private bool bossChosen;
 
     void Start()
     {
@@ -38,12 +39,14 @@ public class GameManager : MonoBehaviour
                 break;
             case GamePhase.Preparation:
                 // Perform preparation actions
-                StartCoroutine(CountDownPreparationPhase());
                 objectSpawner.SetActive(true);
+                StartCoroutine(CountDownPreparationPhase());
                 break;
             case GamePhase.Action:
                 // Perform action phase actions
                 StartCoroutine(CountDownActionPhase());
+                if (!bossChosen)
+                    ChooseBoss();
                 break;
             case GamePhase.PostAction:
                 // Perform post-action actions
@@ -67,16 +70,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator ChooseBoss()
+    private void ChooseBoss()
     {
-        players.Clear();
-        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
-        {
-            players.Add(player);
-        }
+        bossChosen = true;
+        players = GetPlayers();
         int chosenPlayer = Random.Range(0, players.Count);
         players[chosenPlayer].GetComponent<Player>().BecomeBoss();
-        yield return null;
+    }
+
+    public List<GameObject> GetPlayers()
+    {
+        List<GameObject> activePlayers = new();
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if (player.GetComponent<Player>() != null)
+                activePlayers.Add(player);
+        }
+        return activePlayers;
     }
 
     private IEnumerator CountDownActionPhase()
