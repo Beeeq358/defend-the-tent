@@ -160,7 +160,6 @@ public class Player : MonoBehaviour, IObjectParent
         isFrame = true;
         yield return new WaitForEndOfFrame();
         isFrame = false;
-        BecomeBoss();
     }
 
     public void OnMove(InputAction.CallbackContext context)

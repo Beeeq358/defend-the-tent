@@ -1,10 +1,12 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public enum GamePhase
     {
+        PreGame,
         Preparation,
         Action,
         PostAction
@@ -19,19 +21,23 @@ public class GameManager : MonoBehaviour
     private float actionTime = 30f;
 
     public GamePhase gamePhase;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private List<GameObject> players = new();
+
     void Start()
     {
-        gamePhase = GamePhase.Preparation;
+        gamePhase = GamePhase.PreGame;
     }
 
-    // Update is called once per frame
     void Update()
     {
         switch (gamePhase)
         {
+            case GamePhase.PreGame:
+                // Perform pre game actions
+                break;
             case GamePhase.Preparation:
-                // Perform preparation action
+                // Perform preparation actions
                 StartCoroutine(CountDownPreparationPhase());
                 objectSpawner.SetActive(true);
                 break;
@@ -45,6 +51,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void GoToPrepPhase()
+    {
+        gamePhase = GamePhase.PreGame;
+    }
+
     private IEnumerator CountDownPreparationPhase()
     {
         preparationTime -= Time.deltaTime;
@@ -54,6 +65,18 @@ public class GameManager : MonoBehaviour
             gamePhase = GamePhase.Action;
             StopCoroutine(CountDownPreparationPhase());
         }
+    }
+
+    private IEnumerator ChooseBoss()
+    {
+        players.Clear();
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            players.Add(player);
+        }
+        int chosenPlayer = Random.Range(0, players.Count);
+        players[chosenPlayer].GetComponent<Player>().BecomeBoss();
+        yield return null;
     }
 
     private IEnumerator CountDownActionPhase()
