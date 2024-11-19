@@ -186,7 +186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8102731525495296334
 Transform:
   m_ObjectHideFlags: 0
@@ -265,6 +265,8 @@ GameObject:
   - component: {fileID: -8633664820246738670}
   - component: {fileID: 3159631538329086411}
   - component: {fileID: 3529286806599160509}
+  - component: {fileID: -1572975507665842224}
+  - component: {fileID: 6400146527427123377}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -309,26 +311,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f3d12bc46dd0148af352c0a61951df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRange: 3
-  bossSpawnRange: 40
-  throwStrength: 7
-  throwHeight: 2
-  inputMovement: {x: 0, y: 0}
-  inputJumped: 0
-  inputBuilded: 0
-  inputGrabStrength: 0
-  selectedBaseObject: {fileID: 0}
-  isBoss: 0
-  targetTransform: {fileID: 0}
   objectLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  objectHoldPoint: {fileID: 7724822326993971726}
-  normalTransform: {fileID: 8102731525495296334}
-  bossTransform: {fileID: 7452215328330774507}
   normalRB: {fileID: 5207495103502091086}
   bossRB: {fileID: 411993696112143557}
-  moveVector: {x: 0, y: 0, z: 0}
+  normalPlayer: {fileID: 2366724338516340593}
+  bossPlayer: {fileID: 105076009636120323}
+  playerHoldPoint: {fileID: 968370018937330574}
+  bossHoldPoint: {fileID: 8096206408343505631}
 --- !u!114 &3159631538329086411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: f7a41eb84ba3fbe4384d0af38448b856, type: 3}
+  m_Actions: {fileID: 0}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -435,10 +426,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fe0bb4a9bed134db25fe89afdbde48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  normalRB: {fileID: 5207495103502091086}
+  bossRB: {fileID: 411993696112143557}
+  normalPlayer: {fileID: 2366724338516340593}
+  bossPlayer: {fileID: 105076009636120323}
+  playerHoldPoint: {fileID: 968370018937330574}
+  bossHoldPoint: {fileID: 8096206408343505631}
   moveSpeed: 0.5
-  targetTransform: {fileID: 0}
   targetRB: {fileID: 0}
   isStunned: 0
+--- !u!114 &-1572975507665842224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5859636840929596724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5a9f31608b8d14486ff9322f1a9dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  normalRB: {fileID: 5207495103502091086}
+  bossRB: {fileID: 411993696112143557}
+  normalPlayer: {fileID: 2366724338516340593}
+  bossPlayer: {fileID: 105076009636120323}
+  playerHoldPoint: {fileID: 968370018937330574}
+  bossHoldPoint: {fileID: 8096206408343505631}
+  bossHealthPoints: 20
+--- !u!114 &6400146527427123377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5859636840929596724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c65a9e9999a4144a72c3222818a57b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  normalRB: {fileID: 5207495103502091086}
+  bossRB: {fileID: 411993696112143557}
+  normalPlayer: {fileID: 2366724338516340593}
+  bossPlayer: {fileID: 105076009636120323}
+  playerHoldPoint: {fileID: 968370018937330574}
+  bossHoldPoint: {fileID: 8096206408343505631}
 --- !u!1 &8096206408343505631
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1529435884732440852}
   m_Layer: 0
-  m_Name: playerHoldPoint
+  m_Name: bossHoldPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
