@@ -16,22 +16,22 @@ public class Player : MonoBehaviour, IObjectParent
     public float inputGrabStrength;
     public BaseObject selectedBaseObject;
     public bool isBoss;
-    private Vector3 lastInteractDir;
-    private BaseObject baseObject;
-    private float recentGrabStrength;
-    private float frameCounter;
+    protected Vector3 lastInteractDir;
+    protected BaseObject baseObject;
+    protected float recentGrabStrength;
+    protected float frameCounter;
     public Transform targetTransform;
     [SerializeField]
-    private LayerMask objectLayerMask;
+    protected LayerMask objectLayerMask;
     [SerializeField]
-    private Transform objectHoldPoint;
+    protected Transform objectHoldPoint;
     public Transform normalTransform, bossTransform;
     public Rigidbody normalRB, bossRB;
 
-    private PlayerMovement playerMovement;
-    private GameManager gameManager;
+    protected PlayerMovement playerMovement;
+    protected GameManager gameManager;
 
-    private bool isFrame = true;
+    protected bool isFrame = true;
     public Vector3 moveVector = Vector3.zero;
 
     private void Awake()
@@ -44,7 +44,6 @@ public class Player : MonoBehaviour, IObjectParent
     }
     private void Start()
     {
-        StartCoroutine(FrameCheck());
         isBoss = false;
         if (gameManager.gamePhase != GameManager.GamePhase.PreGame)
         {
@@ -52,59 +51,9 @@ public class Player : MonoBehaviour, IObjectParent
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
-        HandleInteractions();
         CalculateRecentGrabStrength();
-        if (inputBuilded)
-        {
-            if (inputBuilded)
-            {
-                if (selectedBaseObject != null && selectedBaseObject.objectSO.objectType == ObjectType.Buildable && !isBoss)
-                {
-                    if (selectedBaseObject is BuildableObject buildableObject)
-                    {
-                        InteractBuild(this, buildableObject);
-                    }
-                    else
-                    {
-                        Debug.LogWarning("Selected object is not a BuildableObject!");
-                    }
-                }
-            }
-        }
-        if (inputGrabStrength > 0)
-        {
-            Debug.Log("Interacted!");
-            if (baseObject == null && !isBoss)
-            {
-                if (selectedBaseObject != null)
-                {
-                    if (selectedBaseObject is BuildableObject buildableObject)
-                    {
-                        if (!buildableObject._isInteractive)
-                        {
-                            Debug.LogWarning("This object is not interactive!");
-                            return;
-                        }
-                    }
-                    InteractGrab(this, selectedBaseObject);
-                }
-                else
-                {
-                    Debug.LogWarning("No Object selected!");
-                }
-            }
-
-        }
-        if (inputGrabStrength == 0 && baseObject != null && !isBoss)
-        {
-            Rigidbody tempRB = baseObject.rb;
-            Debug.Log("Dropping Object");
-            baseObject.ClearObjectParent(this);
-            tempRB.isKinematic = false;
-            tempRB.AddForce(recentGrabStrength * throwStrength * (targetTransform.forward + new Vector3(0, throwHeight, 0)), ForceMode.Impulse);
-        }
     }
 
     protected virtual void CalculateRecentGrabStrength()
@@ -121,15 +70,6 @@ public class Player : MonoBehaviour, IObjectParent
         }
     }
 
-    protected virtual void OnCollisionEnter(Collision collision)
-    {
-        //check if a player is already colliding with me and if this is a frame i need to check
-        if ((collision.gameObject.CompareTag("Player") || collision.gameObject.name == "P_Circus tent") && isFrame)
-        {
-            targetTransform.position = GetSpawnPosition(false);
-            StartCoroutine(FrameCheck());
-        }
-    }
     //returns a random spawn position in the middle of the arena
     protected virtual Vector3 GetSpawnPosition(bool isBoss)
     {
@@ -147,13 +87,6 @@ public class Player : MonoBehaviour, IObjectParent
             return new Vector3(Random.Range(-spawnRange, spawnRange), 1, Random.Range(-spawnRange, spawnRange));
     }
 
-    //wait a frame after spawn
-    protected virtual IEnumerator FrameCheck()
-    {
-        isFrame = true;
-        yield return new WaitForEndOfFrame();
-        isFrame = false;
-    }
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -182,50 +115,9 @@ public class Player : MonoBehaviour, IObjectParent
         return inputMovement.normalized;
     }
 
-    public void InteractGrab(Player player, BaseObject baseObject)
-    {
-        baseObject.SetObjectParent(player);
-    }
+   
 
-    public void InteractBuild(Player player, BuildableObject buildableObject)
-    {
-        StartCoroutine(playerMovement.StunTime(1f));
-        buildableObject.SetKinematic(true);
-    }
-
-    private void HandleInteractions()
-    {
-        Vector2 inputVector = GetMovementVectorNormalized();
-
-        Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
-
-        if (moveDir != Vector3.zero)
-        {
-            lastInteractDir = moveDir;
-        }
-
-        float interactDistance = 2f;
-        if (Physics.Raycast(targetTransform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, objectLayerMask))
-        {
-            if (raycastHit.transform.TryGetComponent(out BaseObject baseObject))
-            {
-                if (baseObject != selectedBaseObject)
-                {
-                    SetSelectedObject(baseObject);
-                }
-            }
-            else
-            {
-                SetSelectedObject(null); 
-            }
-        }
-        else
-        {
-            SetSelectedObject(null);
-        }
-    }
-
-    private void SetSelectedObject(BaseObject selectedObject)
+    protected void SetSelectedObject(BaseObject selectedObject)
     {
         if (this.selectedBaseObject != null)
         {

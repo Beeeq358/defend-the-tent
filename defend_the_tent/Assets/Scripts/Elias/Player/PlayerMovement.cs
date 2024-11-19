@@ -11,6 +11,7 @@ public class PlayerMovement : Player
     [SerializeField] private bool isStunned;
     private void Start()
     {
+        StartCoroutine(FrameCheck());
         player = GetComponent<Player>();
         targetTransform = player.normalTransform;
         targetRB = player.normalRB;
@@ -29,6 +30,23 @@ public class PlayerMovement : Player
             float rotateSpeed = 10f;
             targetTransform.forward = Vector3.Slerp(targetTransform.forward, moveDir, Time.deltaTime * rotateSpeed);
         }
+    }
+    protected void OnCollisionEnter(Collision collision)
+    {
+        //check if a player is already colliding with me and if this is a frame i need to check
+        if ((collision.gameObject.CompareTag("Player") || collision.gameObject.name == "P_Circus tent") && isFrame)
+        {
+            targetTransform.position = GetSpawnPosition(false);
+            StartCoroutine(FrameCheck());
+        }
+    }
+
+    //wait a frame after spawn
+    protected virtual IEnumerator FrameCheck()
+    {
+        isFrame = true;
+        yield return new WaitForEndOfFrame();
+        isFrame = false;
     }
 
     public void IsStunned(float strength)
