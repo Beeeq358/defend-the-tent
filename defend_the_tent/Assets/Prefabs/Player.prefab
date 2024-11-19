@@ -321,6 +321,7 @@ MonoBehaviour:
   bossPlayer: {fileID: 105076009636120323}
   playerHoldPoint: {fileID: 968370018937330574}
   bossHoldPoint: {fileID: 8096206408343505631}
+  gameManager: {fileID: 0}
 --- !u!114 &3159631538329086411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,8 +349,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -8633664820246738670}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 4344068942544146322}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -364,8 +365,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -8633664820246738670}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 4344068942544146322}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
         m_MethodName: OnGrab
         m_Mode: 0
         m_Arguments:
@@ -380,8 +381,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Grab[/Keyboard/shift]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -8633664820246738670}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 4344068942544146322}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
         m_Arguments:
@@ -396,8 +397,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Jump[/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -8633664820246738670}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+      - m_Target: {fileID: 4344068942544146322}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
         m_MethodName: OnBuild
         m_Mode: 0
         m_Arguments:
@@ -436,6 +437,7 @@ MonoBehaviour:
   bossPlayer: {fileID: 105076009636120323}
   playerHoldPoint: {fileID: 968370018937330574}
   bossHoldPoint: {fileID: 8096206408343505631}
+  gameManager: {fileID: 0}
 --- !u!114 &8557173046172210087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,6 +459,7 @@ MonoBehaviour:
   bossPlayer: {fileID: 105076009636120323}
   playerHoldPoint: {fileID: 968370018937330574}
   bossHoldPoint: {fileID: 8096206408343505631}
+  gameManager: {fileID: 0}
   bossHealthPoints: 20
 --- !u!114 &3529286806599160509
 MonoBehaviour:
@@ -479,6 +482,7 @@ MonoBehaviour:
   bossPlayer: {fileID: 105076009636120323}
   playerHoldPoint: {fileID: 2366724338516340593}
   bossHoldPoint: {fileID: 8096206408343505631}
+  gameManager: {fileID: 0}
   moveSpeed: 0.5
   targetRB: {fileID: 0}
   isStunned: 0
