@@ -33,6 +33,7 @@ public class Player : MonoBehaviour, IObjectParent
     protected GameObject normalPlayer, bossPlayer, playerHoldPoint, bossHoldPoint;
 
     protected PlayerMovement playerMovement;
+    [SerializeField]
     protected GameManager gameManager;
 
     protected bool isFrame = true;
@@ -40,16 +41,19 @@ public class Player : MonoBehaviour, IObjectParent
 
     private void Awake()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
         playerMovement = GetComponent<PlayerMovement>();
     }
     private void Start()
     {
         PlayerStart();
         isBoss = false;
-        if (gameManager.gamePhase != GameManager.GamePhase.PreGame)
+        if (gameManager != null)
         {
-            gameObject.SetActive(false);
+            if (gameManager.gamePhase != GameManager.GamePhase.PreGame)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 

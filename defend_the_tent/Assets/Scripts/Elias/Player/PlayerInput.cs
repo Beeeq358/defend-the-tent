@@ -9,9 +9,9 @@ public class PlayerInput : Player
     {
         animator = GetComponent<Animator>();
     }
-    protected override void Update()
+    private void Update()
     {
-        base.Update();
+        base.PlayerUpdate();
         if (moveVector.normalized != Vector3.zero)
         {
             animator.SetBool("isWalking", true);
