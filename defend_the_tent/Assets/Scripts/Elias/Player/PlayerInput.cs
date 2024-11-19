@@ -25,6 +25,8 @@ public class PlayerInput : MonoBehaviour
             animator.SetBool("isWalking", false);
             animator.SetBool("isIdle", true);
         }
+
+        Debug.Log(inputBuilded);
     }
     public void OnMove(InputAction.CallbackContext context)
     {

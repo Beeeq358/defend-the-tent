@@ -56,12 +56,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Build"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""f9b0ab69-50b5-41f3-b06e-287267d6d422"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -244,7 +244,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3ac74d26-0dd6-4b72-9f70-8f8e90c93bcb"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Keyboard>/#(F)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard"",
