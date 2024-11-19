@@ -9,10 +9,6 @@ public class Player : MonoBehaviour, IObjectParent
     protected float throwStrength = 7;
     protected float throwHeight = 2;
 
-    protected Vector2 inputMovement;
-    protected bool inputJumped;
-    protected bool inputBuilded;
-    protected float inputGrabStrength;
     protected BaseObject selectedBaseObject;
     protected bool isBoss;
     protected Vector3 lastInteractDir;
@@ -37,12 +33,13 @@ public class Player : MonoBehaviour, IObjectParent
     protected GameManager gameManager;
 
     protected bool isFrame = true;
-    protected Vector3 moveVector = Vector3.zero;
+    protected PlayerInput input;
 
     private void Awake()
     {
         gameManager = FindFirstObjectByType<GameManager>();
         playerMovement = GetComponent<PlayerMovement>();
+        input = GetComponent<PlayerInput>();
     }
     private void Start()
     {
@@ -82,9 +79,9 @@ public class Player : MonoBehaviour, IObjectParent
 
     protected virtual void CalculateRecentGrabStrength()
     {
-        if (inputGrabStrength > 0 && inputGrabStrength >= recentGrabStrength)
+        if (input.inputGrabStrength > 0 && input.inputGrabStrength >= recentGrabStrength)
         {
-            recentGrabStrength = inputGrabStrength;
+            recentGrabStrength = input.inputGrabStrength;
             frameCounter = 0;
         }
         frameCounter++;
@@ -113,7 +110,7 @@ public class Player : MonoBehaviour, IObjectParent
 
     public Vector2 GetMovementVectorNormalized()
     {
-        return inputMovement.normalized;
+        return input.inputMovement.normalized;
     }
 
     protected void SetSelectedObject(BaseObject selectedObject)
