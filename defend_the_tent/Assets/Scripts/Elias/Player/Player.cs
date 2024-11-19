@@ -4,48 +4,45 @@ using UnityEngine;
 public class Player : MonoBehaviour, IObjectParent
 {
     [Header("Config")]
-    protected float spawnRange = 3;
-    protected float bossSpawnRange= 40;
-    protected float throwStrength = 7;
-    protected float throwHeight = 2;
+    public float spawnRange;
+    public float bossSpawnRange;
+    public float throwStrength;
+    public float throwHeight;
 
-    protected Vector2 inputMovement;
-    protected bool inputJumped;
-    protected bool inputBuilded;
-    protected float inputGrabStrength;
-    protected BaseObject selectedBaseObject;
-    protected bool isBoss;
+    public Vector2 inputMovement;
+    public bool inputJumped;
+    public bool inputBuilded;
+    public float inputGrabStrength;
+    public BaseObject selectedBaseObject;
+    public bool isBoss;
     protected Vector3 lastInteractDir;
     protected BaseObject baseObject;
     protected float recentGrabStrength;
     protected float frameCounter;
-    protected Transform targetTransform;
+    public Transform targetTransform;
     [SerializeField]
     protected LayerMask objectLayerMask;
-
-    protected Transform playerObjectHoldPoint;
-    protected Transform bossObjectHoldPoint;
-    protected Transform normalTransform, bossTransform;
     [SerializeField]
-    protected Rigidbody normalRB, bossRB;
-
-    [SerializeField]
-    protected GameObject normalPlayer, bossPlayer, playerHoldPoint, bossHoldPoint;
+    protected Transform objectHoldPoint;
+    public Transform normalTransform, bossTransform;
+    public Rigidbody normalRB, bossRB;
 
     protected PlayerMovement playerMovement;
     protected GameManager gameManager;
 
     protected bool isFrame = true;
-    protected Vector3 moveVector = Vector3.zero;
+    public Vector3 moveVector = Vector3.zero;
 
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerMovement = GetComponent<PlayerMovement>();
+        targetTransform = normalTransform;
+        targetTransform.gameObject.SetActive(true);
+        targetTransform.position = GetSpawnPosition(false);
     }
     private void Start()
     {
-        PlayerStart();
         isBoss = false;
         if (gameManager.gamePhase != GameManager.GamePhase.PreGame)
         {
@@ -53,25 +50,7 @@ public class Player : MonoBehaviour, IObjectParent
         }
     }
 
-    private void Update()
-    {
-        PlayerUpdate();
-    }
-
-    protected virtual void PlayerStart()
-    {
-        playerObjectHoldPoint = playerHoldPoint.transform;
-        bossObjectHoldPoint = bossHoldPoint.transform;
-        normalTransform = normalPlayer.transform;
-        bossTransform = bossPlayer.transform;
-        normalRB = normalPlayer.GetComponent<Rigidbody>();
-        bossRB = bossPlayer.GetComponent<Rigidbody>();
-        targetTransform = normalTransform;
-        targetTransform.gameObject.SetActive(true);
-        targetTransform.position = GetSpawnPosition(false);
-    }
-
-    protected virtual void PlayerUpdate()
+    protected virtual void Update()
     {
         CalculateRecentGrabStrength();
     }
@@ -112,6 +91,8 @@ public class Player : MonoBehaviour, IObjectParent
         return inputMovement.normalized;
     }
 
+   
+
     protected void SetSelectedObject(BaseObject selectedObject)
     {
         if (this.selectedBaseObject != null)
@@ -130,7 +111,7 @@ public class Player : MonoBehaviour, IObjectParent
 
     public Transform GetObjectFollowTransform()
     {
-        return playerObjectHoldPoint;
+        return objectHoldPoint;
     }
 
     public void SetObject(BaseObject baseObject)

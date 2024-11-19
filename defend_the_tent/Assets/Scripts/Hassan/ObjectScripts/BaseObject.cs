@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class BaseObject : MonoBehaviour, IDamageable
+public class BaseObject : MonoBehaviour
 {
     public ObjectSO objectSO;
 
@@ -107,22 +107,22 @@ public class BaseObject : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamage(int damage)
+    protected virtual void TakeDamage(int damage)
     {
         healthPoints -= damage;
     }
-    public void RestoreHealth(int health)
+    protected virtual void RestoreHealth(int health)
     {
         healthPoints += health;
     }
-    public void Die()
+    protected virtual void Die()
     {
         if (healthPoints <= 0)
         {
             Destroy(gameObject);
         }
     }
-    public bool IsDead()
+    protected virtual bool IsDead()
     {
         return (healthPoints >= 0);
     }

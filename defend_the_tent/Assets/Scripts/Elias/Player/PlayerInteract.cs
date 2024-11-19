@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class PlayerInteract : Player
 {
-    private void Start()
-    {
-        base.PlayerStart();
-    }
-
-    private void Update()
+    protected override void Update()
     {
         HandleInteractions();
-        base.PlayerUpdate();
+        base.Update();
         if (inputBuilded)
         {
             if (inputBuilded)
