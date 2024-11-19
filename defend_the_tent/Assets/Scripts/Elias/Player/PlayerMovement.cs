@@ -11,10 +11,10 @@ public class PlayerMovement : Player
     [SerializeField] private bool isStunned;
     private void Start()
     {
+        base.PlayerStart();
         StartCoroutine(FrameCheck());
         player = GetComponent<Player>();
-        targetTransform = player.normalTransform;
-        targetRB = player.normalRB;
+        targetRB = normalRB;
     }
 
     private void FixedUpdate()
@@ -25,12 +25,12 @@ public class PlayerMovement : Player
 
             Vector3 moveDir = new(inputVector.x, 0f, inputVector.y);
 
-            moveVector = player.moveVector;
             targetRB.linearVelocity += moveVector * moveSpeed;
             float rotateSpeed = 10f;
             targetTransform.forward = Vector3.Slerp(targetTransform.forward, moveDir, Time.deltaTime * rotateSpeed);
         }
     }
+
     protected void OnCollisionEnter(Collision collision)
     {
         //check if a player is already colliding with me and if this is a frame i need to check

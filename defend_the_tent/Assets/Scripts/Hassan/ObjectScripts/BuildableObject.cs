@@ -9,15 +9,6 @@ public class BuildableObject : BaseObject, IBuildable
         base.Die();
     }
 
-    protected override void TakeDamage(int damage)
-    {
-        if (IsKinematic())
-        {
-            base.TakeDamage(damage);
-        }
-    }
-
-
     protected override void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Scenery") || collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Object"))
@@ -26,7 +17,11 @@ public class BuildableObject : BaseObject, IBuildable
         }
         else
         {
-            TakeDamage(1);
+            if (IsKinematic())
+            {
+                TakeDamage(1);
+            }
+
         }
     }
 
