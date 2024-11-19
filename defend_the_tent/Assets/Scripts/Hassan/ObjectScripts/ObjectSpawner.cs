@@ -15,6 +15,8 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField]
     private GameManager gameManager;
 
+    private float spawnTime;
+
     private void Start()
     {
         StartCoroutine(SpawnObjects());
@@ -24,6 +26,7 @@ public class ObjectSpawner : MonoBehaviour
     {
         while (true)
         {
+            spawnTime = Random.Range(2f, 6f);
             int randomSpawnPointIndex = Random.Range(0, spawnPoints.Count);
 
             switch (gameManager.gamePhase)
@@ -31,14 +34,14 @@ public class ObjectSpawner : MonoBehaviour
                 case GameManager.GamePhase.Preparation:
                     int randomPrefabprepIndex = Random.Range(0, prefabsPreparationPhase.Count);
                     Instantiate(prefabsPreparationPhase[randomPrefabprepIndex], spawnPoints[randomSpawnPointIndex].transform.position, Quaternion.identity);
-                    yield return new WaitForSeconds(2f);
+                    yield return new WaitForSeconds(spawnTime);
                     break;
 
                 case GameManager.GamePhase.Action:
 
                     int randomPrefabIndex = Random.Range(0, prefabsActionPhase.Count);
                     Instantiate(prefabsActionPhase[randomPrefabIndex], spawnPoints[randomSpawnPointIndex].transform.position, Quaternion.identity);
-                    yield return new WaitForSeconds(5f);
+                    yield return new WaitForSeconds(spawnTime);
                     break;
 
                 case GameManager.GamePhase.PostAction:

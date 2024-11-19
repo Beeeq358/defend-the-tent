@@ -1,13 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Player
 {
     public float moveSpeed;
 
     private Player player;
-    private Vector3 moveVector;
-    public Transform targetTransform;
     public Rigidbody targetRB;
 
     [SerializeField] private bool isStunned;
@@ -39,6 +37,17 @@ public class PlayerMovement : MonoBehaviour
         //play stunned effects
         //lock player movement;
         StartCoroutine(StunTime(strength));
+    }
+
+    public void BecomeBoss()
+    {
+        targetTransform = bossTransform;
+        targetTransform.gameObject.SetActive(true);
+        normalTransform.gameObject.SetActive(false);
+        targetRB = bossRB;
+        targetTransform.position = GetSpawnPosition(true);
+        moveSpeed = 0.3f;
+        isBoss = true;
     }
 
     public IEnumerator StunTime(float stunTime)

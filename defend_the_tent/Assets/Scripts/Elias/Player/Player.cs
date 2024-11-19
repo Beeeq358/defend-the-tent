@@ -52,18 +52,6 @@ public class Player : MonoBehaviour, IObjectParent
         }
     }
 
-    public void BecomeBoss()
-    {
-        targetTransform = bossTransform;
-        targetTransform.gameObject.SetActive(true);
-        normalTransform.gameObject.SetActive(false);
-        playerMovement.targetTransform = targetTransform;
-        playerMovement.targetRB = bossRB;
-        targetTransform.position = GetSpawnPosition(true);
-        playerMovement.moveSpeed = 0.3f;
-        isBoss = true;
-    }
-
     private void Update()
     {
         HandleInteractions();
@@ -119,7 +107,7 @@ public class Player : MonoBehaviour, IObjectParent
         }
     }
 
-    private void CalculateRecentGrabStrength()
+    protected virtual void CalculateRecentGrabStrength()
     {
         if (inputGrabStrength > 0 && inputGrabStrength >= recentGrabStrength)
         {
@@ -133,7 +121,7 @@ public class Player : MonoBehaviour, IObjectParent
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected virtual void OnCollisionEnter(Collision collision)
     {
         //check if a player is already colliding with me and if this is a frame i need to check
         if ((collision.gameObject.CompareTag("Player") || collision.gameObject.name == "P_Circus tent") && isFrame)
@@ -143,7 +131,7 @@ public class Player : MonoBehaviour, IObjectParent
         }
     }
     //returns a random spawn position in the middle of the arena
-    private Vector3 GetSpawnPosition(bool isBoss)
+    protected virtual Vector3 GetSpawnPosition(bool isBoss)
     {
         if (isBoss)
         {
@@ -160,7 +148,7 @@ public class Player : MonoBehaviour, IObjectParent
     }
 
     //wait a frame after spawn
-    private IEnumerator FrameCheck()
+    protected virtual IEnumerator FrameCheck()
     {
         isFrame = true;
         yield return new WaitForEndOfFrame();
