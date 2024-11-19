@@ -242,16 +242,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabsPreparationPhase:
-  - {fileID: 5076801464851286044, guid: ab907825df88a8e4eb356b21e5c958bb, type: 3}
+  - {fileID: 2047448532437668335, guid: d2c314d3e9eaeb442a8dba2313814da2, type: 3}
+  - {fileID: 1126308800680948690, guid: 6290144eec42cf14e9d869bcedfdfa8d, type: 3}
   prefabsActionPhase:
   - {fileID: 7317358265764788336, guid: 5223d7e68109c464ba77a05e78e5eb81, type: 3}
-  - {fileID: 5076801464851286044, guid: ab907825df88a8e4eb356b21e5c958bb, type: 3}
+  - {fileID: 2047448532437668335, guid: d2c314d3e9eaeb442a8dba2313814da2, type: 3}
+  - {fileID: 1126308800680948690, guid: 6290144eec42cf14e9d869bcedfdfa8d, type: 3}
   spawnPoints:
   - {fileID: 1516101109}
   - {fileID: 899472931}
   - {fileID: 1138154103}
   - {fileID: 982491250}
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 1725275553}
 --- !u!4 &1232391008
 Transform:
   m_ObjectHideFlags: 0
