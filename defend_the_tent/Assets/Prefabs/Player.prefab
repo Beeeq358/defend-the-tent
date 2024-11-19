@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 4344068942544146322}
   - component: {fileID: 8557173046172210087}
   - component: {fileID: 3529286806599160509}
+  - component: {fileID: 4862214175029492387}
   - component: {fileID: 3768457219656648895}
   m_Layer: 0
   m_Name: Player
@@ -428,16 +429,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2c59890c053704da376c324a79a9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  normalRB: {fileID: 5207495103502091086}
-  bossRB: {fileID: 411993696112143557}
-  normalPlayer: {fileID: 2366724338516340593}
-  bossPlayer: {fileID: 105076009636120323}
-  playerHoldPoint: {fileID: 968370018937330574}
-  bossHoldPoint: {fileID: 8096206408343505631}
-  gameManager: {fileID: 0}
+  inputMovement: {x: 0, y: 0}
+  inputJumped: 0
+  inputBuilded: 0
+  inputGrabStrength: 0
+  moveVector: {x: 0, y: 0, z: 0}
 --- !u!114 &8557173046172210087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,6 +482,28 @@ MonoBehaviour:
   moveSpeed: 0.5
   targetRB: {fileID: 0}
   isStunned: 0
+--- !u!114 &4862214175029492387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5859636840929596724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c65a9e9999a4144a72c3222818a57b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  normalRB: {fileID: 5207495103502091086}
+  bossRB: {fileID: 411993696112143557}
+  normalPlayer: {fileID: 2366724338516340593}
+  bossPlayer: {fileID: 105076009636120323}
+  playerHoldPoint: {fileID: 968370018937330574}
+  bossHoldPoint: {fileID: 8096206408343505631}
+  gameManager: {fileID: 0}
 --- !u!95 &3768457219656648895
 Animator:
   serializedVersion: 7
