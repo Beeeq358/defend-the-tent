@@ -25,7 +25,7 @@ public class PlayerMovement : Player
 
             Vector3 moveDir = new(inputVector.x, 0f, inputVector.y);
 
-            targetRB.linearVelocity += moveVector * moveSpeed;
+            targetRB.linearVelocity += input.moveVector * moveSpeed;
             float rotateSpeed = 10f;
             targetTransform.forward = Vector3.Slerp(targetTransform.forward, moveDir, Time.deltaTime * rotateSpeed);
         }

@@ -11,9 +11,9 @@ public class PlayerInteract : Player
     {
         HandleInteractions();
         base.PlayerUpdate();
-        if (inputBuilded)
+        if (input.inputBuilded)
         {
-            if (inputBuilded)
+            if (input.inputBuilded)
             {
                 if (selectedBaseObject != null && selectedBaseObject.objectSO.objectType == ObjectType.Buildable && !isBoss)
                 {
@@ -28,7 +28,7 @@ public class PlayerInteract : Player
                 }
             }
         }
-        if (inputGrabStrength > 0)
+        if (input.inputGrabStrength > 0)
         {
             Debug.Log("Interacted!");
             if (baseObject == null && !isBoss)
@@ -52,7 +52,7 @@ public class PlayerInteract : Player
             }
 
         }
-        if (inputGrabStrength == 0 && baseObject != null && !isBoss)
+        if (input.inputGrabStrength == 0 && baseObject != null && !isBoss)
         {
             Rigidbody tempRB = baseObject.rb;
             Debug.Log("Dropping Object");
