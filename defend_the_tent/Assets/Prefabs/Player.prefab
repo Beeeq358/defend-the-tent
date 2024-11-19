@@ -186,7 +186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8102731525495296334
 Transform:
   m_ObjectHideFlags: 0
@@ -262,11 +262,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1938718015720256727}
   - component: {fileID: 3120601459380806934}
-  - component: {fileID: 3159631538329086411}
   - component: {fileID: -8633664820246738670}
+  - component: {fileID: 3159631538329086411}
   - component: {fileID: 3529286806599160509}
-  - component: {fileID: -1572975507665842224}
-  - component: {fileID: 6400146527427123377}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -299,101 +297,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5859636840929596724}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &3159631538329086411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5859636840929596724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: f7a41eb84ba3fbe4384d0af38448b856, type: 3}
-<<<<<<< HEAD
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3219245733252874993}
-        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 23a58cc8-3670-4ba8-8cc3-5d0540fd708b
-    m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3219245733252874993}
-        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
-        m_MethodName: OnGrab
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 42364021-fe24-4602-a384-fba8e771b9ba
-    m_ActionName: 'Player/Grab[/Keyboard/shift]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3219245733252874993}
-        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
-        m_MethodName: OnJump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 200b3e52-2acd-4b87-b5b2-f91d5af425a4
-    m_ActionName: 'Player/Jump[/Keyboard/space]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3219245733252874993}
-        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
-        m_MethodName: OnBuild
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: f9b0ab69-50b5-41f3-b06e-287267d6d422
-    m_ActionName: 'Player/Build[/Keyboard/enter]'
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Gamepad
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &-8633664820246738670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,15 +309,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f3d12bc46dd0148af352c0a61951df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnRange: 3
+  bossSpawnRange: 40
+  throwStrength: 7
+  throwHeight: 2
+  inputMovement: {x: 0, y: 0}
+  inputJumped: 0
+  inputBuilded: 0
+  inputGrabStrength: 0
+  selectedBaseObject: {fileID: 0}
+  isBoss: 0
+  targetTransform: {fileID: 0}
   objectLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  objectHoldPoint: {fileID: 7724822326993971726}
+  normalTransform: {fileID: 8102731525495296334}
+  bossTransform: {fileID: 7452215328330774507}
   normalRB: {fileID: 5207495103502091086}
   bossRB: {fileID: 411993696112143557}
-  normalPlayer: {fileID: 2366724338516340593}
-  bossPlayer: {fileID: 105076009636120323}
-  playerHoldPoint: {fileID: 968370018937330574}
-  bossHoldPoint: {fileID: 8096206408343505631}
+  moveVector: {x: 0, y: 0, z: 0}
 --- !u!114 &3159631538329086411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,13 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   m_Actions: {fileID: -944628639613478452, guid: f7a41eb84ba3fbe4384d0af38448b856, type: 3}
-=======
->>>>>>> parent of 8f1c740 (Player Smaller scripts)
-=======
-  m_Actions: {fileID: 0}
->>>>>>> 40e95170b5e01ea11301d5ec1d59e333d9aedf23
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -527,61 +435,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fe0bb4a9bed134db25fe89afdbde48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  normalRB: {fileID: 5207495103502091086}
-  bossRB: {fileID: 411993696112143557}
-  normalPlayer: {fileID: 2366724338516340593}
-  bossPlayer: {fileID: 105076009636120323}
-  playerHoldPoint: {fileID: 968370018937330574}
-  bossHoldPoint: {fileID: 8096206408343505631}
   moveSpeed: 0.5
+  targetTransform: {fileID: 0}
   targetRB: {fileID: 0}
   isStunned: 0
---- !u!114 &-1572975507665842224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5859636840929596724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a5a9f31608b8d14486ff9322f1a9dc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  normalRB: {fileID: 5207495103502091086}
-  bossRB: {fileID: 411993696112143557}
-  normalPlayer: {fileID: 2366724338516340593}
-  bossPlayer: {fileID: 105076009636120323}
-  playerHoldPoint: {fileID: 968370018937330574}
-  bossHoldPoint: {fileID: 8096206408343505631}
-  bossHealthPoints: 20
---- !u!114 &6400146527427123377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5859636840929596724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6c65a9e9999a4144a72c3222818a57b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  normalRB: {fileID: 5207495103502091086}
-  bossRB: {fileID: 411993696112143557}
-  normalPlayer: {fileID: 2366724338516340593}
-  bossPlayer: {fileID: 105076009636120323}
-  playerHoldPoint: {fileID: 968370018937330574}
-  bossHoldPoint: {fileID: 8096206408343505631}
 --- !u!1 &8096206408343505631
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,7 +449,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1529435884732440852}
   m_Layer: 0
-  m_Name: bossHoldPoint
+  m_Name: playerHoldPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
