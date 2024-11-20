@@ -70,8 +70,17 @@ public class PlayerMovement : Player
 
     public IEnumerator StunTime(float stunTime)
     {
+        float originalMass = bossRB.mass;
         isStunned = true;
+        if (isBoss)
+        {
+            stunTime *= 3;
+            bossRB.mass = 0.1f;
+        }
         yield return new WaitForSeconds(stunTime);
         isStunned = false;
+        if (isBoss)
+            bossRB.mass = originalMass;
+
     }
 }
