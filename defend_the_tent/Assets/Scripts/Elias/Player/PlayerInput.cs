@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
+    public Animator animator;
     public Vector2 inputMovement;
     public bool inputJumped;
     public bool inputBuilded;
