@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerInteract : Player
@@ -69,8 +70,18 @@ public class PlayerInteract : Player
 
     public void InteractBuild(Player player, BuildableObject buildableObject)
     {
-        StartCoroutine(playerMovement.StunTime(1f));
+        float buildTime = 1f;
+        StartCoroutine(playerMovement.StunTime(buildTime));
+        StartCoroutine(Build(buildTime));
         buildableObject.SetKinematic(true);
+    }
+
+    private IEnumerator Build(float time)
+    {
+        Animator ani = GetComponent<PlayerInput>().animator;
+        ani.SetBool("isBuilding", true);
+        yield return new WaitForSeconds(time);
+        ani.SetBool("isBuilding", false);
     }
 
     private void HandleInteractions()
