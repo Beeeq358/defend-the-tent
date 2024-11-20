@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
 
     public GamePhase gamePhase;
 
+    private bool objectiveDestroyed;
+    private bool bossWon;
+    private bool playersWon;
+
     public List<GameObject> players = new();
     private bool bossChosen;
 
@@ -50,6 +54,14 @@ public class GameManager : MonoBehaviour
                 break;
             case GamePhase.PostAction:
                 // Perform post-action actions
+                if (objectiveDestroyed)
+                {
+                    bossWon = true;
+                }
+                else
+                {
+                    playersWon = true;
+                }
                 break;
         }
     }

@@ -23,11 +23,7 @@ public class PlayerHealth : Player, IDamageable
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Object") || collision.gameObject.CompareTag("Scenery"))
-        {
-
-        }
-        else
+        if (!collision.gameObject.CompareTag("Object") && !collision.gameObject.CompareTag("Scenery"))
         {
             TakeDamage(1);
         }
