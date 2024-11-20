@@ -7,6 +7,7 @@ public class PlayerMovement : Player
 
     private Player player;
     public Rigidbody targetRB;
+    public GameObject stunParticle;
 
     [SerializeField] private bool isStunned;
     private void Start()
@@ -15,6 +16,7 @@ public class PlayerMovement : Player
         StartCoroutine(FrameCheck());
         player = GetComponent<Player>();
         targetRB = normalRB;
+        IsStunned(4f);
     }
 
     private void FixedUpdate()
@@ -53,6 +55,7 @@ public class PlayerMovement : Player
     {
         //play stunned animation
         //play stunned effects
+        stunParticle.SetActive(true);
         //lock player movement;
         StartCoroutine(StunTime(strength));
     }
@@ -82,5 +85,11 @@ public class PlayerMovement : Player
         if (isBoss)
             bossRB.mass = originalMass;
 
+        StopStunParticles();
+    }
+
+    private void StopStunParticles()
+    {
+        stunParticle.SetActive(false);
     }
 }
