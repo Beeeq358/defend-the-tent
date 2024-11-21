@@ -96,9 +96,24 @@ public class PlayerInteract : Player
     {
         if (!isBoss)
         {
-            OnPlayerAttack.Invoke();
+            if (childObject is BaseWeapon)
+            {
+                OnPlayerAttack.Invoke();
+            }
+            else
+            {
+                Debug.LogWarning("Player does not currently hold a weapon");
+            }
         }
-
+        else if (isBoss)
+        {
+            // Do boss logic
+        }
+        else
+        {
+            // This shouldn't happen
+            Debug.LogError("Player is neither a boss nor a player");
+        }
 
     }
 
