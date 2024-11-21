@@ -412,6 +412,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f9b0ab69-50b5-41f3-b06e-287267d6d422
     m_ActionName: 'Player/Build[/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4344068942544146322}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: OnAttack1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a0ea433d-4e17-440f-a28e-e40b09a75d17
+    m_ActionName: 'Player/Attack 1[/Keyboard/z]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4344068942544146322}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: OnAttack2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 842f2fb9-f190-478e-9d77-9cc624759496
+    m_ActionName: 'Player/Attack 2[/Keyboard/x]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4344068942544146322}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: OnAttack3
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 210cc475-f919-4c05-8985-374eeebe7096
+    m_ActionName: 'Player/Attack 3[/Keyboard/c]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -433,6 +481,9 @@ MonoBehaviour:
   inputMovement: {x: 0, y: 0}
   inputJumped: 0
   inputBuilded: 0
+  inputAttack1: 0
+  inputAttack2: 0
+  inputAttack3: 0
   inputGrabStrength: 0
   moveVector: {x: 0, y: 0, z: 0}
 --- !u!114 &8557173046172210087
@@ -506,6 +557,9 @@ MonoBehaviour:
   playerHoldPoint: {fileID: 968370018937330574}
   bossHoldPoint: {fileID: 8096206408343505631}
   gameManager: {fileID: 0}
+  OnPlayerAttack:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8096206408343505631
 GameObject:
   m_ObjectHideFlags: 0
