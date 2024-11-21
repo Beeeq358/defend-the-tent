@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerInteract : Player
 {
+    public UnityEvent OnPlayerAttack;
+
     private void Start()
     {
         base.PlayerStart();
@@ -15,27 +18,32 @@ public class PlayerInteract : Player
         {
             if (input.inputBuilded)
             {
-                if (selectedBaseObject != null && selectedBaseObject.objectSO.objectType == ObjectType.Buildable && !isBoss)
+                if (selectedChildObject is BaseObject)
                 {
-                    if (selectedBaseObject is BuildableObject buildableObject)
+                    BaseObject baseObject = (BaseObject)selectedChildObject;
+                    if (selectedChildObject != null && baseObject.objectSO.objectType == ObjectType.Buildable && !isBoss)
                     {
-                        InteractBuild(this, buildableObject);
-                    }
-                    else
-                    {
-                        Debug.LogWarning("Selected object is not a BuildableObject!");
+                        if (selectedChildObject is BuildableObject buildableObject)
+                        {
+                            InteractBuild(this, buildableObject);
+                        }
+                        else
+                        {
+                            Debug.LogWarning("Selected object is not a BuildableObject!");
+                        }
                     }
                 }
+
             }
         }
         if (input.inputGrabStrength > 0)
         {
             Debug.Log("Interacted!");
-            if (baseObject == null && !isBoss)
+            if (childObject == null && !isBoss)
             {
-                if (selectedBaseObject != null)
+                if (selectedChildObject != null)
                 {
-                    if (selectedBaseObject is BuildableObject buildableObject)
+                    if (selectedChildObject is BuildableObject buildableObject)
                     {
                         if (!buildableObject._isInteractive)
                         {
@@ -43,7 +51,7 @@ public class PlayerInteract : Player
                             return;
                         }
                     }
-                    InteractGrab(this, selectedBaseObject);
+                    InteractGrab(this, selectedChildObject);
                 }
                 else
                 {
@@ -52,25 +60,31 @@ public class PlayerInteract : Player
             }
 
         }
-        if (input.inputGrabStrength == 0 && baseObject != null && !isBoss)
+        if (input.inputGrabStrength == 0 && childObject != null && !isBoss)
         {
-            Rigidbody tempRB = baseObject.rb;
+            Rigidbody tempRB = childObject.GetGameObject().GetComponent<Rigidbody>();
             Debug.Log("Dropping Object");
-            baseObject.ClearObjectParent(this);
+            childObject.ClearObjectParent(this);
             tempRB.isKinematic = false;
             tempRB.AddForce(recentGrabStrength * throwStrength * (targetTransform.forward + new Vector3(0, throwHeight, 0)), ForceMode.Impulse);
         }
     }
 
-    public void InteractGrab(Player player, BaseObject baseObject)
+    public void InteractGrab(Player player, IChildObject childObject)
     {
-        baseObject.SetObjectParent(player);
+        childObject.SetObjectParent(player);
     }
 
     public void InteractBuild(Player player, BuildableObject buildableObject)
     {
         StartCoroutine(playerMovement.StunTime(1f));
         buildableObject.SetKinematic(true);
+    }
+
+    public void InteractAttack()
+    {
+        OnPlayerAttack.Invoke();
+
     }
 
     private void HandleInteractions()
@@ -85,13 +99,22 @@ public class PlayerInteract : Player
         }
 
         float interactDistance = 2f;
+        Debug.DrawRay(targetTransform.position, lastInteractDir * interactDistance, Color.red, 0.1f);
         if (Physics.Raycast(targetTransform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, objectLayerMask))
         {
-            if (raycastHit.transform.TryGetComponent(out BaseObject baseObject))
+            if (raycastHit.transform.TryGetComponent(out IChildObject childObject))
             {
-                if (baseObject != selectedBaseObject)
+                Debug.Log($"Raycast hit: {raycastHit.transform.name}, but no IChildObject found!");
+                if (childObject != selectedChildObject)
                 {
-                    SetSelectedObject(baseObject);
+                    if (childObject is BaseObject baseObject)
+                    {
+                        SetSelectedObject(baseObject);
+                    }
+                    else
+                    {
+                        SetSelectedObject(childObject);
+                    }
                 }
             }
             else

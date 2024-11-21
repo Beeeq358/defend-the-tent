@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Scenery
   - Object
+  - Boss
   layers:
   - Default
   - TransparentFX

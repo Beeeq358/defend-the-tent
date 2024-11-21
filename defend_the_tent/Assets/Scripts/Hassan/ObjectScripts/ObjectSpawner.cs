@@ -11,10 +11,13 @@ public class ObjectSpawner : MonoBehaviour
     private List<GameObject> prefabsActionPhase = new List<GameObject>();
     [SerializeField]
     private List<GameObject> spawnPoints = new List<GameObject>();
+    [SerializeField]
+    private List<WeaponSO> weapons = new List<WeaponSO>();
 
     [SerializeField]
     private GameManager gameManager;
 
+    [SerializeField]
     private float spawnTime;
 
     private void Start()
@@ -39,8 +42,11 @@ public class ObjectSpawner : MonoBehaviour
 
                 case GameManager.GamePhase.Action:
 
-                    int randomPrefabIndex = Random.Range(0, prefabsActionPhase.Count);
-                    Instantiate(prefabsActionPhase[randomPrefabIndex], spawnPoints[randomSpawnPointIndex].transform.position, Quaternion.identity);
+                    int randomPrefabActionPhaseIndex = Random.Range(0, prefabsActionPhase.Count);
+                    int randomPrefabWeaponIndex = Random.Range(0, weapons.Count);
+                    Instantiate(prefabsActionPhase[randomPrefabActionPhaseIndex], spawnPoints[randomSpawnPointIndex].transform.position, Quaternion.identity);
+                    yield return new WaitForSeconds(spawnTime);
+                    Instantiate(weapons[randomPrefabWeaponIndex].weaponPrefab, spawnPoints[randomSpawnPointIndex].transform.position, Quaternion.identity);
                     yield return new WaitForSeconds(spawnTime);
                     break;
 

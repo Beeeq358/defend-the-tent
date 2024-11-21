@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class BaseObject : MonoBehaviour, IDamageable
+public class BaseObject : MonoBehaviour, IDamageable, IChildObject
 {
     public ObjectSO objectSO;
 
@@ -73,6 +73,11 @@ public class BaseObject : MonoBehaviour, IDamageable
         return transform.parent.gameObject;
     }
 
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
     public void SetSelectedVisual(bool isActive)
     {
         if (selectedVisual != null)
@@ -101,7 +106,7 @@ public class BaseObject : MonoBehaviour, IDamageable
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Scenery"))
+        if (!collision.gameObject.CompareTag("Scenery") && !collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Object"))
         {
             TakeDamage(1);
         }

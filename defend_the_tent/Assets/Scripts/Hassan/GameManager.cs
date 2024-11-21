@@ -62,6 +62,15 @@ public class GameManager : MonoBehaviour
                 {
                     playersWon = true;
                 }
+
+                if (playersWon)
+                {
+                    // Perform player win logic
+                }
+                else if (bossWon)
+                {
+                    // Perform boss win logic
+                }
                 break;
         }
     }

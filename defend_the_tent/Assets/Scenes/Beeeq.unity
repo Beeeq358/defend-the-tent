@@ -253,7 +253,9 @@ MonoBehaviour:
   - {fileID: 899472931}
   - {fileID: 1138154103}
   - {fileID: 982491250}
+  weapons: []
   gameManager: {fileID: 1725275553}
+  spawnTime: 0
 --- !u!4 &1232391008
 Transform:
   m_ObjectHideFlags: 0
@@ -583,7 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectSpawner: {fileID: 1232391006}
-  preparationTime: 10
+  preparationTime: 20000
   actionTime: 10
   gamePhase: 0
   players: []
@@ -610,6 +612,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1628712608363226833, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1628712608363226833, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1628712608363226833, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1628712608363226833, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -918,9 +932,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 992906719693011235, guid: 5ce384c3416864941b507a6d2e6af885, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3065329723798921160, guid: 5ce384c3416864941b507a6d2e6af885, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205387717223555721, guid: 5ce384c3416864941b507a6d2e6af885, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4205387717223555721, guid: 5ce384c3416864941b507a6d2e6af885, type: 3}
+      propertyPath: m_Color.a
+      value: 0.29411766
       objectReference: {fileID: 0}
     - target: {fileID: 6463970736280395704, guid: 5ce384c3416864941b507a6d2e6af885, type: 3}
       propertyPath: m_Pivot.x

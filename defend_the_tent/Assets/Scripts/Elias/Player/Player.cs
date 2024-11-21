@@ -9,10 +9,11 @@ public class Player : MonoBehaviour, IObjectParent
     protected float throwStrength = 7;
     protected float throwHeight = 2;
 
-    protected BaseObject selectedBaseObject;
+    [SerializeField]
+    protected IChildObject selectedChildObject;
     protected bool isBoss;
     protected Vector3 lastInteractDir;
-    protected BaseObject baseObject;
+    protected IChildObject childObject;
     protected float recentGrabStrength;
     protected float frameCounter;
     protected Transform targetTransform;
@@ -113,18 +114,21 @@ public class Player : MonoBehaviour, IObjectParent
         return input.inputMovement.normalized;
     }
 
-    protected void SetSelectedObject(BaseObject selectedObject)
+    protected void SetSelectedObject(IChildObject childObject)
     {
-        if (this.selectedBaseObject != null)
+        if (selectedChildObject is BaseObject previouslySelectedBaseObject)
         {
-            this.selectedBaseObject.SetSelectedVisual(false);
+            // Deselect the currently selected object
+            previouslySelectedBaseObject.SetSelectedVisual(false);
         }
 
-        this.selectedBaseObject = selectedObject;
+        // Update the selected object
+        this.selectedChildObject = childObject;
 
-        if (this.selectedBaseObject != null)
+        if (childObject is BaseObject newSelectedBaseObject)
         {
-            this.selectedBaseObject.SetSelectedVisual(true);
+            // Select the new object
+            newSelectedBaseObject.SetSelectedVisual(true);
         }
     }
 
@@ -134,21 +138,21 @@ public class Player : MonoBehaviour, IObjectParent
         return playerObjectHoldPoint;
     }
 
-    public void SetObject(BaseObject baseObject)
+    public void SetObject(IChildObject childObject)
     {
-        this.baseObject = baseObject;
+        this.childObject = childObject;
     }
-    public BaseObject GetObject()
+    public IChildObject GetObject()
     {
-        return baseObject;
+        return childObject;
     }
     public void ClearObject()
     {
         Debug.Log("Object cleared!");
-        baseObject = null;
+        childObject = null;
     }
     public bool HasObject()
     {
-        return baseObject != null;
+        return childObject != null;
     }
 }
