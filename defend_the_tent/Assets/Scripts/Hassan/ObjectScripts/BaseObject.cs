@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UIElements;
 
 public class BaseObject : MonoBehaviour, IDamageable, IChildObject
 {
@@ -7,10 +8,13 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
 
     private IObjectParent objectParent;
 
+    [SerializeField]
+    private GameObject healthBarPrefab;
+    private GameObject myHealthBar;
+
     public Rigidbody rb;
 
     public int healthPoints;
-
     [SerializeField]
     private GameObject regularVisual;
     [SerializeField]
@@ -19,6 +23,7 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        myHealthBar = Instantiate(healthBarPrefab, transform.position, Camera.main.transform.rotation);
     }
 
     private void Update()
