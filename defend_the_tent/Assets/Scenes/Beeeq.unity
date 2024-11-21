@@ -695,8 +695,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectSpawner: {fileID: 1232391006}
-  preparationTime: 20000
-  actionTime: 10
+  preparationTime: 30
+  actionTime: 90
   gamePhase: 0
   players: []
 --- !u!4 &1725275554
