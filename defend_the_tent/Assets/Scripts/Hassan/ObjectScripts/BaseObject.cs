@@ -120,10 +120,12 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
     public void TakeDamage(int damage)
     {
         healthPoints -= damage;
+        myHealthBar.GetComponent<HealthBar>().UpdateHealth(healthPoints);
     }
     public void RestoreHealth(int health)
     {
         healthPoints += health;
+        myHealthBar.GetComponent<HealthBar>().UpdateHealth(healthPoints);
     }
     public void Die()
     {
