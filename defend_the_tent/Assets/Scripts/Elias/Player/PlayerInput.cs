@@ -3,34 +3,25 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
-    private Animator animator;
+    public Animator animator;
     public Vector2 inputMovement;
     public bool inputJumped;
     public bool inputBuilded;
     public float inputGrabStrength;
     public Vector3 moveVector = Vector3.zero;
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
     private void Update()
     {
         if (moveVector.normalized != Vector3.zero)
         {
             animator.SetBool("isWalking", true);
-            animator.SetBool("isIdle", false);
         }
         else if (moveVector.normalized == Vector3.zero)
         {
             animator.SetBool("isWalking", false);
-            animator.SetBool("isIdle", true);
         }
-
-        Debug.Log(inputBuilded);
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log($"Move input: {context.ReadValue<Vector2>()}");
         inputMovement = context.ReadValue<Vector2>();
         Vector3 localMove = new Vector3(inputMovement.x, 0, inputMovement.y);
 
