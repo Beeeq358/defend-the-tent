@@ -16,6 +16,6 @@ MonoBehaviour:
   weaponName: Large Spoon
   weaponDamage: 2
   weaponHealth: 5
-  attackSpeed: 0.25
+  attackSpeed: 1
   weaponRangeType: 0
   weaponRange: 2
