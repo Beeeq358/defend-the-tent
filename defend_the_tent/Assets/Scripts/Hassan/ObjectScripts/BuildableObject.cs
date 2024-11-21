@@ -12,6 +12,7 @@ public class BuildableObject : BaseObject, IBuildable
     {
         myHealthBar = Instantiate(healthBarPrefab, transform.position, Camera.main.transform.rotation);
         myHealthBar.GetComponent<HealthBar>().LogOn(gameObject, healthPoints);
+        myHealthBar.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -43,6 +44,7 @@ public class BuildableObject : BaseObject, IBuildable
     {
         rb.isKinematic = isKinematic;
         _isInteractive = false;
+        myHealthBar.SetActive(true);
         Debug.Log(IsKinematic());
     }
 
