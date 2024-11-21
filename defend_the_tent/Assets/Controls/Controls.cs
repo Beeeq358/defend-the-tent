@@ -62,33 +62,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Attack 1"",
-                    ""type"": ""Button"",
-                    ""id"": ""a0ea433d-4e17-440f-a28e-e40b09a75d17"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Attack 2"",
-                    ""type"": ""Button"",
-                    ""id"": ""842f2fb9-f190-478e-9d77-9cc624759496"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Attack 3"",
-                    ""type"": ""Button"",
-                    ""id"": ""210cc475-f919-4c05-8985-374eeebe7096"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -289,72 +262,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Build"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2a636d14-650c-4a80-bfe7-8e0e8abef9ed"",
-                    ""path"": ""<Keyboard>/z"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard"",
-                    ""action"": ""Attack 1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""88f35d66-1b64-4bd9-b886-8ae97046636d"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Attack 1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""520504fd-dd9c-4b8c-b5e9-b12c488f2a47"",
-                    ""path"": ""<Keyboard>/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard"",
-                    ""action"": ""Attack 2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8209ff18-585f-42a9-8306-f3bb2a6f383e"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Attack 2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""afb47586-7adf-4cf9-a272-ee106c0acf1d"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard"",
-                    ""action"": ""Attack 3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d06457ab-d285-4587-b784-9937df67616f"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Attack 3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -390,9 +297,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Grab = m_Player.FindAction("Grab", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Build = m_Player.FindAction("Build", throwIfNotFound: true);
-        m_Player_Attack1 = m_Player.FindAction("Attack 1", throwIfNotFound: true);
-        m_Player_Attack2 = m_Player.FindAction("Attack 2", throwIfNotFound: true);
-        m_Player_Attack3 = m_Player.FindAction("Attack 3", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -463,9 +367,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Grab;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Build;
-    private readonly InputAction m_Player_Attack1;
-    private readonly InputAction m_Player_Attack2;
-    private readonly InputAction m_Player_Attack3;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -474,9 +375,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Grab => m_Wrapper.m_Player_Grab;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Build => m_Wrapper.m_Player_Build;
-        public InputAction @Attack1 => m_Wrapper.m_Player_Attack1;
-        public InputAction @Attack2 => m_Wrapper.m_Player_Attack2;
-        public InputAction @Attack3 => m_Wrapper.m_Player_Attack3;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -498,15 +396,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Build.started += instance.OnBuild;
             @Build.performed += instance.OnBuild;
             @Build.canceled += instance.OnBuild;
-            @Attack1.started += instance.OnAttack1;
-            @Attack1.performed += instance.OnAttack1;
-            @Attack1.canceled += instance.OnAttack1;
-            @Attack2.started += instance.OnAttack2;
-            @Attack2.performed += instance.OnAttack2;
-            @Attack2.canceled += instance.OnAttack2;
-            @Attack3.started += instance.OnAttack3;
-            @Attack3.performed += instance.OnAttack3;
-            @Attack3.canceled += instance.OnAttack3;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -523,15 +412,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Build.started -= instance.OnBuild;
             @Build.performed -= instance.OnBuild;
             @Build.canceled -= instance.OnBuild;
-            @Attack1.started -= instance.OnAttack1;
-            @Attack1.performed -= instance.OnAttack1;
-            @Attack1.canceled -= instance.OnAttack1;
-            @Attack2.started -= instance.OnAttack2;
-            @Attack2.performed -= instance.OnAttack2;
-            @Attack2.canceled -= instance.OnAttack2;
-            @Attack3.started -= instance.OnAttack3;
-            @Attack3.performed -= instance.OnAttack3;
-            @Attack3.canceled -= instance.OnAttack3;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -573,8 +453,5 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnGrab(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnBuild(InputAction.CallbackContext context);
-        void OnAttack1(InputAction.CallbackContext context);
-        void OnAttack2(InputAction.CallbackContext context);
-        void OnAttack3(InputAction.CallbackContext context);
     }
 }
