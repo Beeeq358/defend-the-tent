@@ -18,11 +18,6 @@ public class SpoonWeapon : BaseWeapon
             playerInteract = (PlayerInteract)objectParent;
             playerInteract.OnPlayerAttack.AddListener(() => this.Attack(weaponSO.weaponDamage));
         }
-        else
-        {
-            playerInteract.OnPlayerAttack.RemoveListener(() => this.Attack(weaponSO.weaponDamage));
-            playerInteract = null;
-        }
     }
 
     protected override void Attack(int weaponDamage)
