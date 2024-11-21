@@ -92,9 +92,13 @@ public class PlayerInteract : Player
         ani.SetBool("isBuilding", false);
     }
 
-    public void InteractAttack()
+    public void InteractStandardAttack()
     {
-        OnPlayerAttack.Invoke();
+        if (!isBoss)
+        {
+            OnPlayerAttack.Invoke();
+        }
+
 
     }
 
