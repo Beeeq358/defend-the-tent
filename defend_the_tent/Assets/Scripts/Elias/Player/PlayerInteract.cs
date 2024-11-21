@@ -13,7 +13,10 @@ public class PlayerInteract : Player
 
     private void Update()
     {
-        HandleInteractions();
+        if (!isBoss)
+        {
+            HandleInteractions();
+        }
         base.PlayerUpdate();
         if (input.inputAttack1)
         {
@@ -125,7 +128,6 @@ public class PlayerInteract : Player
     private void HandleInteractions()
     {
         Vector2 inputVector = GetMovementVectorNormalized();
-
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
         if (moveDir != Vector3.zero)
@@ -134,12 +136,24 @@ public class PlayerInteract : Player
         }
 
         float interactDistance = 2f;
-        Debug.DrawRay(targetTransform.position, lastInteractDir * interactDistance, Color.red, 0.1f);
-        if (Physics.Raycast(targetTransform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, objectLayerMask))
+        Vector3 boxHalfExtents = new Vector3(1f, 1f, 1f); // Adjust for desired box size (width, height, depth)
+
+        // Adjust the origin to be at the player's midsection, slightly below their center
+        Vector3 origin = targetTransform.position;
+        Vector3 direction = lastInteractDir.normalized;
+
+        // Visualize the BoxCast
+        Debug.DrawRay(origin, direction * interactDistance, Color.red, 0.1f);
+        Debug.DrawLine(origin - targetTransform.right * boxHalfExtents.x,
+                 origin + targetTransform.right * boxHalfExtents.x,
+                 Color.blue, 0.1f);
+
+        // Perform the BoxCast
+        if (Physics.BoxCast(origin, boxHalfExtents, direction, out RaycastHit boxCastHit, Quaternion.identity, interactDistance, objectLayerMask))
         {
-            if (raycastHit.transform.TryGetComponent(out IChildObject childObject))
+            if (boxCastHit.transform.TryGetComponent(out IChildObject childObject))
             {
-                Debug.Log($"Raycast hit: {raycastHit.transform.name}, but no IChildObject found!");
+                Debug.Log($"BoxCast hit: {boxCastHit.transform.name}, checking for IChildObject.");
                 if (childObject != selectedChildObject)
                 {
                     if (childObject is BaseObject baseObject)
@@ -162,4 +176,5 @@ public class PlayerInteract : Player
             SetSelectedObject(null);
         }
     }
+
 }
