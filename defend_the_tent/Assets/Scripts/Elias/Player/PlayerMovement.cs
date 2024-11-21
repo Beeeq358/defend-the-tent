@@ -16,7 +16,7 @@ public class PlayerMovement : Player
         StartCoroutine(FrameCheck());
         player = GetComponent<Player>();
         targetRB = normalRB;
-        IsStunned(4f);
+        StopStunParticles();
     }
 
     private void FixedUpdate()

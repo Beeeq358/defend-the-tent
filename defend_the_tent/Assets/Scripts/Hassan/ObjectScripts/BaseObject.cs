@@ -8,10 +8,6 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
 
     private IObjectParent objectParent;
 
-    [SerializeField]
-    private GameObject healthBarPrefab;
-    private GameObject myHealthBar;
-
     public Rigidbody rb;
 
     public int healthPoints;
@@ -23,7 +19,6 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        myHealthBar = Instantiate(healthBarPrefab, transform.position, Camera.main.transform.rotation);
     }
 
     private void Update()
@@ -117,15 +112,14 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
         }
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         healthPoints -= damage;
-        myHealthBar.GetComponent<HealthBar>().UpdateHealth(healthPoints);
+
     }
-    public void RestoreHealth(int health)
+    public virtual void RestoreHealth(int health)
     {
         healthPoints += health;
-        myHealthBar.GetComponent<HealthBar>().UpdateHealth(healthPoints);
     }
     public void Die()
     {

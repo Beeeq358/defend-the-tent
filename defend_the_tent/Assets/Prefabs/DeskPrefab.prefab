@@ -50,8 +50,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectSO: {fileID: 11400000, guid: 493ba8434fd066f48af016b3673716a6, type: 2}
+  healthBarPrefab: {fileID: 1320986284251684560, guid: aec69af910511f4438ef9fa9e65e8416, type: 3}
   rb: {fileID: 433924833029271939}
-  healthPoints: 2
+  healthPoints: 15
   regularVisual: {fileID: 904463669537089131}
   selectedVisual: {fileID: 2751218032949598838}
   _isInteractive: 1
