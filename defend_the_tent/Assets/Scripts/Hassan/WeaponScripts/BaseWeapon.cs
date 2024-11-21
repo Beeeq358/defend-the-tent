@@ -6,6 +6,7 @@ public class BaseWeapon : MonoBehaviour, IDamageable, IChildObject
     [SerializeField]
     protected WeaponSO weaponSO;
     protected int healthPoints;
+    protected float attackTimer;
 
     protected IObjectParent objectParent;
 

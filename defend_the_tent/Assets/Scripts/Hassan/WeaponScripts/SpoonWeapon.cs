@@ -13,6 +13,7 @@ public class SpoonWeapon : BaseWeapon
     // Update is called once per frame
     void Update()
     {
+        attackTimer += Time.deltaTime;
         if (objectParent != null)
         { 
             playerInteract = (PlayerInteract)objectParent;
@@ -22,28 +23,33 @@ public class SpoonWeapon : BaseWeapon
 
     protected override void Attack(int weaponDamage)
     {
-        // Perform a raycast or detect collision to determine if the "Boss" was hit
-        RaycastHit hit;
-
-        // Assume the attack originates from the player's position
-        Vector3 attackOrigin = transform.position;
-        Vector3 attackDirection = transform.forward;
-
-        float attackRange = weaponSO.weaponRange;
-
-        // Perform a raycast
-        if (Physics.Raycast(attackOrigin, attackDirection, out hit, attackRange))
+        if (attackTimer > weaponSO.attackSpeed)
         {
-            // Check if the hit object has the tag "Boss"
-            if (hit.collider.CompareTag("Boss"))
+            Debug.Log("Attack: " + weaponDamage);
+            // Perform a raycast or detect collision to determine if the "Boss" was hit
+            RaycastHit hit;
+
+            // Assume the attack originates from the player's position
+            Vector3 attackOrigin = transform.position;
+            Vector3 attackDirection = transform.forward;
+
+            float attackRange = weaponSO.weaponRange;
+
+            // Perform a raycast
+            if (Physics.Raycast(attackOrigin, attackDirection, out hit, attackRange))
             {
-                // Apply damage to the Boss
-                PlayerHealth boss = hit.collider.GetComponent<PlayerHealth>();
-                if (boss != null)
+                // Check if the hit object has the tag "Boss"
+                if (hit.collider.CompareTag("Boss"))
                 {
-                    boss.TakeDamage(weaponDamage);
+                    // Apply damage to the Boss
+                    PlayerHealth boss = hit.collider.GetComponent<PlayerHealth>();
+                    if (boss != null)
+                    {
+                        boss.TakeDamage(weaponDamage);
+                    }
                 }
             }
         }
+       
     }
 }
