@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UIElements;
 
 public class BaseObject : MonoBehaviour, IDamageable, IChildObject
 {
@@ -10,7 +11,6 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
     public Rigidbody rb;
 
     public int healthPoints;
-
     [SerializeField]
     private GameObject regularVisual;
     [SerializeField]
@@ -112,11 +112,12 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
         }
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         healthPoints -= damage;
+
     }
-    public void RestoreHealth(int health)
+    public virtual void RestoreHealth(int health)
     {
         healthPoints += health;
     }

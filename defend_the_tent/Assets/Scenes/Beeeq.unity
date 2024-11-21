@@ -695,8 +695,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectSpawner: {fileID: 1232391006}
-  preparationTime: 20000
-  actionTime: 10
+  preparationTime: 30
+  actionTime: 90
   gamePhase: 0
   players: []
 --- !u!4 &1725275554
@@ -1116,21 +1116,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 992906719693011235, guid: 5ce384c3416864941b507a6d2e6af885, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3065329723798921160, guid: 5ce384c3416864941b507a6d2e6af885, type: 3}
       propertyPath: m_Name
       value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 4205387717223555721, guid: 5ce384c3416864941b507a6d2e6af885, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4205387717223555721, guid: 5ce384c3416864941b507a6d2e6af885, type: 3}
-      propertyPath: m_Color.a
-      value: 0.29411766
       objectReference: {fileID: 0}
     - target: {fileID: 6463970736280395704, guid: 5ce384c3416864941b507a6d2e6af885, type: 3}
       propertyPath: m_Pivot.x
