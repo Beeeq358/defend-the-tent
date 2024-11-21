@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour
     public Vector2 inputMovement;
     public bool inputJumped;
     public bool inputBuilded;
+    public bool inputAttack1, inputAttack2, inputAttack3;
     public float inputGrabStrength;
     public Vector3 moveVector = Vector3.zero;
     private void Update()
@@ -40,5 +41,17 @@ public class PlayerInput : MonoBehaviour
     public void OnGrab(InputAction.CallbackContext context)
     {
         inputGrabStrength = context.ReadValue<float>();
+    }
+    public void OnAttack1(InputAction.CallbackContext context)
+    {
+        inputAttack1 = context.action.triggered;
+    }
+    public void OnAttack2(InputAction.CallbackContext context)
+    {
+        inputAttack2 = context.action.triggered;
+    }
+    public void OnAttack3(InputAction.CallbackContext context)
+    {
+        inputAttack3 = context.action.triggered;
     }
 }
