@@ -15,6 +15,11 @@ public class PlayerInteract : Player
     {
         HandleInteractions();
         base.PlayerUpdate();
+        if (input.inputAttack1)
+        {
+            InteractStandardAttack();
+            Debug.Log("Attaceked");
+        }
         if (input.inputBuilded)
         {
             if (input.inputBuilded)
