@@ -122,10 +122,13 @@ public class PlayerInteract : Player
                 Debug.LogWarning("Player does not currently hold a weapon");
             }
         }
-        else if (isBoss && !isSlamming)
+        else if (isBoss)
         {
-            Debug.Log("Started Coroutine bossfrontslam");
-            StartCoroutine(BossFrontSlam());
+            if (!isSlamming)
+            {
+                Debug.Log("Started Coroutine bossfrontslam");
+                StartCoroutine(BossFrontSlam());
+            }
         }
         else
         {

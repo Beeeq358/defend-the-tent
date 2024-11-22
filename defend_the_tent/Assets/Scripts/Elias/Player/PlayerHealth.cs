@@ -6,14 +6,6 @@ public class PlayerHealth : Player, IDamageable
     private int healthPoints;
     [SerializeField]
     private int bossHealthPoints;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        healthPoints = 1;
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (isBoss)
@@ -42,7 +34,7 @@ public class PlayerHealth : Player, IDamageable
     {
         if (healthPoints <= 0)
         {
-            Destroy(gameObject);
+            GetComponent<PlayerMovement>().IsStunned(3);
         }
     }
     public bool IsDead()

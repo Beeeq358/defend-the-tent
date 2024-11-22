@@ -11,7 +11,7 @@ public class Player : MonoBehaviour, IObjectParent
 
     [SerializeField]
     protected IChildObject selectedChildObject;
-    protected bool isBoss;
+    public bool isBoss;
     protected Vector3 lastInteractDir;
     protected IChildObject childObject;
     protected float recentGrabStrength;

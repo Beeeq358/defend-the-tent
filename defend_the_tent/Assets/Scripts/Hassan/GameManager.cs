@@ -96,6 +96,8 @@ public class GameManager : MonoBehaviour
         bossChosen = true;
         players = GetPlayers();
         int chosenPlayer = Random.Range(0, players.Count);
+        players[chosenPlayer].GetComponent<Player>().BecomeBoss();
+        players[chosenPlayer].GetComponent<PlayerInteract>().isBoss = true;
         players[chosenPlayer].GetComponent<PlayerMovement>().BecomeBoss();
     }
 
