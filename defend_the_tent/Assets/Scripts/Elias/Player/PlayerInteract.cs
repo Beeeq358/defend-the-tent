@@ -21,7 +21,7 @@ public class PlayerInteract : Player
         if (input.inputAttack1)
         {
             InteractStandardAttack();
-            Debug.Log("Attaceked");
+            Debug.Log("Attacked");
         }
         if (input.inputBuilded)
         {
@@ -86,7 +86,7 @@ public class PlayerInteract : Player
 
     public void InteractBuild(Player player, BuildableObject buildableObject)
     {
-        float buildTime = 1f;
+        float buildTime = 3f;
         StartCoroutine(playerMovement.StunTime(buildTime));
         StartCoroutine(Build(buildTime));
         buildableObject.SetKinematic(true);

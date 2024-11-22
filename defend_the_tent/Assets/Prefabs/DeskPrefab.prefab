@@ -50,12 +50,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectSO: {fileID: 11400000, guid: 493ba8434fd066f48af016b3673716a6, type: 2}
-  healthBarPrefab: {fileID: 1320986284251684560, guid: aec69af910511f4438ef9fa9e65e8416, type: 3}
   rb: {fileID: 433924833029271939}
   healthPoints: 15
   regularVisual: {fileID: 904463669537089131}
   selectedVisual: {fileID: 2751218032949598838}
   _isInteractive: 1
+  healthBarPrefab: {fileID: 1320986284251684560, guid: aec69af910511f4438ef9fa9e65e8416, type: 3}
 --- !u!114 &7149771404894398323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,8 +363,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1733383384981175473, guid: 7718ef242c14d4f44a824dfd7fb0043e, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1733383384981175473, guid: 7718ef242c14d4f44a824dfd7fb0043e, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 559328792dadbb54897c1e19b7ad3362, type: 2}
     m_RemovedComponents:
     - {fileID: 8864821044191870297, guid: 7718ef242c14d4f44a824dfd7fb0043e, type: 3}
     - {fileID: -289613780551147791, guid: 7718ef242c14d4f44a824dfd7fb0043e, type: 3}
