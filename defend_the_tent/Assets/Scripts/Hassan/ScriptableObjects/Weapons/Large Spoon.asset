@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47dd0b7608ace0d47ba3b3408b2870d5, type: 3}
   m_Name: Large Spoon
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 0}
+  weaponPrefab: {fileID: 2405784831928841750, guid: b214a61c1ece2334a8c7a57c9dc77696, type: 3}
   weaponName: Large Spoon
   weaponDamage: 2
   weaponHealth: 5
-  attackSpeed: 0.25
-  weaponRangeType: 0
+  attackSpeed: 1
+  weaponRangeType: 2
   weaponRange: 2

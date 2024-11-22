@@ -45,6 +45,7 @@ public class SpoonWeapon : BaseWeapon
                     PlayerHealth boss = hit.collider.GetComponent<PlayerHealth>();
                     if (boss != null)
                     {
+                        healthPoints--;
                         boss.TakeDamage(weaponDamage);
                     }
                 }

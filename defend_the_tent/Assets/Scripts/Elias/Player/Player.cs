@@ -127,6 +127,10 @@ public class Player : MonoBehaviour, IObjectParent
 
         if (childObject is BaseObject newSelectedBaseObject)
         {
+            if (newSelectedBaseObject.rb.isKinematic == true)
+            {
+                // do nothing
+            }
             // Select the new object
             newSelectedBaseObject.SetSelectedVisual(true);
         }
