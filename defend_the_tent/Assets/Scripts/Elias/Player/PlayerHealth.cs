@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerHealth : Player, IDamageable
 {
+    [SerializeField]
     private int healthPoints;
     [SerializeField]
     private int bossHealthPoints;

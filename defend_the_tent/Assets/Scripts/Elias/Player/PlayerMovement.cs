@@ -60,7 +60,7 @@ public class PlayerMovement : Player
         StartCoroutine(StunTime(strength));
     }
 
-    public void BecomeBoss()
+    public override void BecomeBoss()
     {
         targetTransform = bossTransform;
         targetTransform.gameObject.SetActive(true);
@@ -68,7 +68,7 @@ public class PlayerMovement : Player
         targetRB = bossRB;
         targetTransform.position = GetSpawnPosition(true);
         moveSpeed = 0.3f;
-        isBoss = true;
+        base.BecomeBoss();
     }
 
     public IEnumerator StunTime(float stunTime)

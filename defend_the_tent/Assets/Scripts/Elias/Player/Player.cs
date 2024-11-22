@@ -55,6 +55,11 @@ public class Player : MonoBehaviour, IObjectParent
         }
     }
 
+    public virtual void BecomeBoss()
+    {
+        isBoss = true;
+    }
+
     private void Update()
     {
         PlayerUpdate();

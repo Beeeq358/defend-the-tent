@@ -1,9 +1,18 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayerInteract : Player
 {
+    [Header("Config")]
+    public float bossSlamCooldown;
+    public int bossSlamDamage;
+
+    private bool isSlamming;
+
+    [SerializeField] private Collider slamHB, halfcircleHB;
+
     public UnityEvent OnPlayerAttack;
 
     private void Start()
@@ -21,7 +30,6 @@ public class PlayerInteract : Player
         if (input.inputAttack1)
         {
             InteractStandardAttack();
-            Debug.Log("Attacked");
         }
         if (input.inputBuilded)
         {
@@ -102,6 +110,7 @@ public class PlayerInteract : Player
 
     public void InteractStandardAttack()
     {
+        Debug.Log(isBoss);
         if (!isBoss)
         {
             if (childObject is BaseWeapon)
@@ -113,9 +122,10 @@ public class PlayerInteract : Player
                 Debug.LogWarning("Player does not currently hold a weapon");
             }
         }
-        else if (isBoss)
+        else if (isBoss && !isSlamming)
         {
-            // Do boss logic
+            Debug.Log("Started Coroutine bossfrontslam");
+            StartCoroutine(BossFrontSlam());
         }
         else
         {
@@ -177,4 +187,23 @@ public class PlayerInteract : Player
         }
     }
 
+
+    private IEnumerator BossFrontSlam()
+    {
+        isSlamming = true;
+        //start animation
+        yield return new WaitForSeconds(bossSlamCooldown);
+        //start slam VFX
+        List<Collider> playerColliders = slamHB.GetComponent<HitBox>().GetPlayerColliders();
+        foreach (Collider collider in playerColliders)
+        {
+            collider.GetComponent<PlayerHealth>().TakeDamage(bossSlamDamage);
+        }
+        List<Collider> objectColliders = slamHB.GetComponent<HitBox>().GetObjectColliders();
+        foreach (Collider collider in objectColliders)
+        {
+            collider.GetComponent<BaseObject>().TakeDamage(bossSlamDamage);
+        }
+        isSlamming = false;
+    }
 }
