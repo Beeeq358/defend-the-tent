@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6857063349733309081}
   - component: {fileID: 8244600053939222732}
   - component: {fileID: 3206428956512588225}
+  - component: {fileID: 1979264847417938009}
   m_Layer: 3
   m_Name: SpoonWeapon
   m_TagString: Object
@@ -74,6 +75,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1979264847417938009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2405784831928841750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1aefd4331f687b4885bc34381a7a35a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upwardForceMagnitude: 20
+  objectRb: {fileID: 3206428956512588225}
 --- !u!1001 &8044289930696347253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -126,6 +141,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 3393294118329290807, guid: 9396acf7c4bd1e24b938547444c74aa4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3393294118329290807, guid: 9396acf7c4bd1e24b938547444c74aa4, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 559328792dadbb54897c1e19b7ad3362, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

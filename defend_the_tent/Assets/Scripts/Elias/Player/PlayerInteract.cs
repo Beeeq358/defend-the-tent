@@ -40,7 +40,7 @@ public class PlayerInteract : Player
                     BaseObject baseObject = (BaseObject)selectedChildObject;
                     if (selectedChildObject != null && baseObject.objectSO.objectType == ObjectType.Buildable && !isBoss)
                     {
-                        if (selectedChildObject is BuildableObject buildableObject)
+                        if (selectedChildObject is BuildableObject buildableObject  && buildableObject._isInteractive == true)
                         {
                             InteractBuild(this, buildableObject);
                         }
@@ -143,6 +143,7 @@ public class PlayerInteract : Player
         Vector2 inputVector = GetMovementVectorNormalized();
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
+        // Update last interact direction only if the player is moving
         if (moveDir != Vector3.zero)
         {
             lastInteractDir = moveDir;
@@ -151,18 +152,16 @@ public class PlayerInteract : Player
         float interactDistance = 2f;
         Vector3 boxHalfExtents = new Vector3(1f, 1f, 1f); // Adjust for desired box size (width, height, depth)
 
-        // Adjust the origin to be at the player's midsection, slightly below their center
-        Vector3 origin = targetTransform.position;
-        Vector3 direction = lastInteractDir.normalized;
+        // Use player's current forward direction or last interact direction
+        Vector3 direction = moveDir != Vector3.zero ? moveDir.normalized : targetTransform.forward.normalized;
+
+        Quaternion boxOrientation = Quaternion.LookRotation(direction, Vector3.up);
 
         // Visualize the BoxCast
-        Debug.DrawRay(origin, direction * interactDistance, Color.red, 0.1f);
-        Debug.DrawLine(origin - targetTransform.right * boxHalfExtents.x,
-                 origin + targetTransform.right * boxHalfExtents.x,
-                 Color.blue, 0.1f);
+        Debug.DrawRay(targetTransform.position, direction * interactDistance, Color.red, 0.1f);
 
         // Perform the BoxCast
-        if (Physics.BoxCast(origin, boxHalfExtents, direction, out RaycastHit boxCastHit, Quaternion.identity, interactDistance, objectLayerMask))
+        if (Physics.BoxCast(targetTransform.position, boxHalfExtents, direction, out RaycastHit boxCastHit, boxOrientation, interactDistance, objectLayerMask))
         {
             if (boxCastHit.transform.TryGetComponent(out IChildObject childObject))
             {

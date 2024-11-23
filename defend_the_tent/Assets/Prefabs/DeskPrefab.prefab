@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6511696209577352062}
   - component: {fileID: 7149771404894398323}
   - component: {fileID: 433924833029271939}
-  - component: {fileID: 105986975683628929}
+  - component: {fileID: -1116320196124958213}
+  - component: {fileID: 1391362050913972516}
   m_Layer: 3
   m_Name: DeskPrefab
   m_TagString: Object
@@ -97,7 +98,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &105986975683628929
+--- !u!64 &-1116320196124958213
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047448532437668335}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6317106008045385693, guid: 05b4fd4db9c121149b36274bc5b2ca5f, type: 3}
+--- !u!65 &1391362050913972516
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,8 +139,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.671227, y: 1.4792736, z: 2.24867}
-  m_Center: {x: -0.0008049011, y: 0.2396369, z: 0.29695323}
+  m_Size: {x: 3.9834795, y: 1.3754592, z: 2.198464}
+  m_Center: {x: 0.035095215, y: 0.18772978, z: 0.2069056}
 --- !u!1 &4755941933735273153
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1733383384981175473, guid: 7718ef242c14d4f44a824dfd7fb0043e, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1733383384981175473, guid: 7718ef242c14d4f44a824dfd7fb0043e, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
@@ -470,7 +493,7 @@ PrefabInstance:
     - target: {fileID: 1733383384981175473, guid: 7718ef242c14d4f44a824dfd7fb0043e, type: 3}
       propertyPath: 'm_Materials.Array.data[2]'
       value: 
-      objectReference: {fileID: 2100000, guid: 5620c092801d1804ebc9b0b3bd4a8374, type: 2}
+      objectReference: {fileID: 2100000, guid: 559328792dadbb54897c1e19b7ad3362, type: 2}
     m_RemovedComponents:
     - {fileID: 8864821044191870297, guid: 7718ef242c14d4f44a824dfd7fb0043e, type: 3}
     - {fileID: -289613780551147791, guid: 7718ef242c14d4f44a824dfd7fb0043e, type: 3}
