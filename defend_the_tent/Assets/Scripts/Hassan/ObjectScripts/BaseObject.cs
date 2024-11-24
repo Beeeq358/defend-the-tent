@@ -23,16 +23,7 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
 
     private void Update()
     {
-        if (objectParent != null)
-        {
-            rb.useGravity = false;
-            rb.isKinematic = true;
-        }
-        else
-        {
-            rb.useGravity = true;
-            rb.isKinematic = false;
-        }
+        Debug.Log(rb.isKinematic);
 
         Die();
     }
@@ -46,6 +37,9 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
         Transform parentTransform = parent.GetObjectFollowTransform();
         transform.parent = parentTransform;
         transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+        rb.isKinematic = true;
+        rb.useGravity = false;
         parent.SetObject(this);
 
         // Debug the assignment
@@ -57,6 +51,8 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
     {
         if (this.objectParent != null)
         {
+            rb.useGravity = true;
+            rb.isKinematic = false;
             Debug.Log("Calling ClearObject on objectParent.");
             this.objectParent.ClearObject();
             transform.parent = null;

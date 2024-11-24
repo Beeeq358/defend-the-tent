@@ -28,7 +28,7 @@ public class BuildableObject : BaseObject, IBuildable
         }
         else
         {
-            if (IsKinematic())
+            if (!_isInteractive)
             {
                 TakeDamage(1);
             }

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4625341356130861366}
   - component: {fileID: 8970762013283229546}
   - component: {fileID: 1269573953019564378}
+  - component: {fileID: 8716901439577491970}
   m_Layer: 3
   m_Name: TablePrefab
   m_TagString: Object
@@ -164,6 +165,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.4, z: 1}
   m_Center: {x: 0, y: -0.6, z: 0}
+--- !u!65 &8716901439577491970
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126308800680948690}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 3, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3121999188562768802
 GameObject:
   m_ObjectHideFlags: 0

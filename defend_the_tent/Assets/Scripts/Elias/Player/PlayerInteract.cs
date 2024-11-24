@@ -14,6 +14,8 @@ public class PlayerInteract : Player
     [SerializeField] private Collider slamHB, halfcircleHB;
 
     public UnityEvent OnPlayerAttack;
+    public UnityEvent<Transform> OnPlayerGrab;
+    public UnityEvent OnPlayerStopGrab;
 
     private void Start()
     {
@@ -55,7 +57,6 @@ public class PlayerInteract : Player
         }
         if (input.inputGrabStrength > 0)
         {
-            Debug.Log("Interacted!");
             if (childObject == null && !isBoss)
             {
                 if (selectedChildObject != null)
@@ -79,8 +80,8 @@ public class PlayerInteract : Player
         }
         if (input.inputGrabStrength == 0 && childObject != null && !isBoss)
         {
+            OnPlayerStopGrab.Invoke();
             Rigidbody tempRB = childObject.GetGameObject().GetComponent<Rigidbody>();
-            Debug.Log("Dropping Object");
             childObject.ClearObjectParent(this);
             tempRB.isKinematic = false;
             tempRB.AddForce(recentGrabStrength * throwStrength * (targetTransform.forward + new Vector3(0, throwHeight, 0)), ForceMode.Impulse);
@@ -89,6 +90,8 @@ public class PlayerInteract : Player
 
     public void InteractGrab(Player player, IChildObject childObject)
     {
+        GameObject objectToGrab = childObject.GetGameObject();
+        OnPlayerGrab.Invoke(objectToGrab.transform);
         childObject.SetObjectParent(player);
     }
 
@@ -150,7 +153,8 @@ public class PlayerInteract : Player
         }
 
         float interactDistance = 2f;
-        Vector3 boxHalfExtents = new Vector3(1f, 1f, 1f); // Adjust for desired box size (width, height, depth)
+        // Adjust for desired box size (width, height, depth)
+        Vector3 boxHalfExtents = new Vector3(1f, 1f, 1f); 
 
         // Use player's current forward direction or last interact direction
         Vector3 direction = moveDir != Vector3.zero ? moveDir.normalized : targetTransform.forward.normalized;
