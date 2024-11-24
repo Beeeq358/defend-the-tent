@@ -6,14 +6,14 @@ public class DynamicArmIK : MonoBehaviour
 {
     public PlayerInteract playerInteract;
 
-    public TwoBoneIKConstraint leftArmIK;  // Left arm IK constraint
-    public TwoBoneIKConstraint rightArmIK; // Right arm IK constraint
-    public Transform leftHandTarget;      // Target for the left hand
-    public Transform rightHandTarget;     // Target for the right hand
-    public Transform objectToHold;        // The object the player is grabbing
-    public float lerpSpeed = 5f;          // Speed of movement
+    public TwoBoneIKConstraint leftArmIK; 
+    public TwoBoneIKConstraint rightArmIK; 
+    public Transform leftHandTarget;      
+    public Transform rightHandTarget;     
+    public Transform objectToHold;        
+    public float lerpSpeed = 5f;          
 
-    private bool isGrabbing = false;      // Whether the player is grabbing an object
+    private bool isGrabbing = false;    
 
     private void Start()
     {
@@ -68,7 +68,6 @@ public class DynamicArmIK : MonoBehaviour
         Collider targetCollider = targetObject.GetComponent<Collider>();
         if (targetCollider != null)
         {
-            Debug.LogWarning(targetCollider.ClosestPoint(hand.position));
             return targetCollider.ClosestPoint(hand.position);
         }
         else

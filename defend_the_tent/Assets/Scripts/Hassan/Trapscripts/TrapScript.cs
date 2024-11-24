@@ -19,13 +19,13 @@ public class TrapScript : MonoBehaviour
         // Check if the colliding object is a boss
         if (collision.gameObject.tag == "Boss")
         {
-
+            TrapTriggered(collision.gameObject);
 
             Destroy(gameObject);
         }
     }
 
-    private void TrapTriggered(Player player)
+    private void TrapTriggered(GameObject boss)
     {
         
     }
