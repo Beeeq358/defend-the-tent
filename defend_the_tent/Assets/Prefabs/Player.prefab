@@ -696,7 +696,7 @@ MonoBehaviour:
   leftHandTarget: {fileID: 1173503088502302376}
   rightHandTarget: {fileID: 7143717336289811392}
   objectToHold: {fileID: 0}
-  lerpSpeed: 5
+  lerpSpeed: 3
 --- !u!114 &-8633664820246738670
 MonoBehaviour:
   m_ObjectHideFlags: 0

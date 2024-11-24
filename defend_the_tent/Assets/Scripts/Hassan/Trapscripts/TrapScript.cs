@@ -2,6 +2,15 @@ using UnityEngine;
 
 public class TrapScript : MonoBehaviour
 {
+    public enum TrapType
+    {
+        Landmine,
+        Beartrap,
+        Banana
+    }
+
+    public TrapType type;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,6 +36,12 @@ public class TrapScript : MonoBehaviour
 
     private void TrapTriggered(GameObject boss)
     {
-        
+        Rigidbody bossRB = boss.GetComponent<Rigidbody>();
+        bossRB.isKinematic = true;
+
+        if (this.type == TrapType.Landmine)
+        {
+            bossRB.AddExplosionForce(2f, transform.position, 10f, 2f, ForceMode.Impulse);
+        }
     }
 }
