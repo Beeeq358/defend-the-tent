@@ -6,12 +6,12 @@ using UnityEngine.Events;
 public class PlayerInteract : Player
 {
     [Header("Config")]
-    public float bossSlamCooldown;
-    public int bossSlamDamage;
+    public float bossSlamCooldown, bossSwipeCooldown, bossShockCooldown;
+    public int bossSlamDamage, bossSwipeDamage, bossShockDamage;
 
-    private bool isSlamming;
+    private bool isSlamming, isSwiping, isShockwave;
 
-    [SerializeField] private Collider slamHB, halfcircleHB;
+    [SerializeField] private Collider slamHB, halfcircleHB, shockwaveHB;
 
     public UnityEvent OnPlayerAttack;
     public UnityEvent<Transform> OnPlayerGrab;
@@ -32,6 +32,10 @@ public class PlayerInteract : Player
         if (input.inputAttack1)
         {
             InteractStandardAttack();
+        }
+        if (input.inputAttack2 && isBoss && !isSlamming && !isSwiping)
+        {
+            StartCoroutine(BossHalfSwipe());
         }
         if (input.inputBuilded)
         {
@@ -113,7 +117,6 @@ public class PlayerInteract : Player
 
     public void InteractStandardAttack()
     {
-        Debug.Log(isBoss);
         if (!isBoss)
         {
             if (childObject is BaseWeapon)
@@ -127,7 +130,7 @@ public class PlayerInteract : Player
         }
         else if (isBoss)
         {
-            if (!isSlamming)
+            if (!isSlamming && !isSwiping)
             {
                 Debug.Log("Started Coroutine bossfrontslam");
                 StartCoroutine(BossFrontSlam());
@@ -138,7 +141,6 @@ public class PlayerInteract : Player
             // This shouldn't happen
             Debug.LogError("Player is neither a boss nor a player");
         }
-
     }
 
     private void HandleInteractions()
@@ -211,5 +213,42 @@ public class PlayerInteract : Player
             collider.GetComponent<BaseObject>().TakeDamage(bossSlamDamage);
         }
         isSlamming = false;
+    }
+
+    private IEnumerator BossHalfSwipe()
+    {
+        isSwiping = true;
+        //start animation
+        yield return new WaitForSeconds(bossSwipeCooldown);
+        //start slam VFX
+        List<Collider> playerColliders = halfcircleHB.GetComponent<HitBox>().GetPlayerColliders();
+        foreach (Collider collider in playerColliders)
+        {
+            collider.GetComponent<PlayerHealth>().TakeDamage(bossSwipeDamage);
+        }
+        List<Collider> objectColliders = halfcircleHB.GetComponent<HitBox>().GetObjectColliders();
+        foreach (Collider collider in objectColliders)
+        {
+            collider.GetComponent<BaseObject>().TakeDamage(bossSwipeDamage);
+        }
+        isSwiping = false;
+    }
+    private IEnumerator BossShockWave()
+    {
+        isShockwave = true;
+        //start animation
+        yield return new WaitForSeconds(bossShockCooldown);
+        //start slam VFX
+        List<Collider> playerColliders = shockwaveHB.GetComponent<HitBox>().GetPlayerColliders();
+        foreach (Collider collider in playerColliders)
+        {
+            collider.GetComponent<PlayerHealth>().TakeDamage(bossShockDamage);
+        }
+        List<Collider> objectColliders = shockwaveHB.GetComponent<HitBox>().GetObjectColliders();
+        foreach (Collider collider in objectColliders)
+        {
+            collider.GetComponent<BaseObject>().TakeDamage(bossShockDamage);
+        }
+        isShockwave = false;
     }
 }
