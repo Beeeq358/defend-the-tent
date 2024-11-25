@@ -17,6 +17,7 @@ public class PlayerInteract : Player
 
     [SerializeField] private Collider slamHB, halfcircleHB, shockwaveHB;
     [SerializeField] private Transform shockwaveVisual;
+    [SerializeField] private GameObject explosionParticle;
 
     public UnityEvent OnPlayerAttack;
     public UnityEvent<Transform> OnPlayerGrab;
@@ -258,7 +259,10 @@ public class PlayerInteract : Player
             yield return null;
         }
         //impact VFX
+        GameObject explosion = Instantiate(explosionParticle, targetTransform.position, targetTransform.rotation);
+        Destroy(explosion, 1.5f);
         DamageColliders(bossShockDamage, shockwaveHB);
+        shockwaveVisual.gameObject.SetActive(false);
         isShockwave = false;
     }
 }
