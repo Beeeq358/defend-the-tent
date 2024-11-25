@@ -203,43 +203,40 @@ public class PlayerInteract : Player
             SetSelectedObject(null);
         }
     }
-
-
+    private void DamageColliders(int attackDamage, Collider attackHitbox)
+    {
+        List<Collider> playerColliders = attackHitbox.GetComponent<HitBox>().GetPlayerColliders();
+        foreach (Collider collider in playerColliders)
+        {
+            collider.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
+        }
+        List<Collider> objectColliders = attackHitbox.GetComponent<HitBox>().GetObjectColliders();
+        foreach (Collider collider in objectColliders)
+        {
+            collider.GetComponent<BaseObject>().TakeDamage(attackDamage);
+        }
+        Collider objective = attackHitbox.GetComponent<HitBox>().GetObjectiveCollider();
+        if (objective != null)
+        {
+            objective.GetComponent<ObjectiveScript>().TakeDamage(attackDamage);
+        }
+    }
     private IEnumerator BossFrontSlam()
     {
         isSlamming = true;
         //start animation
         yield return new WaitForSeconds(bossSlamCooldown);
         //start slam VFX
-        List<Collider> playerColliders = slamHB.GetComponent<HitBox>().GetPlayerColliders();
-        foreach (Collider collider in playerColliders)
-        {
-            collider.GetComponent<PlayerHealth>().TakeDamage(bossSlamDamage);
-        }
-        List<Collider> objectColliders = slamHB.GetComponent<HitBox>().GetObjectColliders();
-        foreach (Collider collider in objectColliders)
-        {
-            collider.GetComponent<BaseObject>().TakeDamage(bossSlamDamage);
-        }
+        DamageColliders(bossSlamDamage, slamHB);
         isSlamming = false;
     }
-
     private IEnumerator BossHalfSwipe()
     {
         isSwiping = true;
         //start animation
         yield return new WaitForSeconds(bossSwipeCooldown);
         //start slam VFX
-        List<Collider> playerColliders = halfcircleHB.GetComponent<HitBox>().GetPlayerColliders();
-        foreach (Collider collider in playerColliders)
-        {
-            collider.GetComponent<PlayerHealth>().TakeDamage(bossSwipeDamage);
-        }
-        List<Collider> objectColliders = halfcircleHB.GetComponent<HitBox>().GetObjectColliders();
-        foreach (Collider collider in objectColliders)
-        {
-            collider.GetComponent<BaseObject>().TakeDamage(bossSwipeDamage);
-        }
+        DamageColliders(bossSwipeDamage, halfcircleHB);
         isSwiping = false;
     }
     private IEnumerator BossShockWave()
@@ -261,16 +258,7 @@ public class PlayerInteract : Player
             yield return null;
         }
         //impact VFX
-        List<Collider> playerColliders = shockwaveHB.GetComponent<HitBox>().GetPlayerColliders();
-        foreach (Collider collider in playerColliders)
-        {
-            collider.GetComponent<PlayerHealth>().TakeDamage(bossShockDamage);
-        }
-        List<Collider> objectColliders = shockwaveHB.GetComponent<HitBox>().GetObjectColliders();
-        foreach (Collider collider in objectColliders)
-        {
-            collider.GetComponent<BaseObject>().TakeDamage(bossShockDamage);
-        }
+        DamageColliders(bossShockDamage, shockwaveHB);
         isShockwave = false;
     }
 }
