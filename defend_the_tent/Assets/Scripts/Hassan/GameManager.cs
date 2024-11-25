@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField]
+    private ObjectiveScript objective;
+
+    [SerializeField]
     private GameObject objectSpawner;
 
     [SerializeField]
@@ -31,7 +34,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        objective.OnObjectiveDestroyed.AddListener(SetObjectiveDestroyed);
         gamePhase = GamePhase.PreGame;
+    }
+
+    private void SetObjectiveDestroyed()
+    {
+        objectiveDestroyed = true;
     }
 
     void Update()
@@ -51,6 +60,11 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(CountDownActionPhase());
                 if (!bossChosen)
                     ChooseBoss();
+                if (objectiveDestroyed)
+                {
+                    StopCoroutine(CountDownActionPhase());
+                    gamePhase = GamePhase.PostAction;
+                }
                 break;
             case GamePhase.PostAction:
                 // Perform post-action actions

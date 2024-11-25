@@ -8,6 +8,9 @@ public class TrapScript : MonoBehaviour, IChildObject
     [SerializeField]
     private Rigidbody rb;
 
+    [SerializeField]
+    private GameObject explosionVFX;
+
     public enum TrapType
     {
         Landmine,
@@ -47,12 +50,13 @@ public class TrapScript : MonoBehaviour, IChildObject
     {
         Rigidbody bossRB = boss.GetComponent<Rigidbody>();
         PlayerMovement playerMovement = boss.transform.parent.GetComponent<PlayerMovement>();
-        bossRB.isKinematic = true;
 
         switch (type) 
         {
             case TrapType.Landmine:
-                bossRB.AddExplosionForce(2f, transform.position, 10f, 2f, ForceMode.Impulse);
+                bossRB.AddExplosionForce(20f, transform.position, 10f, 2f, ForceMode.Impulse);
+                explosionVFX.SetActive(true);
+                Destroy(gameObject, 2f);
                 break;
             case TrapType.Glue:
                 StartCoroutine(GlueCoroutine(bossRB));
@@ -100,6 +104,8 @@ public class TrapScript : MonoBehaviour, IChildObject
     {
         if (this.objectParent != null)
         {
+            rb.useGravity = true;
+            rb.isKinematic = false;
             Debug.Log("Calling ClearObject on objectParent.");
             this.objectParent.ClearObject();
             transform.parent = null;

@@ -4,8 +4,7 @@ public enum ObjectType
 {
     Buildable,
     Throwable,
-    Damaging,
-    Trap
+    Damaging
 }
 
 [CreateAssetMenu(fileName = "ObjectSO", menuName = "Scriptable Objects/ new ObjectSO")]
