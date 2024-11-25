@@ -33,7 +33,7 @@ public class PlayerInteract : Player
         {
             InteractStandardAttack();
         }
-        if (input.inputAttack2 && isBoss && !isSlamming && !isSwiping)
+        if (input.inputAttack2 && isBoss && !isSlamming && !isSwiping && !isShockwave)
         {
             StartCoroutine(BossHalfSwipe());
         }
@@ -130,7 +130,7 @@ public class PlayerInteract : Player
         }
         else if (isBoss)
         {
-            if (!isSlamming && !isSwiping)
+            if (!isSlamming && !isSwiping && !isShockwave)
             {
                 Debug.Log("Started Coroutine bossfrontslam");
                 StartCoroutine(BossFrontSlam());
