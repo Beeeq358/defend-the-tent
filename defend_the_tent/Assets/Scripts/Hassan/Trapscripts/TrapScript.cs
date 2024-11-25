@@ -1,8 +1,13 @@
 using System.Collections;
 using UnityEngine;
 
-public class TrapScript : BaseObject
+public class TrapScript : MonoBehaviour, IChildObject
 {
+    protected IObjectParent objectParent;
+
+    [SerializeField]
+    private Rigidbody rb;
+
     public enum TrapType
     {
         Landmine,
@@ -27,7 +32,7 @@ public class TrapScript : BaseObject
         
     }
 
-    protected override void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         // Check if the colliding object is a boss
         if (collision.gameObject.CompareTag("Boss"))
@@ -53,7 +58,8 @@ public class TrapScript : BaseObject
                 StartCoroutine(GlueCoroutine(bossRB));
                 break;
             case TrapType.Banana:
-                playerMovement.IsStunned(3);
+                playerMovement.IsStunned(1);
+                Destroy(gameObject);
                 break;
             default:
                 break;
@@ -69,5 +75,49 @@ public class TrapScript : BaseObject
             Destroy(gameObject);
             break;
         }
+    }
+
+    public void SetObjectParent(IObjectParent parent)
+    {
+        // Clear existing parent if present
+        this.objectParent?.ClearObject();
+
+        // Set new parent
+        Transform parentTransform = parent.GetObjectFollowTransform();
+        transform.parent = parentTransform;
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+        rb.isKinematic = true;
+        rb.useGravity = false;
+        parent.SetObject(this);
+
+        // Debug the assignment
+        this.objectParent = parent;
+        Debug.Log($"Object parent set to: {this.objectParent}");
+    }
+
+    public void ClearObjectParent(Player parent)
+    {
+        if (this.objectParent != null)
+        {
+            Debug.Log("Calling ClearObject on objectParent.");
+            this.objectParent.ClearObject();
+            transform.parent = null;
+            this.objectParent = null;
+        }
+        else
+        {
+            Debug.LogWarning("objectParent is null!");
+        }
+    }
+
+    public GameObject GetObjectParent()
+    {
+        return transform.parent.gameObject;
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

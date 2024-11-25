@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3171357343777105932}
@@ -49,11 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5a66631f331e44e85d1f1c458fcf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectSO: {fileID: 11400000, guid: 017d525d6dc02544b91bbda34fb28ab2, type: 2}
   rb: {fileID: 7822886843468307284}
-  healthPoints: 1
-  regularVisual: {fileID: 2830859944639165110}
-  selectedVisual: {fileID: 2830859944639165110}
   type: 2
   visual: {fileID: 2830859944639165110}
 --- !u!54 &7822886843468307284
@@ -204,6 +200,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 480551d9cee384b47b20d7cd2625050f, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 480551d9cee384b47b20d7cd2625050f, type: 3}
+      propertyPath: m_TagString
+      value: Object
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

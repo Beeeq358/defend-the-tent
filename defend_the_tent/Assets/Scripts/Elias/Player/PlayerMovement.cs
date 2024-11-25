@@ -55,6 +55,14 @@ public class PlayerMovement : Player
     {
         //play stunned animation
         //play stunned effects
+        if (!isBoss)
+        {
+            stunParticle.transform.position = normalTransform.position;
+        }
+        else
+        {
+            stunParticle.transform.position = bossTransform.position + new Vector3(0,5,0);
+        }
         stunParticle.SetActive(true);
         //lock player movement;
         StartCoroutine(StunTime(strength));
