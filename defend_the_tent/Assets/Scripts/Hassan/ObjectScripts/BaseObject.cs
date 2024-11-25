@@ -1,9 +1,17 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UIElements;
+using System;
 
 public class BaseObject : MonoBehaviour, IDamageable, IChildObject
 {
+    public static event Action<BaseObject> OnDestroyed;
+
+    private void OnDestroy()
+    {
+        OnDestroyed?.Invoke(this);
+    }
+
     public ObjectSO objectSO;
 
     private IObjectParent objectParent;
