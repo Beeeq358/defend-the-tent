@@ -1,15 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
-public class TrapScript : MonoBehaviour
+public class TrapScript : BaseObject
 {
     public enum TrapType
     {
         Landmine,
-        Beartrap,
+        Glue,
         Banana
     }
 
     public TrapType type;
+
+    [SerializeField]
+    private GameObject visual;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,25 +27,47 @@ public class TrapScript : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected override void OnCollisionEnter(Collision collision)
     {
         // Check if the colliding object is a boss
-        if (collision.gameObject.tag == "Boss")
+        if (collision.gameObject.CompareTag("Boss"))
         {
             TrapTriggered(collision.gameObject);
 
-            Destroy(gameObject);
+            visual.SetActive(false);
         }
     }
 
     private void TrapTriggered(GameObject boss)
     {
         Rigidbody bossRB = boss.GetComponent<Rigidbody>();
+        PlayerMovement playerMovement = boss.transform.parent.GetComponent<PlayerMovement>();
         bossRB.isKinematic = true;
 
-        if (this.type == TrapType.Landmine)
+        switch (type) 
         {
-            bossRB.AddExplosionForce(2f, transform.position, 10f, 2f, ForceMode.Impulse);
+            case TrapType.Landmine:
+                bossRB.AddExplosionForce(2f, transform.position, 10f, 2f, ForceMode.Impulse);
+                break;
+            case TrapType.Glue:
+                StartCoroutine(GlueCoroutine(bossRB));
+                break;
+            case TrapType.Banana:
+                playerMovement.IsStunned(3);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private IEnumerator GlueCoroutine(Rigidbody bossRB)
+    {
+        while (true)
+        {
+            bossRB.linearDamping = 20;
+            yield return new WaitForSeconds(3f);
+            Destroy(gameObject);
+            break;
         }
     }
 }
