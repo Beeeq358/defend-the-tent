@@ -17,6 +17,7 @@ public class PlayerInteract : Player
 
     [SerializeField] private Collider slamHB, halfcircleHB, shockwaveHB;
     [SerializeField] private Transform shockwaveVisual;
+    [SerializeField] private GameObject explosionParticle;
 
     public UnityEvent OnPlayerAttack;
     public UnityEvent<Transform> OnPlayerGrab;
@@ -214,6 +215,7 @@ public class PlayerInteract : Player
             objective.GetComponent<ObjectiveScript>().TakeDamage(attackDamage);
         }
     }
+
     private IEnumerator BossFrontSlam()
     {
         isSlamming = true;
@@ -223,6 +225,7 @@ public class PlayerInteract : Player
         DamageColliders(bossSlamDamage, slamHB);
         isSlamming = false;
     }
+
     private IEnumerator BossHalfSwipe()
     {
         isSwiping = true;
@@ -232,6 +235,7 @@ public class PlayerInteract : Player
         DamageColliders(bossSwipeDamage, halfcircleHB);
         isSwiping = false;
     }
+
     private IEnumerator BossShockWave()
     {
         isShockwave = true;
@@ -251,7 +255,10 @@ public class PlayerInteract : Player
             yield return null;
         }
         //impact VFX
+        GameObject explosion = Instantiate(explosionParticle, bossTransform.position, Quaternion.identity);
+        Destroy(explosion, 1.5f);
         DamageColliders(bossShockDamage, shockwaveHB);
+        shockwaveVisual.gameObject.SetActive(false);
         isShockwave = false;
     }
 }
