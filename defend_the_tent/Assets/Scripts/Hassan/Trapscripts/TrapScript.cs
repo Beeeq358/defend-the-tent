@@ -56,7 +56,7 @@ public class TrapScript : MonoBehaviour, IChildObject
             case TrapType.Landmine:
                 bossRB.AddExplosionForce(20f, transform.position, 10f, 2f, ForceMode.Impulse);
                 explosionVFX.SetActive(true);
-                Destroy(gameObject, 2f);
+                Destroy(gameObject, 1.3f);
                 break;
             case TrapType.Glue:
                 StartCoroutine(GlueCoroutine(bossRB));

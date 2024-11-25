@@ -157,25 +157,18 @@ public class PlayerInteract : Player
         Vector2 inputVector = GetMovementVectorNormalized();
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
-        // Update last interact direction only if the player is moving
         if (moveDir != Vector3.zero)
         {
             lastInteractDir = moveDir;
         }
 
         float interactDistance = 2f;
-        // Adjust for desired box size (width, height, depth)
         Vector3 boxHalfExtents = new Vector3(1f, 1f, 1f); 
-
-        // Use player's current forward direction or last interact direction
         Vector3 direction = moveDir != Vector3.zero ? moveDir.normalized : targetTransform.forward.normalized;
 
         Quaternion boxOrientation = Quaternion.LookRotation(direction, Vector3.up);
-
-        // Visualize the BoxCast
         Debug.DrawRay(targetTransform.position, direction * interactDistance, Color.red, 0.1f);
 
-        // Perform the BoxCast
         if (Physics.BoxCast(targetTransform.position, boxHalfExtents, direction, out RaycastHit boxCastHit, boxOrientation, interactDistance, objectLayerMask))
         {
             if (boxCastHit.transform.TryGetComponent(out IChildObject childObject))
