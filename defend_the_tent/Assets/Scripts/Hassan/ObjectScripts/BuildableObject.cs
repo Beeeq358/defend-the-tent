@@ -8,6 +8,9 @@ public class BuildableObject : BaseObject, IBuildable
     private GameObject healthBarPrefab;
     private GameObject myHealthBar;
 
+    [SerializeField]
+    private GameObject buildingParticleSystem;
+
     private void Start()
     {
         myHealthBar = Instantiate(healthBarPrefab, transform.position, Camera.main.transform.rotation);
@@ -42,6 +45,8 @@ public class BuildableObject : BaseObject, IBuildable
     }
     public void SetKinematic(bool isKinematic)
     {
+        GameObject buildingParticles = Instantiate(buildingParticleSystem, transform.position, Quaternion.identity);
+        Destroy(buildingParticles, 3f);
         rb.isKinematic = isKinematic;
         _isInteractive = false;
         myHealthBar.SetActive(true);
