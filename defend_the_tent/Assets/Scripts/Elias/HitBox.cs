@@ -5,6 +5,7 @@ public class HitBox : MonoBehaviour
 {
     private List<Collider> currentPlayerColliders = new();
     private List<Collider> currentObjectColliders = new();
+    private Collider currentObjectiveCollider;
     public List<Collider> GetPlayerColliders()
     {
         return currentPlayerColliders;
@@ -20,6 +21,10 @@ public class HitBox : MonoBehaviour
             currentPlayerColliders.Add(other);
         if (other.GetComponent<BaseObject>() != null)
             currentObjectColliders.Add(other);
+        if (other.gameObject.CompareTag("Objective"))
+        {
+            currentObjectiveCollider = other;
+        }
         else if (!other.gameObject.CompareTag("Scenery"))
             Debug.LogWarning("Unknown object entered hitbox trigger");
     }

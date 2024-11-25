@@ -6,12 +6,17 @@ using UnityEngine.Events;
 public class PlayerInteract : Player
 {
     [Header("Config")]
-    public float bossSlamCooldown, bossSwipeCooldown, bossShockCooldown;
-    public int bossSlamDamage, bossSwipeDamage, bossShockDamage;
+    public float bossSlamCooldown;
+    public float bossSwipeCooldown;
+    public float bossShockCooldown;
+    public int bossSlamDamage;
+    public int bossSwipeDamage;
+    public int bossShockDamage;
 
     private bool isSlamming, isSwiping, isShockwave;
 
     [SerializeField] private Collider slamHB, halfcircleHB, shockwaveHB;
+    [SerializeField] private Transform shockwaveVisual;
 
     public UnityEvent OnPlayerAttack;
     public UnityEvent<Transform> OnPlayerGrab;
@@ -36,6 +41,10 @@ public class PlayerInteract : Player
         if (input.inputAttack2 && isBoss && !isSlamming && !isSwiping && !isShockwave)
         {
             StartCoroutine(BossHalfSwipe());
+        }
+        if (input.inputAttack3 && isBoss && !isSlamming && !isSwiping && !isShockwave)
+        {
+            StartCoroutine(BossShockWave());
         }
         if (input.inputBuilded)
         {
@@ -237,8 +246,21 @@ public class PlayerInteract : Player
     {
         isShockwave = true;
         //start animation
-        yield return new WaitForSeconds(bossShockCooldown);
-        //start slam VFX
+        shockwaveVisual.gameObject.SetActive(true);
+        float startRadius = 1;
+        float endRadius = 2.5f;
+        float duration = bossShockCooldown;
+        float elapsedTime = 0;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / duration;
+            shockwaveHB.GetComponent<SphereCollider>().radius = Mathf.Lerp(startRadius, endRadius, t);
+            Vector3 visualLerp = new Vector3(Mathf.Lerp(startRadius * 2, endRadius * 2, t), 0.04f, Mathf.Lerp(startRadius * 2, endRadius * 2, t));
+            shockwaveVisual.transform.localScale = visualLerp;
+            yield return null;
+        }
+        //impact VFX
         List<Collider> playerColliders = shockwaveHB.GetComponent<HitBox>().GetPlayerColliders();
         foreach (Collider collider in playerColliders)
         {
