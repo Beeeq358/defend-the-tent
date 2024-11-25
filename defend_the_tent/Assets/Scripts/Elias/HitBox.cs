@@ -15,6 +15,11 @@ public class HitBox : MonoBehaviour
         return currentObjectColliders;
     }
 
+    public Collider GetObjectiveCollider()
+    {
+        return currentObjectiveCollider;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Normal Player")
