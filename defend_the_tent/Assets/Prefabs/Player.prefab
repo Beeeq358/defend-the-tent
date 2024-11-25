@@ -359,7 +359,6 @@ Transform:
   m_Children:
   - {fileID: 7724822326993971726}
   - {fileID: 2817797773407776696}
-  - {fileID: 5651308399249796716}
   m_Father: {fileID: 1938718015720256727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &5207495103502091086
@@ -666,6 +665,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 5651308399249796716}
   - {fileID: 8102731525495296334}
   - {fileID: 7452215328330774507}
   m_Father: {fileID: 0}
@@ -1422,19 +1422,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8102731525495296334}
+    m_TransformParent: {fileID: 1938718015720256727}
     m_Modifications:
     - target: {fileID: 4078725881091701871, guid: 5a525e83fbe83a342acdbf8acadcd64a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.5000004
       objectReference: {fileID: 0}
     - target: {fileID: 4078725881091701871, guid: 5a525e83fbe83a342acdbf8acadcd64a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.5000004
       objectReference: {fileID: 0}
     - target: {fileID: 4078725881091701871, guid: 5a525e83fbe83a342acdbf8acadcd64a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 1.5000004
       objectReference: {fileID: 0}
     - target: {fileID: 4078725881091701871, guid: 5a525e83fbe83a342acdbf8acadcd64a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1442,7 +1442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4078725881091701871, guid: 5a525e83fbe83a342acdbf8acadcd64a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.799
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4078725881091701871, guid: 5a525e83fbe83a342acdbf8acadcd64a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1482,7 +1482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5815609127733262365, guid: 5a525e83fbe83a342acdbf8acadcd64a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
