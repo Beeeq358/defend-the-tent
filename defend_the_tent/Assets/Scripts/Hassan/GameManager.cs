@@ -66,10 +66,14 @@ public class GameManager : MonoBehaviour
                 if (playersWon)
                 {
                     // Perform player win logic
+                    PlayerPrefs.SetInt("Winner", 0);
+                    PlayerPrefs.Save();
                 }
                 else if (bossWon)
                 {
                     // Perform boss win logic
+                    PlayerPrefs.SetInt("Winner", 1);
+                    PlayerPrefs.Save();
                 }
                 break;
         }
