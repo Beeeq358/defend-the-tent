@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7452215328330774507
 Transform:
   m_ObjectHideFlags: 0
@@ -247,7 +247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6492220109414568021
 Transform:
   m_ObjectHideFlags: 0
@@ -258,8 +258,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 2, y: 0.02, z: 2}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 5, y: 0.04, z: 5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2666868681380964183}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -694,6 +694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2666868681380964183}
   - component: {fileID: 8885973538644053484}
+  - component: {fileID: 8083339583442986179}
   m_Layer: 0
   m_Name: ShockwaveHitbox
   m_TagString: Untagged
@@ -736,8 +737,20 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8083339583442986179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5460294929611674855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b28741262ecd66489943f11f3c0ca16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5555228531092992576
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,14 +1113,15 @@ MonoBehaviour:
   bossHoldPoint: {fileID: 8096206408343505631}
   gameManager: {fileID: 0}
   bossSlamCooldown: 2
-  bossSwipeCooldown: 0
-  bossShockCooldown: 0
+  bossSwipeCooldown: 1
+  bossShockCooldown: 3
   bossSlamDamage: 5
-  bossSwipeDamage: 0
-  bossShockDamage: 0
+  bossSwipeDamage: 2
+  bossShockDamage: 8
   slamHB: {fileID: 1574853738758696132}
   halfcircleHB: {fileID: 8237299682853790034}
-  shockwaveHB: {fileID: 0}
+  shockwaveHB: {fileID: 8885973538644053484}
+  shockwaveVisual: {fileID: 6492220109414568021}
   OnPlayerAttack:
     m_PersistentCalls:
       m_Calls: []
