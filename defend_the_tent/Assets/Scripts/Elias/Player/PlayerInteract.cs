@@ -14,6 +14,8 @@ public class PlayerInteract : Player
     [SerializeField] private Collider slamHB, halfcircleHB;
 
     public UnityEvent OnPlayerAttack;
+    public UnityEvent<Transform> OnPlayerGrab;
+    public UnityEvent OnPlayerStopGrab;
 
     private void Start()
     {
@@ -40,7 +42,7 @@ public class PlayerInteract : Player
                     BaseObject baseObject = (BaseObject)selectedChildObject;
                     if (selectedChildObject != null && baseObject.objectSO.objectType == ObjectType.Buildable && !isBoss)
                     {
-                        if (selectedChildObject is BuildableObject buildableObject)
+                        if (selectedChildObject is BuildableObject buildableObject  && buildableObject._isInteractive == true)
                         {
                             InteractBuild(this, buildableObject);
                         }
@@ -55,7 +57,6 @@ public class PlayerInteract : Player
         }
         if (input.inputGrabStrength > 0)
         {
-            Debug.Log("Interacted!");
             if (childObject == null && !isBoss)
             {
                 if (selectedChildObject != null)
@@ -79,8 +80,8 @@ public class PlayerInteract : Player
         }
         if (input.inputGrabStrength == 0 && childObject != null && !isBoss)
         {
+            OnPlayerStopGrab.Invoke();
             Rigidbody tempRB = childObject.GetGameObject().GetComponent<Rigidbody>();
-            Debug.Log("Dropping Object");
             childObject.ClearObjectParent(this);
             tempRB.isKinematic = false;
             tempRB.AddForce(recentGrabStrength * throwStrength * (targetTransform.forward + new Vector3(0, throwHeight, 0)), ForceMode.Impulse);
@@ -89,6 +90,8 @@ public class PlayerInteract : Player
 
     public void InteractGrab(Player player, IChildObject childObject)
     {
+        GameObject objectToGrab = childObject.GetGameObject();
+        OnPlayerGrab.Invoke(objectToGrab.transform);
         childObject.SetObjectParent(player);
     }
 
@@ -143,26 +146,26 @@ public class PlayerInteract : Player
         Vector2 inputVector = GetMovementVectorNormalized();
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
+        // Update last interact direction only if the player is moving
         if (moveDir != Vector3.zero)
         {
             lastInteractDir = moveDir;
         }
 
         float interactDistance = 2f;
-        Vector3 boxHalfExtents = new Vector3(1f, 1f, 1f); // Adjust for desired box size (width, height, depth)
+        // Adjust for desired box size (width, height, depth)
+        Vector3 boxHalfExtents = new Vector3(1f, 1f, 1f); 
 
-        // Adjust the origin to be at the player's midsection, slightly below their center
-        Vector3 origin = targetTransform.position;
-        Vector3 direction = lastInteractDir.normalized;
+        // Use player's current forward direction or last interact direction
+        Vector3 direction = moveDir != Vector3.zero ? moveDir.normalized : targetTransform.forward.normalized;
+
+        Quaternion boxOrientation = Quaternion.LookRotation(direction, Vector3.up);
 
         // Visualize the BoxCast
-        Debug.DrawRay(origin, direction * interactDistance, Color.red, 0.1f);
-        Debug.DrawLine(origin - targetTransform.right * boxHalfExtents.x,
-                 origin + targetTransform.right * boxHalfExtents.x,
-                 Color.blue, 0.1f);
+        Debug.DrawRay(targetTransform.position, direction * interactDistance, Color.red, 0.1f);
 
         // Perform the BoxCast
-        if (Physics.BoxCast(origin, boxHalfExtents, direction, out RaycastHit boxCastHit, Quaternion.identity, interactDistance, objectLayerMask))
+        if (Physics.BoxCast(targetTransform.position, boxHalfExtents, direction, out RaycastHit boxCastHit, boxOrientation, interactDistance, objectLayerMask))
         {
             if (boxCastHit.transform.TryGetComponent(out IChildObject childObject))
             {
