@@ -55,6 +55,8 @@ public class TrapScript : MonoBehaviour, IChildObject
         {
             case TrapType.Landmine:
                 bossRB.AddExplosionForce(20f, transform.position, 10f, 2f, ForceMode.Impulse);
+                boss.GetComponent<PlayerHealth>().TakeDamage(15);
+                boss.GetComponent<PlayerMovement>().IsStunned(7);
                 explosionVFX.SetActive(true);
                 Destroy(gameObject, 1.3f);
                 break;
@@ -97,7 +99,6 @@ public class TrapScript : MonoBehaviour, IChildObject
 
         // Debug the assignment
         this.objectParent = parent;
-        Debug.Log($"Object parent set to: {this.objectParent}");
     }
 
     public void ClearObjectParent(Player parent)
@@ -106,7 +107,6 @@ public class TrapScript : MonoBehaviour, IChildObject
         {
             rb.useGravity = true;
             rb.isKinematic = false;
-            Debug.Log("Calling ClearObject on objectParent.");
             this.objectParent.ClearObject();
             transform.parent = null;
             this.objectParent = null;

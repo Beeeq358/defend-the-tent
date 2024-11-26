@@ -157,7 +157,6 @@ public class Player : MonoBehaviour, IObjectParent
     }
     public void ClearObject()
     {
-        Debug.Log("Object cleared!");
         childObject = null;
     }
     public bool HasObject()

@@ -174,7 +174,6 @@ public class PlayerInteract : Player
         {
             if (boxCastHit.transform.TryGetComponent(out IChildObject childObject))
             {
-                Debug.Log($"BoxCast hit: {boxCastHit.transform.name}, checking for IChildObject.");
                 if (childObject != selectedChildObject)
                 {
                     if (childObject is BaseObject baseObject)

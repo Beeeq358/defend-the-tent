@@ -50,7 +50,6 @@ public class BuildableObject : BaseObject, IBuildable
         rb.isKinematic = isKinematic;
         _isInteractive = false;
         myHealthBar.SetActive(true);
-        Debug.Log(IsKinematic());
     }
 
     public override void TakeDamage(int damage)

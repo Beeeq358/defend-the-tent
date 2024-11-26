@@ -31,8 +31,6 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
 
     private void Update()
     {
-        Debug.Log(rb.isKinematic);
-
         Die();
     }
 
@@ -52,7 +50,6 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
 
         // Debug the assignment
         this.objectParent = parent;
-        Debug.Log($"Object parent set to: {this.objectParent}");
     }
 
     public void ClearObjectParent(Player parent)
@@ -61,7 +58,6 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
         {
             rb.useGravity = true;
             rb.isKinematic = false;
-            Debug.Log("Calling ClearObject on objectParent.");
             this.objectParent.ClearObject();
             transform.parent = null;
             this.objectParent = null;
@@ -112,7 +108,7 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
     {
         if (!collision.gameObject.CompareTag("Scenery") && !collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Object"))
         {
-            TakeDamage(1);
+            //TakeDamage(1);
         }
     }
 
