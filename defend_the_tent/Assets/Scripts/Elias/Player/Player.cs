@@ -5,7 +5,7 @@ public class Player : MonoBehaviour, IObjectParent
 {
     [Header("Config")]
     protected float spawnRange = 3;
-    protected float bossSpawnRange= 40;
+    protected float bossSpawnRange = 25;
     protected float throwStrength = 7;
     protected float throwHeight = 2;
 
@@ -104,7 +104,7 @@ public class Player : MonoBehaviour, IObjectParent
         {
             Vector3 spawnPos;
             spawnPos = new Vector3(Random.Range(-bossSpawnRange, bossSpawnRange), 2, Random.Range(-bossSpawnRange, bossSpawnRange));
-            while (Vector3.Distance(spawnPos, Vector3.zero) < 15)
+            while (Vector3.Distance(spawnPos, Vector3.zero) < 19)
             {
                 spawnPos = new Vector3(Random.Range(-bossSpawnRange, bossSpawnRange), 2, Random.Range(-bossSpawnRange, bossSpawnRange));
             }
