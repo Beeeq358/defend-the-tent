@@ -103,11 +103,15 @@ public class Player : MonoBehaviour, IObjectParent
         if (isBoss)
         {
             Vector3 spawnPos;
+            /*
             spawnPos = new Vector3(Random.Range(-bossSpawnRange, bossSpawnRange), 2, Random.Range(-bossSpawnRange, bossSpawnRange));
             while (Vector3.Distance(spawnPos, Vector3.zero) < 19)
             {
                 spawnPos = new Vector3(Random.Range(-bossSpawnRange, bossSpawnRange), 2, Random.Range(-bossSpawnRange, bossSpawnRange));
             }
+            */
+
+            spawnPos = new Vector3(-30, 1, 0);
             return spawnPos;
         }
         else

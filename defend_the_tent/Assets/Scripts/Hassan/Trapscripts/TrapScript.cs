@@ -55,8 +55,8 @@ public class TrapScript : MonoBehaviour, IChildObject
         {
             case TrapType.Landmine:
                 bossRB.AddExplosionForce(20f, transform.position, 10f, 2f, ForceMode.Impulse);
-                boss.GetComponent<PlayerHealth>().TakeDamage(15);
-                boss.GetComponent<PlayerMovement>().IsStunned(7);
+                boss.GetComponentInParent<PlayerHealth>().TakeDamage(15);
+                boss.GetComponentInParent<PlayerMovement>().IsStunned(7);
                 explosionVFX.SetActive(true);
                 Destroy(gameObject, 1.3f);
                 break;
