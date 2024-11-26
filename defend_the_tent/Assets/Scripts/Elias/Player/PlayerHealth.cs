@@ -15,9 +15,10 @@ public class PlayerHealth : Player, IDamageable
 
     private void Start()
     {
+        targetTransform = normalPlayer.transform;
         maxHealth = healthPoints;
-        myHealthBar = Instantiate(healthBarPrefab, transform.position, Camera.main.transform.rotation);
-        myHealthBar.GetComponent<HealthBar>().LogOn(gameObject, maxHealth);
+        myHealthBar = Instantiate(healthBarPrefab, targetTransform.position, Camera.main.transform.rotation);
+        myHealthBar.GetComponent<HealthBar>().LogOn(targetTransform.gameObject, maxHealth);
         myHealthBar.SetActive(true);
     }
     void Update()
@@ -30,6 +31,7 @@ public class PlayerHealth : Player, IDamageable
         {
             Die();
         }
+        myHealthBar.GetComponent<HealthBar>().UpdateHealth(healthPoints);
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -37,6 +39,12 @@ public class PlayerHealth : Player, IDamageable
         {
             TakeDamage(1);
         }
+    }
+
+    public override void BecomeBoss()
+    {
+        base.BecomeBoss();
+        targetTransform = bossPlayer.transform;
     }
 
     public void TakeDamage(int damage)

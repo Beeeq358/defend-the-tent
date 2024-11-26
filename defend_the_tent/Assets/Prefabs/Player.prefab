@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7452215328330774507
 Transform:
   m_ObjectHideFlags: 0
@@ -639,8 +639,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.3, y: 1, z: 1.4442238}
-  m_Center: {x: 0, y: 0, z: -0.22211163}
+  m_Size: {x: 1.3, y: 1, z: 1.1970824}
+  m_Center: {x: 0, y: 0, z: -0.3456824}
 --- !u!114 &2870966018846337800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1062,6 +1062,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   healthPoints: 2
   bossHealthPoints: 20
+  healthBarPrefab: {fileID: 1320986284251684560, guid: aec69af910511f4438ef9fa9e65e8416, type: 3}
 --- !u!114 &3529286806599160509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1116,8 +1117,8 @@ MonoBehaviour:
   bossSwipeCooldown: 1
   bossShockCooldown: 3
   bossSlamDamage: 5
-  bossSwipeDamage: 2
-  bossShockDamage: 8
+  bossSwipeDamage: 3
+  bossShockDamage: 2
   slamHB: {fileID: 1574853738758696132}
   halfcircleHB: {fileID: 8237299682853790034}
   shockwaveHB: {fileID: 8885973538644053484}

@@ -223,6 +223,7 @@ public class PlayerInteract : Player
         yield return new WaitForSeconds(bossSlamCooldown);
         //start slam VFX
         DamageColliders(bossSlamDamage, slamHB);
+        yield return new WaitForSeconds(2);
         isSlamming = false;
     }
 
@@ -233,6 +234,7 @@ public class PlayerInteract : Player
         yield return new WaitForSeconds(bossSwipeCooldown);
         //start slam VFX
         DamageColliders(bossSwipeDamage, halfcircleHB);
+        yield return new WaitForSeconds(1);
         isSwiping = false;
     }
 
@@ -259,6 +261,7 @@ public class PlayerInteract : Player
         Destroy(explosion, 1.5f);
         DamageColliders(bossShockDamage, shockwaveHB);
         shockwaveVisual.gameObject.SetActive(false);
+        yield return new WaitForSeconds(2);
         isShockwave = false;
     }
 }

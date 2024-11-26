@@ -23,7 +23,7 @@ public class ObjectiveScript : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        
+        myHealthBar.GetComponent<HealthBar>().UpdateHealth(objectiveHealth);
     }
 
     private void OnCollisionEnter(Collision collision)

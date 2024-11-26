@@ -504,18 +504,6 @@ PrefabInstance:
       value: P_Arenawall
       objectReference: {fileID: 0}
     - target: {fileID: 3492783456019167531, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3492783456019167531, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3492783456019167531, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3492783456019167531, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -555,46 +543,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3492783456019167531, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 660309994520204166, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 225142419044249427, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1589592092}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
---- !u!1 &1589592091 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 225142419044249427, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
-  m_PrefabInstance: {fileID: 1589592090}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1589592092
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1589592091}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5627810890406535487, guid: ed66de9af3856524cb73d5562d00c48a, type: 3}
 --- !u!1 &1662576652
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,14 +997,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 4205387717223555721, guid: 5ce384c3416864941b507a6d2e6af885, type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4205387717223555721, guid: 5ce384c3416864941b507a6d2e6af885, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1402901422, guid: 889a4f922b50c6540b7b35287c1a2a9e, type: 3}
     - target: {fileID: 6463970736280395704, guid: 5ce384c3416864941b507a6d2e6af885, type: 3}
       propertyPath: m_Pivot.x
       value: 0
