@@ -314,7 +314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Time Left:'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c1dd3e56101975458ca20a7e609312a, type: 2}
   m_sharedMaterial: {fileID: -1911653149779277147, guid: 1c1dd3e56101975458ca20a7e609312a, type: 2}
@@ -341,8 +341,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 94.7
-  m_fontSizeBase: 94.7
+  m_fontSize: 64.37
+  m_fontSizeBase: 64.37
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
