@@ -658,8 +658,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objective: {fileID: 1100487059}
   objectSpawner: {fileID: 1232391006}
-  preparationTime: 30
-  actionTime: 90
+  preparationTime: 60
+  actionTime: 120
   gamePhase: 0
   players: []
 --- !u!4 &1725275554
