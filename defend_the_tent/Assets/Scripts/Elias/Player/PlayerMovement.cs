@@ -81,7 +81,7 @@ public class PlayerMovement : Player
 
     public IEnumerator StunTime(float stunTime)
     {
-        float originalMass = bossRB.mass;
+        float originalMass = 4;
         isStunned = true;
         if (isBoss)
         {
