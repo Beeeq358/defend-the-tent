@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7138334545236292277}
   - component: {fileID: 8978416895835791084}
   - component: {fileID: 7508317364291270756}
+  - component: {fileID: 3191225999190907053}
   m_Layer: 0
   m_Name: Crowd test
   m_TagString: Untagged
@@ -87,6 +88,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!111 &3191225999190907053
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6973477058906769347}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 4781951162920444690, guid: e0aa5551efcd30c479d74f8cdfc545c6, type: 3}
+  m_Animations:
+  - {fileID: 0}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!1001 &5507521482533299738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -150,34 +168,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7650535767290195433, guid: 9fe575de2f2de0a419ab59d6aca26307, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4347724636101402939}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fe575de2f2de0a419ab59d6aca26307, type: 3}
 --- !u!4 &510152777041634070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5438880110050805004, guid: 9fe575de2f2de0a419ab59d6aca26307, type: 3}
   m_PrefabInstance: {fileID: 5507521482533299738}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2756920013686983667 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7650535767290195433, guid: 9fe575de2f2de0a419ab59d6aca26307, type: 3}
-  m_PrefabInstance: {fileID: 5507521482533299738}
-  m_PrefabAsset: {fileID: 0}
---- !u!111 &4347724636101402939
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2756920013686983667}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 4781951162920444690, guid: e0aa5551efcd30c479d74f8cdfc545c6, type: 3}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
