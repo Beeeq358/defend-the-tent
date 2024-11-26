@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2223238257375648246}
   - component: {fileID: 4946959623675759095}
   - component: {fileID: 8534887857861846404}
+  - component: {fileID: 5402417429988372506}
   m_Layer: 0
   m_Name: P_Circus tent
-  m_TagString: Scenery
+  m_TagString: Objective
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,3 +110,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.0166354, y: 4.871739, z: 8.173638}
   m_Center: {x: 0, y: 2.4358695, z: 0.09450674}
+--- !u!114 &5402417429988372506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2240162020182468617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec6639f325a696458cc99fc00c401be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectiveHealth: 45
+  healthBarPrefab: {fileID: 1320986284251684560, guid: aec69af910511f4438ef9fa9e65e8416, type: 3}
+  OnObjectiveDestroyed:
+    m_PersistentCalls:
+      m_Calls: []

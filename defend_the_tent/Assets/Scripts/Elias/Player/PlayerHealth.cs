@@ -6,14 +6,24 @@ public class PlayerHealth : Player, IDamageable
     private int healthPoints;
     [SerializeField]
     private int bossHealthPoints;
+
+    private int maxHealth;
+
+    private void Start()
+    {
+        maxHealth = healthPoints;
+    }
     void Update()
     {
         if (isBoss)
         {
             healthPoints = bossHealthPoints;
         }
+        if (healthPoints <= 0)
+        {
+            Die();
+        }
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.gameObject.CompareTag("Object") && !collision.gameObject.CompareTag("Scenery"))
@@ -32,10 +42,8 @@ public class PlayerHealth : Player, IDamageable
     }
     public void Die()
     {
-        if (healthPoints <= 0)
-        {
-            GetComponent<PlayerMovement>().IsStunned(3);
-        }
+        GetComponent<PlayerMovement>().IsStunned(3);
+        healthPoints = maxHealth;
     }
     public bool IsDead()
     {

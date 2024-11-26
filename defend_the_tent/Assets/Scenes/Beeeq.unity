@@ -181,6 +181,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1232391008}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1100487059 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5402417429988372506, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
+  m_PrefabInstance: {fileID: 1796623539}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec6639f325a696458cc99fc00c401be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1138154103
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,28 +290,6 @@ Transform:
   - {fileID: 982491251}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1347707776 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 242052607504558434, guid: 994a2ddddeeb00d4a8309c1752491570, type: 3}
-  m_PrefabInstance: {fileID: 1935141113}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1347707781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347707776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bec6639f325a696458cc99fc00c401be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectiveHealth: 5
-  healthBarPrefab: {fileID: 1320986284251684560, guid: aec69af910511f4438ef9fa9e65e8416, type: 3}
-  OnObjectiveDestroyed:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1456985567
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,7 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95732910d6bfbc04d818d976a3e8bd20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objective: {fileID: 1347707781}
+  objective: {fileID: 1100487059}
   objectSpawner: {fileID: 1232391006}
   preparationTime: 30
   actionTime: 90
@@ -743,18 +732,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1628712608363226833, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1628712608363226833, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1628712608363226833, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 1628712608363226833, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -798,10 +775,6 @@ PrefabInstance:
     - target: {fileID: 2240162020182468617, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
       propertyPath: m_Name
       value: P_Circus tent
-      objectReference: {fileID: 0}
-    - target: {fileID: 2240162020182468617, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
-      propertyPath: m_TagString
-      value: Objective
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -920,10 +893,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 242052607504558434, guid: 994a2ddddeeb00d4a8309c1752491570, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1347707781}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 994a2ddddeeb00d4a8309c1752491570, type: 3}
 --- !u!1 &2057539641
 GameObject:

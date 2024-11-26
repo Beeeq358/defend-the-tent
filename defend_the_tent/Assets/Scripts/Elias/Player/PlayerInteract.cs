@@ -202,7 +202,7 @@ public class PlayerInteract : Player
         List<Collider> playerColliders = attackHitbox.GetComponent<HitBox>().GetPlayerColliders();
         foreach (Collider collider in playerColliders)
         {
-            collider.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
+            collider.GetComponentInParent<PlayerHealth>().TakeDamage(attackDamage);
         }
         List<Collider> objectColliders = attackHitbox.GetComponent<HitBox>().GetObjectColliders();
         foreach (Collider collider in objectColliders)
