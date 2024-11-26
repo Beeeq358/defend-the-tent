@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class GameManager : MonoBehaviour
     private bool objectiveDestroyed;
     private bool bossWon;
     private bool playersWon;
+    private bool startedSpawning;
+    private bool gameEnded;
 
     public List<GameObject> players = new();
     private bool bossChosen;
@@ -58,7 +61,13 @@ public class GameManager : MonoBehaviour
             case GamePhase.Preparation:
                 // Perform preparation actions
                 timeLeft.text = "Time left to prepare: " + preparationTime.ToString("F0");
-                objectSpawner.SetActive(true);
+
+                if (!startedSpawning)
+                {
+                    objectSpawner.SetActive(true);
+                    objectSpawner.GetComponent<ObjectSpawner>().StartSpawning(players.Count);
+                    startedSpawning = true;
+                }
                 StartCoroutine(CountDownPreparationPhase());
                 break;
             case GamePhase.Action:
@@ -84,17 +93,19 @@ public class GameManager : MonoBehaviour
                     playersWon = true;
                 }
 
-                if (playersWon)
+                if (playersWon && !gameEnded)
                 {
                     // Perform player win logic
                     PlayerPrefs.SetInt("Winner", 0);
                     PlayerPrefs.Save();
+                    SceneManager.LoadScene("End Screen");
                 }
-                else if (bossWon)
+                else if (bossWon && !gameEnded)
                 {
                     // Perform boss win logic
                     PlayerPrefs.SetInt("Winner", 1);
                     PlayerPrefs.Save();
+                    SceneManager.LoadScene("End Screen");
                 }
                 break;
         }

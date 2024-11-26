@@ -19,17 +19,20 @@ public class ObjectSpawner : MonoBehaviour
 
     [SerializeField]
     private float spawnTime;
-
-    private void Start()
+    public void StartSpawning(int playerCount)
     {
-        StartCoroutine(SpawnObjects());
+        StartCoroutine(SpawnObjects(playerCount));
     }
 
-    private IEnumerator SpawnObjects()
+    private IEnumerator SpawnObjects(int playerCount)
     {
         while (true)
         {
-            spawnTime = Random.Range(2f, 5f);
+            spawnTime = Random.Range(2f, 6f);
+            if (playerCount > 2)
+            {
+                spawnTime = Random.Range(1.5f, 4f);
+            }
             int randomSpawnPointIndex = Random.Range(0, spawnPoints.Count);
 
             switch (gameManager.gamePhase)
