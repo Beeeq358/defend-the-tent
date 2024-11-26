@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec6639f325a696458cc99fc00c401be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectiveHealth: 45
+  objectiveHealth: 25
   healthBarPrefab: {fileID: 1320986284251684560, guid: aec69af910511f4438ef9fa9e65e8416, type: 3}
   OnObjectiveDestroyed:
     m_PersistentCalls:

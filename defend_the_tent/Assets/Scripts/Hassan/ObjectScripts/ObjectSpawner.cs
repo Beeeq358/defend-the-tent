@@ -29,7 +29,7 @@ public class ObjectSpawner : MonoBehaviour
     {
         while (true)
         {
-            spawnTime = Random.Range(2f, 6f);
+            spawnTime = Random.Range(2f, 5f);
             int randomSpawnPointIndex = Random.Range(0, spawnPoints.Count);
 
             switch (gameManager.gamePhase)
