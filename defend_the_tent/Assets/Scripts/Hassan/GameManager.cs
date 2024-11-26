@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -17,6 +18,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject objectSpawner;
+
+    [SerializeField]
+    private TextMeshProUGUI timeLeft;
 
     [SerializeField]
     private float preparationTime = 10f;
@@ -45,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+
         switch (gamePhase)
         {
             case GamePhase.PreGame:
@@ -52,11 +57,13 @@ public class GameManager : MonoBehaviour
                 break;
             case GamePhase.Preparation:
                 // Perform preparation actions
+                timeLeft.text = "Time left to prepare: " + preparationTime.ToString("F0");
                 objectSpawner.SetActive(true);
                 StartCoroutine(CountDownPreparationPhase());
                 break;
             case GamePhase.Action:
                 // Perform action phase actions
+                timeLeft.text = "Time left to defend: " + actionTime.ToString("F0");
                 StartCoroutine(CountDownActionPhase());
                 if (!bossChosen)
                     ChooseBoss();
