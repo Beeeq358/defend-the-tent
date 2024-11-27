@@ -572,6 +572,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Arenawall
       objectReference: {fileID: 0}
+    - target: {fileID: 225142419044249427, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
+      propertyPath: m_TagString
+      value: Scenery
+      objectReference: {fileID: 0}
     - target: {fileID: 3492783456019167531, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
