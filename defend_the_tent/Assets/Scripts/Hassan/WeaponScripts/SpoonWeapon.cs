@@ -29,7 +29,6 @@ public class SpoonWeapon : BaseWeapon
             // Perform a raycast or detect collision to determine if the "Boss" was hit
             RaycastHit hit;
 
-            // Assume the attack originates from the player's position
             Vector3 attackOrigin = transform.position;
             Vector3 attackDirection = transform.forward;
 

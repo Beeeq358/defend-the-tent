@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6670333257658552451}
-  - component: {fileID: 4821378819949995112}
+  - component: {fileID: 3695042142046962773}
   - component: {fileID: 2356276780101784546}
   - component: {fileID: 6001592149280230182}
   - component: {fileID: 3025300605640652993}
@@ -29,15 +29,15 @@ Transform:
   m_GameObject: {fileID: 7317358265764788336}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.4908173, y: 1.0555999, z: -1.8639361}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5477567626612120315}
   - {fileID: 872356214542679418}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4821378819949995112
+--- !u!114 &3695042142046962773
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,14 +46,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7317358265764788336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f8aa59d52913da44b8ed894bcd57de5, type: 3}
+  m_Script: {fileID: 11500000, guid: 3995a449d109fb84ab949e077aa65f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectSO: {fileID: 11400000, guid: e1a11f8a76ab2924e8ea05fc25f8aa0b, type: 2}
   rb: {fileID: 6001592149280230182}
-  healthPoints: 5
+  healthPoints: 1
   regularVisual: {fileID: 5138583057310498881}
   selectedVisual: {fileID: 527180600207730624}
+  objectDamage: 5
 --- !u!114 &2356276780101784546
 MonoBehaviour:
   m_ObjectHideFlags: 0

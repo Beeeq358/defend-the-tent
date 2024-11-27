@@ -106,9 +106,9 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Scenery") && !collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Object"))
+        if (collision.gameObject.CompareTag("Boss"))
         {
-            //TakeDamage(1);
+            TakeDamage(1);
         }
     }
 
