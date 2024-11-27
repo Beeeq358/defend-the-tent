@@ -12,18 +12,21 @@ public class ThrowableScript : BaseObject
         TNT
     }
 
-    private readonly ThrowableTypes type;
+    [SerializeField]
+    private GameObject explosionVFX;
+
+    [SerializeField]
+    private ThrowableTypes type;
 
     protected override void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Boss"))
         {
-            DealDamagToBoss(objectDamage, collision.gameObject);
-            base.OnCollisionEnter(collision);
+            DealDamageToBoss(objectDamage, collision.gameObject);
         }
     }
 
-    private void DealDamagToBoss(int damage, GameObject boss)
+    private void DealDamageToBoss(int damage, GameObject boss)
     {
         Rigidbody bossRB = boss.GetComponent<Rigidbody>();  
         PlayerHealth playerHealth = boss.transform.parent.GetComponent<PlayerHealth>();
@@ -37,6 +40,8 @@ public class ThrowableScript : BaseObject
             case ThrowableTypes.TNT:
                 bossRB.AddExplosionForce(20f, transform.position, 10f, 2f, ForceMode.Impulse);
                 playerHealth.TakeDamage(damage);
+                Instantiate(explosionVFX, transform.position, Quaternion.identity);
+                Destroy(gameObject);
                 break;
         }
     }
