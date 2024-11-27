@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -10,8 +12,8 @@ public class ScreenMoving : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Grow(true)); // Start with growing the title
-        StartCoroutine(Shrink(false)); // Start with growing the button
+        StartCoroutine(Grow(true));
+        StartCoroutine(Shrink(false));
     }
 
     private void Update()
@@ -87,6 +89,14 @@ public class ScreenMoving : MonoBehaviour
 
     private Color GetRandomColor()
     {
-        return new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        List<Color> colors = new()
+        {
+            Color.white,
+            Color.black,
+            Color.magenta,
+            Color.cyan,
+            Color.gray
+        };
+        return colors[Random.Range(0, colors.Count)];
     }
 }
