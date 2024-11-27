@@ -32,6 +32,7 @@ public class Player : MonoBehaviour, IObjectParent
     protected PlayerMovement playerMovement;
     [SerializeField]
     protected GameManager gameManager;
+    public Animator bossAnimator;
 
     protected bool isFrame = true;
     protected PlayerInput input;

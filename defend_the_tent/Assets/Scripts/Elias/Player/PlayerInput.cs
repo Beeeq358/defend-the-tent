@@ -15,10 +15,12 @@ public class PlayerInput : MonoBehaviour
         if (moveVector.normalized != Vector3.zero)
         {
             animator.SetBool("isWalking", true);
+            gameObject.GetComponent<Player>().bossAnimator.SetBool("isWalking", true);
         }
         else if (moveVector.normalized == Vector3.zero)
         {
             animator.SetBool("isWalking", false);
+            gameObject.GetComponent<Player>().bossAnimator.SetBool("isWalking", true);
         }
     }
     public void OnMove(InputAction.CallbackContext context)

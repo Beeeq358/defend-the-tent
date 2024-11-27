@@ -875,6 +875,7 @@ MonoBehaviour:
   playerHoldPoint: {fileID: 968370018937330574}
   bossHoldPoint: {fileID: 8096206408343505631}
   gameManager: {fileID: 0}
+  bossAnimator: {fileID: 6399294080913515539}
 --- !u!114 &3159631538329086411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,6 +1062,7 @@ MonoBehaviour:
   playerHoldPoint: {fileID: 968370018937330574}
   bossHoldPoint: {fileID: 8096206408343505631}
   gameManager: {fileID: 0}
+  bossAnimator: {fileID: 0}
   healthPoints: 2
   bossHealthPoints: 20
   healthBarPrefab: {fileID: 1320986284251684560, guid: aec69af910511f4438ef9fa9e65e8416, type: 3}
@@ -1087,6 +1089,7 @@ MonoBehaviour:
   playerHoldPoint: {fileID: 2366724338516340593}
   bossHoldPoint: {fileID: 8096206408343505631}
   gameManager: {fileID: 0}
+  bossAnimator: {fileID: 6399294080913515539}
   moveSpeed: 0.5
   targetRB: {fileID: 0}
   stunParticle: {fileID: 2756978300668733982}
@@ -1114,6 +1117,7 @@ MonoBehaviour:
   playerHoldPoint: {fileID: 968370018937330574}
   bossHoldPoint: {fileID: 8096206408343505631}
   gameManager: {fileID: 0}
+  bossAnimator: {fileID: 6399294080913515539}
   bossSlamCooldown: 2
   bossSwipeCooldown: 1
   bossShockCooldown: 3
