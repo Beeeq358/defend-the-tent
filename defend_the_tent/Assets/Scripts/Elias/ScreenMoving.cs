@@ -93,12 +93,9 @@ public class ScreenMoving : MonoBehaviour
         {
             Color.white,
             Color.black,
-            Color.red,
-            Color.green,
-            Color.blue,
             Color.magenta,
             Color.cyan,
-            Color.yellow
+            Color.gray
         };
         return colors[Random.Range(0, colors.Count)];
     }
