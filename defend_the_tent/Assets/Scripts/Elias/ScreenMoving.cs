@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -87,6 +89,17 @@ public class ScreenMoving : MonoBehaviour
 
     private Color GetRandomColor()
     {
-        return new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        List<Color> colors = new()
+        {
+            Color.white,
+            Color.black,
+            Color.red,
+            Color.green,
+            Color.blue,
+            Color.magenta,
+            Color.cyan,
+            Color.yellow
+        };
+        return colors[Random.Range(0, colors.Count)];
     }
 }
