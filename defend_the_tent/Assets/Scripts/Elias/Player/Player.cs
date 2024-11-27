@@ -78,8 +78,14 @@ public class Player : MonoBehaviour, IObjectParent
         targetTransform.position = GetSpawnPosition(false);
     }
 
-    protected virtual void PlayerUpdate()
+    private void HandleBaseObjectDestroyed(IChildObject destroyedObject)
     {
+        Debug.Log($"Held object {destroyedObject.GetGameObject().name} was destroyed.");
+        ClearObject();
+    }
+
+    protected virtual void PlayerUpdate()
+    {   
         CalculateRecentGrabStrength();
     }
 
@@ -151,10 +157,23 @@ public class Player : MonoBehaviour, IObjectParent
         return playerObjectHoldPoint;
     }
 
-    public void SetObject(IChildObject childObject)
+    public void SetObject(IChildObject newChildObject)
     {
-        this.childObject = childObject;
+        // Unsubscribe from the previous object's OnDestroyed event, if any
+        if (childObject != null)
+        {
+            childObject.OnDestroyed -= HandleBaseObjectDestroyed;
+        }
+
+        // Set the new object and subscribe to its OnDestroyed event
+        childObject = newChildObject;
+
+        if (childObject != null)
+        {
+            childObject.OnDestroyed += HandleBaseObjectDestroyed;
+        }
     }
+
     public IChildObject GetObject()
     {
         return childObject;

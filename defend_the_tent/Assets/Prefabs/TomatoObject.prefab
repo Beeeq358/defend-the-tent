@@ -54,7 +54,7 @@ MonoBehaviour:
   healthPoints: 1
   regularVisual: {fileID: 5138583057310498881}
   selectedVisual: {fileID: 527180600207730624}
-  objectDamage: 5
+  objectDamage: 1
 --- !u!114 &2356276780101784546
 MonoBehaviour:
   m_ObjectHideFlags: 0

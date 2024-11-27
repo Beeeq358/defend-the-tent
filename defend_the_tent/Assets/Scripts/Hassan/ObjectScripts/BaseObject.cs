@@ -2,10 +2,12 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UIElements;
 using System;
+using UnityEngine.Events;
+using Unity.VisualScripting;
 
 public class BaseObject : MonoBehaviour, IDamageable, IChildObject
 {
-    public static event Action<BaseObject> OnDestroyed;
+    public event Action<IChildObject> OnDestroyed;
 
     private void OnDestroy()
     {

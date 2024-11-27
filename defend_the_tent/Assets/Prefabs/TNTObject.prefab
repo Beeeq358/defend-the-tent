@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8049447402007472436}
   - component: {fileID: 8433988251894985734}
   - component: {fileID: 2305898199593724619}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TNTObject
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2400961304534824265}
   - {fileID: 5606625755491805845}
@@ -54,7 +54,7 @@ MonoBehaviour:
   healthPoints: 1
   regularVisual: {fileID: 7744091085492267149}
   selectedVisual: {fileID: 569661584996939601}
-  objectDamage: 10
+  objectDamage: 5
 --- !u!54 &8049447402007472436
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -118,7 +118,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -137,6 +137,10 @@ PrefabInstance:
     - target: {fileID: 3201064170006819656, guid: 4a4b7f092b0499940b8af1aecbdd54df, type: 3}
       propertyPath: m_Name
       value: P_TNTobject (Visual)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3201064170006819656, guid: 4a4b7f092b0499940b8af1aecbdd54df, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3201064170006819656, guid: 4a4b7f092b0499940b8af1aecbdd54df, type: 3}
       propertyPath: m_IsActive
@@ -232,6 +236,10 @@ PrefabInstance:
     - target: {fileID: 3201064170006819656, guid: 4a4b7f092b0499940b8af1aecbdd54df, type: 3}
       propertyPath: m_Name
       value: P_TNTobject
+      objectReference: {fileID: 0}
+    - target: {fileID: 3201064170006819656, guid: 4a4b7f092b0499940b8af1aecbdd54df, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7369316968407772812, guid: 4a4b7f092b0499940b8af1aecbdd54df, type: 3}
       propertyPath: m_LocalPosition.x

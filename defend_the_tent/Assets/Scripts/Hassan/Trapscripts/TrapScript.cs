@@ -1,8 +1,16 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class TrapScript : MonoBehaviour, IChildObject
 {
+    public event Action<IChildObject> OnDestroyed;
+
+    private void OnDestroy()
+    {
+        OnDestroyed?.Invoke(this);
+    }
+
     protected IObjectParent objectParent;
 
     [SerializeField]

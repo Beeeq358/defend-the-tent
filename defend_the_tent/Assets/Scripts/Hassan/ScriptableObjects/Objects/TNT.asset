@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc5c9706455110d40b9463ae52652e97, type: 3}
   m_Name: TNT
   m_EditorClassIdentifier: 
-  objectPrefab: {fileID: 0}
+  objectPrefab: {fileID: 980316333298355564, guid: fd5c72187b08eef4789e20b2def96e84, type: 3}
   objectName: TNT
   objectType: 1

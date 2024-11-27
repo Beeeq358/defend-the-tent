@@ -1,8 +1,16 @@
+using System;
 using UnityEngine;
 using static WeaponSO;
 
 public class BaseWeapon : MonoBehaviour, IDamageable, IChildObject
 {
+    public event Action<IChildObject> OnDestroyed;
+
+    private void OnDestroy()
+    {
+        OnDestroyed?.Invoke(this);
+    }
+
     [SerializeField]
     protected WeaponSO weaponSO;
     protected int healthPoints;

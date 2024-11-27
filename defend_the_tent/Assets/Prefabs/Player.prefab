@@ -1061,7 +1061,7 @@ MonoBehaviour:
   bossHoldPoint: {fileID: 8096206408343505631}
   gameManager: {fileID: 0}
   healthPoints: 2
-  bossHealthPoints: 20
+  bossHealthPoints: 30
   healthBarPrefab: {fileID: 1320986284251684560, guid: aec69af910511f4438ef9fa9e65e8416, type: 3}
 --- !u!114 &3529286806599160509
 MonoBehaviour:
