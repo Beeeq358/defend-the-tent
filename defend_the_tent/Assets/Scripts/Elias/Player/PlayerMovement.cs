@@ -9,7 +9,7 @@ public class PlayerMovement : Player
     public Rigidbody targetRB;
     public GameObject stunParticle;
 
-    [SerializeField] private bool isStunned;
+    public bool isStunned;
     private void Start()
     {
         base.PlayerStart();

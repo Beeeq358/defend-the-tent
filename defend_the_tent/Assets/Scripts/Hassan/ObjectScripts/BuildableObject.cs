@@ -14,7 +14,7 @@ public class BuildableObject : BaseObject, IBuildable
     private void Start()
     {
         myHealthBar = Instantiate(healthBarPrefab, transform.position, Camera.main.transform.rotation);
-        myHealthBar.GetComponent<HealthBar>().LogOn(gameObject, healthPoints);
+        myHealthBar.GetComponent<HealthBar>().LogOn(this.gameObject, healthPoints);
         myHealthBar.SetActive(false);
     }
     // Update is called once per frame

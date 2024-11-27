@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3206428956512588225}
   - component: {fileID: 1979264847417938009}
   - component: {fileID: 4020561951455032150}
+  - component: {fileID: 163421249521082105}
   m_Layer: 3
   m_Name: SpoonWeapon
   m_TagString: Object
@@ -29,9 +30,9 @@ Transform:
   m_GameObject: {fileID: 2405784831928841750}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.952198, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7362390886582504096}
   m_Father: {fileID: 0}
@@ -109,8 +110,29 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.186329, y: 1, z: 1}
-  m_Center: {x: -0.19008923, y: 0, z: 0}
+  m_Size: {x: 2.1314154, y: 0.1, z: 0.2}
+  m_Center: {x: -0.24835634, y: 0, z: 0}
+--- !u!65 &163421249521082105
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2405784831928841750}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &8044289930696347253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -122,6 +144,14 @@ PrefabInstance:
     - target: {fileID: 14282876395632842, guid: 9396acf7c4bd1e24b938547444c74aa4, type: 3}
       propertyPath: m_Name
       value: P_CLS
+      objectReference: {fileID: 0}
+    - target: {fileID: 14282876395632842, guid: 9396acf7c4bd1e24b938547444c74aa4, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 14282876395632842, guid: 9396acf7c4bd1e24b938547444c74aa4, type: 3}
+      propertyPath: m_TagString
+      value: Object
       objectReference: {fileID: 0}
     - target: {fileID: 688901839579153621, guid: 9396acf7c4bd1e24b938547444c74aa4, type: 3}
       propertyPath: m_LocalPosition.x

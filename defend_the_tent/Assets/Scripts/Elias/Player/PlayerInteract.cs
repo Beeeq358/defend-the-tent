@@ -211,7 +211,7 @@ public class PlayerInteract : Player
         List<Collider> objectColliders = attackHitbox.GetComponent<HitBox>().GetObjectColliders();
         foreach (Collider collider in objectColliders)
         {
-            collider.GetComponent<BaseObject>().TakeDamage(attackDamage);
+            collider.GetComponent<IDamageable>().TakeDamage(attackDamage);
         }
         Collider objective = attackHitbox.GetComponent<HitBox>().GetObjectiveCollider();
         if (objective != null)

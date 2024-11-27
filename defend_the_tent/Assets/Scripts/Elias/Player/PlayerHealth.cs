@@ -25,7 +25,12 @@ public class PlayerHealth : Player, IDamageable
     {
         if (isBoss)
         {
+            targetTransform = normalPlayer.transform;
+            myHealthBar = Instantiate(healthBarPrefab, targetTransform.position, Camera.main.transform.rotation);
+            myHealthBar.GetComponent<HealthBar>().LogOn(targetTransform.gameObject, maxHealth);
+            myHealthBar.SetActive(true);
             healthPoints = bossHealthPoints;
+            maxHealth = healthPoints;
         }
         if (healthPoints <= 0)
         {
