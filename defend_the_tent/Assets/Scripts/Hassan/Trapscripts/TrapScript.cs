@@ -23,18 +23,6 @@ public class TrapScript : MonoBehaviour, IChildObject
     [SerializeField]
     private GameObject visual;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         // Check if the colliding object is a boss
