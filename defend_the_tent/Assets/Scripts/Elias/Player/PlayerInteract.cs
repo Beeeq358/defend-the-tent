@@ -17,7 +17,7 @@ public class PlayerInteract : Player
 
     [SerializeField] private Collider slamHB, halfcircleHB, shockwaveHB;
     [SerializeField] private Transform shockwaveVisual;
-    [SerializeField] private GameObject explosionParticle;
+    [SerializeField] private GameObject explosionParticle, shockwaveParticle, slamParticle;
 
     public UnityEvent OnPlayerAttack;
     public UnityEvent<Transform> OnPlayerGrab;
@@ -225,7 +225,8 @@ public class PlayerInteract : Player
         isSlamming = true;
         bossAnimator.SetTrigger("Slam");
         yield return new WaitForSeconds(bossSlamCooldown);
-        //start slam VFX
+        GameObject explosion = Instantiate(slamParticle, bossTransform.position, Quaternion.identity);
+        Destroy(explosion, 1.5f);
         DamageColliders(bossSlamDamage, slamHB);
         yield return new WaitForSeconds(2);
         isSlamming = false;
@@ -260,8 +261,7 @@ public class PlayerInteract : Player
             shockwaveVisual.transform.localScale = visualLerp;
             yield return null;
         }
-        //impact VFX
-        GameObject explosion = Instantiate(explosionParticle, bossTransform.position, Quaternion.identity);
+        GameObject explosion = Instantiate(shockwaveParticle, bossTransform.position, Quaternion.identity);
         Destroy(explosion, 1.5f);
         DamageColliders(bossShockDamage, shockwaveHB);
         shockwaveVisual.gameObject.SetActive(false);

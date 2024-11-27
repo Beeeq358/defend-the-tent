@@ -10,17 +10,25 @@ public class PlayerInput : MonoBehaviour
     public bool inputAttack1, inputAttack2, inputAttack3;
     public float inputGrabStrength;
     public Vector3 moveVector = Vector3.zero;
+    private Player player;
+
+    private void Awake()
+    {
+        player = GetComponent<Player>();
+    }
     private void Update()
     {
         if (moveVector.normalized != Vector3.zero)
         {
             animator.SetBool("isWalking", true);
-            gameObject.GetComponent<Player>().bossAnimator.SetBool("isWalking", true);
+            if (player.isBoss)
+                player.bossAnimator.SetBool("isWalking", true);
         }
         else if (moveVector.normalized == Vector3.zero)
         {
             animator.SetBool("isWalking", false);
-            gameObject.GetComponent<Player>().bossAnimator.SetBool("isWalking", false);
+            if (player.isBoss)
+                player.bossAnimator.SetBool("isWalking", false);
         }
     }
     public void OnMove(InputAction.CallbackContext context)
