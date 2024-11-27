@@ -10,8 +10,8 @@ public class ScreenMoving : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Grow(true)); // Start with growing the title
-        StartCoroutine(Shrink(false)); // Start with growing the button
+        StartCoroutine(Grow(true));
+        StartCoroutine(Shrink(false));
     }
 
     private void Update()
