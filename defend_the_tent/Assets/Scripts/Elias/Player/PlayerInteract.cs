@@ -223,7 +223,7 @@ public class PlayerInteract : Player
     private IEnumerator BossFrontSlam()
     {
         isSlamming = true;
-        //start animation
+        bossAnimator.SetTrigger("Slam");
         yield return new WaitForSeconds(bossSlamCooldown);
         //start slam VFX
         DamageColliders(bossSlamDamage, slamHB);
@@ -234,7 +234,7 @@ public class PlayerInteract : Player
     private IEnumerator BossHalfSwipe()
     {
         isSwiping = true;
-        //start animation
+        bossAnimator.SetTrigger("Swipe");
         yield return new WaitForSeconds(bossSwipeCooldown);
         //start slam VFX
         DamageColliders(bossSwipeDamage, halfcircleHB);
@@ -245,7 +245,7 @@ public class PlayerInteract : Player
     private IEnumerator BossShockWave()
     {
         isShockwave = true;
-        //start animation
+        bossAnimator.SetTrigger("Shockwave");
         shockwaveVisual.gameObject.SetActive(true);
         float startRadius = 1;
         float endRadius = 2.5f;
