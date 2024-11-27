@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: -65996124894146960, guid: 8ac98993f72db1348ae500e23816444d, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 4f4a69a33dbf77d409e5b2b387ad3812, type: 3}
+      objectReference: {fileID: 2100000, guid: 559328792dadbb54897c1e19b7ad3362, type: 2}
     - target: {fileID: 919132149155446097, guid: 8ac98993f72db1348ae500e23816444d, type: 3}
       propertyPath: m_Name
       value: BossCharacter
