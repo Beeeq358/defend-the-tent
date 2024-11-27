@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8049447402007472436}
   - component: {fileID: 8433988251894985734}
   - component: {fileID: 2305898199593724619}
+  - component: {fileID: 5324640941199626791}
   m_Layer: 3
   m_Name: TNTObject
   m_TagString: Object
@@ -55,6 +56,8 @@ MonoBehaviour:
   regularVisual: {fileID: 7744091085492267149}
   selectedVisual: {fileID: 569661584996939601}
   objectDamage: 5
+  explosionVFX: {fileID: 2857516914855092709, guid: 6cee250bb53a71f4cb6e3e5fbaf8847f, type: 3}
+  type: 1
 --- !u!54 &8049447402007472436
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -126,6 +129,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5324640941199626791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3897051198861184694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1aefd4331f687b4885bc34381a7a35a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upwardForceMagnitude: 20
+  objectRb: {fileID: 8049447402007472436}
 --- !u!1001 &3137793801344582681
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -53,8 +53,8 @@ public class TrapScript : MonoBehaviour, IChildObject
                 bossRB.AddExplosionForce(20f, transform.position, 10f, 2f, ForceMode.Impulse);
                 boss.GetComponentInParent<PlayerHealth>().TakeDamage(15);
                 boss.GetComponentInParent<PlayerMovement>().IsStunned(7);
-                explosionVFX.SetActive(true);
-                Destroy(gameObject, 1.3f);
+                Instantiate(explosionVFX, transform.position, Quaternion.identity);
+                Destroy(gameObject);
                 break;
             case TrapType.Glue:
                 StartCoroutine(GlueCoroutine(bossRB));
