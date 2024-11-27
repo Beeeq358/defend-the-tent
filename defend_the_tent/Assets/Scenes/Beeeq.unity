@@ -516,31 +516,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3492783456019167531, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 10.409046
       objectReference: {fileID: 0}
     - target: {fileID: 3492783456019167531, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 10.977407
       objectReference: {fileID: 0}
     - target: {fileID: 3492783456019167531, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.42445946
       objectReference: {fileID: 0}
     - target: {fileID: 3492783456019167531, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.9820112
       objectReference: {fileID: 0}
     - target: {fileID: 3492783456019167531, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.176186
       objectReference: {fileID: 0}
     - target: {fileID: 3492783456019167531, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.06685241
       objectReference: {fileID: 0}
     - target: {fileID: 3492783456019167531, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.011973895
       objectReference: {fileID: 0}
     - target: {fileID: 3492783456019167531, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -552,6 +552,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3492783456019167531, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572618122248522530, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
+      propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

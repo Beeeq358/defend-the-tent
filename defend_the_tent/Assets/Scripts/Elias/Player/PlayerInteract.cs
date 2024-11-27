@@ -39,19 +39,24 @@ public class PlayerInteract : Player
         {
             InteractStandardAttack();
         }
-        if (input.inputAttack2 && isBoss && !isSlamming && !isSwiping && !isShockwave)
+        if (isBoss)
         {
-            StartCoroutine(BossHalfSwipe());
+            if (input.inputAttack2 && !isSlamming && !isSwiping && !isShockwave)
+            {
+                StartCoroutine(BossHalfSwipe());
+            }
+            if (input.inputAttack3 && !isSlamming && !isSwiping && !isShockwave)
+            {
+                StartCoroutine(BossShockWave());
+            }
         }
-        if (input.inputAttack3 && isBoss && !isSlamming && !isSwiping && !isShockwave)
-        {
-            StartCoroutine(BossShockWave());
-        }
+
+
         if (input.inputBuilded)
         {
             if (input.inputBuilded)
             {
-                if (selectedChildObject is BaseObject)
+                if (selectedChildObject is BaseObject && childObject == null)
                 {
                     BaseObject baseObject = (BaseObject)selectedChildObject;
                     if (selectedChildObject != null && baseObject.objectSO.objectType == ObjectType.Buildable && !isBoss)

@@ -4861,7 +4861,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4960894374753364873}
   m_Layer: 0
-  m_Name: ParticleSystem_ShockwaveScare
+  m_Name: ParticleSystem_BossShockwaveScare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
