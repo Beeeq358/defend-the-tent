@@ -11535,7 +11535,7 @@ GameObject:
   - component: {fileID: 1847109649781518613}
   m_Layer: 0
   m_Name: P_Crowdstatic DONT USE
-  m_TagString: Untagged
+  m_TagString: Scenery
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
