@@ -65,7 +65,7 @@ public class Player : MonoBehaviour, IObjectParent
     public virtual void BecomeBoss()
     {
         isBoss = true;
-        followLightChild.GetComponent<FollowingLight>().BossLogOn(bossPlayer);
+        //followLightChild.GetComponent<FollowingLight>().BossLogOn(bossPlayer);
     }
 
     private void Update()
