@@ -119,9 +119,25 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &525870889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3563986513148832433, guid: 5ce384c3416864941b507a6d2e6af885, type: 3}
+  m_PrefabInstance: {fileID: 4850407069129740210}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &586867255 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2438097793441422571, guid: 5ce384c3416864941b507a6d2e6af885, type: 3}
+  m_PrefabInstance: {fileID: 4850407069129740210}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &769231555 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8241040704456176802, guid: 5ce384c3416864941b507a6d2e6af885, type: 3}
   m_PrefabInstance: {fileID: 4850407069129740210}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -572,10 +588,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Arenawall
       objectReference: {fileID: 0}
-    - target: {fileID: 225142419044249427, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
-      propertyPath: m_TagString
-      value: Scenery
-      objectReference: {fileID: 0}
     - target: {fileID: 3492783456019167531, guid: 62d59f4c9d140a841a236527a25d518a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -731,6 +743,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objective: {fileID: 1100487059}
   objectSpawner: {fileID: 1232391006}
+  message: {fileID: 769231555}
+  popupObj: {fileID: 525870889}
   timeLeft: {fileID: 586867255}
   preparationTime: 60
   actionTime: 120

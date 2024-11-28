@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,7 +25,11 @@ public class Utilities : MonoBehaviour
             Debug.LogWarning("Not enough players, 2 players are needed to play. 3 or 4 is recommended");
         }
     }
-
+    public void EndPopup()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager.EndPopUp();
+    }
     public void OnMainMenu()
     {
         SceneManager.LoadScene("Starting Screen");

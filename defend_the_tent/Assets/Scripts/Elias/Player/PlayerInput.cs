@@ -1,3 +1,5 @@
+using TMPro;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,9 +13,11 @@ public class PlayerInput : MonoBehaviour
     public float inputGrabStrength;
     public Vector3 moveVector = Vector3.zero;
     private Player player;
+    private GameManager gameManager;
 
     private void Awake()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         player = GetComponent<Player>();
     }
     private void Update()
@@ -65,27 +69,30 @@ public class PlayerInput : MonoBehaviour
         inputAttack3 = context.action.triggered;
     }
 
-    public void OnDeviceLost(PlayerInputManager input, InputDevice device)
+    public void OnDeviceLost(InputDevice device)
     {
-        if (device is Gamepad)
-        {
-
-        }
-        else if (device is Keyboard)
-        {
-
-        }
-        else
+        gameManager.FirePopUp(device.displayName.ToString(), true);
+        if (device is not Gamepad or Keyboard)
         {
             Debug.LogWarning("Could not recover lost device info!");
         }
     }
-    public void OnDeviceRegained(PlayerInput input)
-    {
 
+
+    public void OnDeviceRegained(InputDevice device)
+    {
+        gameManager.EndPopUp();
+        if (device is not Gamepad or Keyboard)
+        {
+            Debug.LogWarning("Could not recover regained device info!");
+        }
     }
-    public void OnDeviceChanged(PlayerInput input)
+    public void OnDeviceChanged(InputDevice device)
     {
-
+        Debug.Log("Device Changed");
+        if (device is not Gamepad or Keyboard)
+        {
+            Debug.LogWarning("Device changed, new type is NOT compatible!");
+        }
     }
 }

@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject objectSpawner;
 
+    [SerializeField] private TextMeshProUGUI message;
+    [SerializeField] private GameObject popupObj;
+
     [SerializeField]
     private TextMeshProUGUI timeLeft;
 
@@ -114,6 +117,20 @@ public class GameManager : MonoBehaviour
     public void GoToPrepPhase()
     {
         gamePhase = GamePhase.PreGame;
+    }
+
+    public void FirePopUp(string device, bool isLost)
+    {
+        if (isLost)
+            message.text = device + " lost connection, please reconnect it";
+        popupObj.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void EndPopUp()
+    {
+        Time.timeScale = 1;
+        popupObj.SetActive(false);
     }
 
     private IEnumerator CountDownPreparationPhase()
