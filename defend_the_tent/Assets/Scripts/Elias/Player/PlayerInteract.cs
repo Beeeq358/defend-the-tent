@@ -19,7 +19,6 @@ public class PlayerInteract : Player
     [SerializeField] private Transform shockwaveVisual;
     [SerializeField] private GameObject explosionParticle, shockwaveParticle, slamParticle;
 
-    public UnityEvent OnPlayerAttack;
     public UnityEvent<Transform> OnPlayerGrab;
     public UnityEvent OnPlayerStopGrab;
 
@@ -132,18 +131,7 @@ public class PlayerInteract : Player
 
     public void InteractStandardAttack()
     {
-        if (!isBoss)
-        {
-            if (childObject is BaseWeapon)
-            {
-                OnPlayerAttack.Invoke();
-            }
-            else
-            {
-                Debug.LogWarning("Player does not currently hold a weapon");
-            }
-        }
-        else if (isBoss)
+        if (isBoss)
         {
             if (!isSlamming && !isSwiping && !isShockwave)
             {
@@ -203,22 +191,52 @@ public class PlayerInteract : Player
     }
     private void DamageColliders(int attackDamage, Collider attackHitbox)
     {
+        // Handle player colliders
         List<Collider> playerColliders = attackHitbox.GetComponent<HitBox>().GetPlayerColliders();
         foreach (Collider collider in playerColliders)
         {
-            collider.GetComponentInParent<PlayerHealth>().TakeDamage(attackDamage);
+            var playerHealth = collider.GetComponentInParent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(attackDamage);
+            }
+            else
+            {
+                Debug.LogWarning("PlayerHealth component not found on collider parent.");
+            }
         }
+
+        // Handle object colliders
         List<Collider> objectColliders = attackHitbox.GetComponent<HitBox>().GetObjectColliders();
         foreach (Collider collider in objectColliders)
         {
-            collider.GetComponent<IDamageable>().TakeDamage(attackDamage);
+            var damageable = collider.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(attackDamage);
+            }
+            else
+            {
+                Debug.LogWarning("IDamageable component not found on object collider.");
+            }
         }
+
+        // Handle specific objective collider (if needed)
         Collider objective = attackHitbox.GetComponent<HitBox>().GetObjectiveCollider();
         if (objective != null)
         {
-            objective.GetComponent<ObjectiveScript>().TakeDamage(attackDamage);
+            var objectiveScript = objective.GetComponent<ObjectiveScript>();
+            if (objectiveScript != null)
+            {
+                objectiveScript.TakeDamage(attackDamage);
+            }
+            else
+            {
+                Debug.LogWarning("ObjectiveScript component not found on objective collider.");
+            }
         }
     }
+
 
     private IEnumerator BossFrontSlam()
     {

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6857063349733309081}
-  - component: {fileID: 8244600053939222732}
+  - component: {fileID: -7653207398961618611}
   - component: {fileID: 3206428956512588225}
   - component: {fileID: 1979264847417938009}
   - component: {fileID: 4020561951455032150}
@@ -37,7 +37,7 @@ Transform:
   - {fileID: 7362390886582504096}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8244600053939222732
+--- !u!114 &-7653207398961618611
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,10 +46,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2405784831928841750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ecfe33b6dd0cb542b7082f8400bd59c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2754e89613206b04eb343410a62afc42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 3206428956512588225}
   weaponSO: {fileID: 11400000, guid: e6f41c82e3b81d847ac18c0d878589d9, type: 2}
+  healthPoints: 5
 --- !u!54 &3206428956512588225
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104,7 +106,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
