@@ -4,17 +4,23 @@ using static WeaponSO;
 
 public class BaseWeapon : MonoBehaviour, IDamageable, IChildObject
 {
+    protected PlayerInteract playerInteract;
+
     public event Action<IChildObject> OnDestroyed;
+
+    [SerializeField]
+    private Rigidbody rb;   
 
     private void OnDestroy()
     {
-        OnDestroyed?.Invoke(this);
+       OnDestroyed?.Invoke(this);
     }
 
     [SerializeField]
     protected WeaponSO weaponSO;
+    [SerializeField]
     protected int healthPoints;
-    protected float attackTimer;
+    protected float attackTimer = 0f;
 
     protected IObjectParent objectParent;
 
@@ -24,20 +30,24 @@ public class BaseWeapon : MonoBehaviour, IDamageable, IChildObject
     }
 
 
-    void Update()
+    protected void Update()
     {
+        // Decrease the attack cooldown timer
+        if (attackTimer > 0)
+        {
+            attackTimer -= Time.deltaTime;
+        }
+
+        // Update weapon range based on range type
         switch (weaponSO.weaponRangeType)
         {
             case WeaponRange.Short:
-                // Logic for short range
                 weaponSO.weaponRange = 2f;
                 break;
             case WeaponRange.Medium:
-                // Logic for medium range
                 weaponSO.weaponRange = 4f;
                 break;
             case WeaponRange.Long:
-                // Logic for long range
                 weaponSO.weaponRange = 6f;
                 break;
             default:
@@ -48,16 +58,22 @@ public class BaseWeapon : MonoBehaviour, IDamageable, IChildObject
         Die();
     }
 
-    protected virtual void Attack(int weaponDamage)
+    protected virtual void Attack(int weaponDamage, GameObject boss)
     {
-        // Attacks to be decided by deriving classes
+        PlayerHealth bosshealth = boss.transform.parent.GetComponent<PlayerHealth>();
+        bosshealth.TakeDamage(weaponSO.weaponDamage);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Object") && !collision.gameObject.CompareTag("Scenery") && !collision.gameObject.CompareTag("Player"))
+
+
+        if (!collision.gameObject.CompareTag("Object") &&
+            !collision.gameObject.CompareTag("Scenery") &&
+            !collision.gameObject.CompareTag("Player"))
         {
             TakeDamage(1);
+            Attack(weaponSO.weaponDamage, collision.gameObject);
         }
     }
 
@@ -66,10 +82,15 @@ public class BaseWeapon : MonoBehaviour, IDamageable, IChildObject
         // Clear existing parent if present
         this.objectParent?.ClearObject();
 
+
+
         // Set new parent
         Transform parentTransform = parent.GetObjectFollowTransform();
         transform.parent = parentTransform;
         transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+        rb.isKinematic = true;
+        rb.useGravity = false;
         parent.SetObject(this);
 
         // Debug the assignment
@@ -81,7 +102,9 @@ public class BaseWeapon : MonoBehaviour, IDamageable, IChildObject
     {
         if (this.objectParent != null)
         {
-            Debug.Log("Calling ClearObject on objectParent.");
+            playerInteract = null;
+            rb.useGravity = true;
+            rb.isKinematic = false;
             this.objectParent.ClearObject();
             transform.parent = null;
             this.objectParent = null;
