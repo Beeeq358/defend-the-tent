@@ -55,7 +55,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 15ef0f94d5fc60a47a7cb2fdd9cf1b6c, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 559328792dadbb54897c1e19b7ad3362, type: 2}
+      objectReference: {fileID: 2100000, guid: e543af0d29330c9489e5c8dac427d6be, type: 2}
     - target: {fileID: 919132149155446097, guid: 15ef0f94d5fc60a47a7cb2fdd9cf1b6c, type: 3}
       propertyPath: m_Name
       value: PF_BalloonSwordWeapon

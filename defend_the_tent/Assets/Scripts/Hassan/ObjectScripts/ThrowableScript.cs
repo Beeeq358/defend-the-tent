@@ -36,7 +36,6 @@ public class ThrowableScript : BaseObject
         {
             case ThrowableTypes.Tomato:
                 playerHealth.TakeDamage(damage);
-                Destroy(gameObject);
                 break;
             case ThrowableTypes.TNT:
                 bossRB.AddExplosionForce(20f, transform.position, 10f, 2f, ForceMode.Impulse);

@@ -55,7 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectSO: {fileID: 11400000, guid: 493ba8434fd066f48af016b3673716a6, type: 2}
   rb: {fileID: 433924833029271939}
-  healthPoints: 20
+  healthPoints: 30
   regularVisual: {fileID: 904463669537089131}
   selectedVisual: {fileID: 2751218032949598838}
   _isInteractive: 1

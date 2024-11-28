@@ -152,7 +152,6 @@ public class GameManager : MonoBehaviour
         players[chosenPlayer].GetComponent<Player>().BecomeBoss();
         players[chosenPlayer].GetComponent<PlayerInteract>().isBoss = true;
         players[chosenPlayer].GetComponent<PlayerMovement>().BecomeBoss();
-        players[chosenPlayer].GetComponent<PlayerHealth>().BecomeBoss();
     }
 
     public List<GameObject> GetPlayers()

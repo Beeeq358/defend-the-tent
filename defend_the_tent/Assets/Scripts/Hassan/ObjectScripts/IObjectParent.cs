@@ -6,7 +6,6 @@ public interface IObjectParent
     
     public void SetObject(IChildObject childObject);
     public IChildObject GetObject();
-    public GameObject GetGameObject();
     public void ClearObject();
     public bool HasObject();
 }

@@ -354,7 +354,6 @@ MonoBehaviour:
   - {fileID: 982491250}
   weapons:
   - {fileID: 11400000, guid: e6f41c82e3b81d847ac18c0d878589d9, type: 2}
-  - {fileID: 11400000, guid: e6f41c82e3b81d847ac18c0d878589d9, type: 2}
   gameManager: {fileID: 1725275553}
   spawnTime: 0
 --- !u!4 &1232391008

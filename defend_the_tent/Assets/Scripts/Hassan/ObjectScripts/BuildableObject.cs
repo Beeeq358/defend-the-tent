@@ -54,8 +54,8 @@ public class BuildableObject : BaseObject, IBuildable
 
     public override void TakeDamage(int damage)
     {
-        myHealthBar.GetComponent<HealthBar>().UpdateHealth(healthPoints);
         base.TakeDamage(damage);
+        myHealthBar.GetComponent<HealthBar>().UpdateHealth(healthPoints);
     }
     public override void RestoreHealth(int health)
     {

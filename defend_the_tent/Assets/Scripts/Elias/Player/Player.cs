@@ -179,12 +179,6 @@ public class Player : MonoBehaviour, IObjectParent
     {
         return childObject;
     }
-
-    public GameObject GetGameObject()
-    {
-        return gameObject;
-    }
-
     public void ClearObject()
     {
         childObject = null;
