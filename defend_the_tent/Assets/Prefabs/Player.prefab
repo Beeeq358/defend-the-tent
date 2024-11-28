@@ -876,6 +876,7 @@ MonoBehaviour:
   bossHoldPoint: {fileID: 8096206408343505631}
   gameManager: {fileID: 0}
   bossAnimator: {fileID: 6399294080913515539}
+  followLightPrefab: {fileID: 8895182112345563060, guid: cd92973c754252441afd2b5540d8fa80, type: 3}
 --- !u!114 &3159631538329086411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,6 +1100,7 @@ MonoBehaviour:
   bossHoldPoint: {fileID: 8096206408343505631}
   gameManager: {fileID: 0}
   bossAnimator: {fileID: 0}
+  followLightPrefab: {fileID: 0}
   healthPoints: 2
   bossHealthPoints: 30
   healthBarPrefab: {fileID: 1320986284251684560, guid: aec69af910511f4438ef9fa9e65e8416, type: 3}
@@ -1126,6 +1128,7 @@ MonoBehaviour:
   bossHoldPoint: {fileID: 8096206408343505631}
   gameManager: {fileID: 0}
   bossAnimator: {fileID: 6399294080913515539}
+  followLightPrefab: {fileID: 0}
   moveSpeed: 0.5
   targetRB: {fileID: 0}
   stunParticle: {fileID: 2756978300668733982}
@@ -1154,6 +1157,7 @@ MonoBehaviour:
   bossHoldPoint: {fileID: 8096206408343505631}
   gameManager: {fileID: 0}
   bossAnimator: {fileID: 6399294080913515539}
+  followLightPrefab: {fileID: 0}
   bossSlamCooldown: 2
   bossSwipeCooldown: 1
   bossShockCooldown: 3
@@ -1167,9 +1171,6 @@ MonoBehaviour:
   explosionParticle: {fileID: 2857516914855092709, guid: 6cee250bb53a71f4cb6e3e5fbaf8847f, type: 3}
   shockwaveParticle: {fileID: 4676456062365752671, guid: ffc111b3299e84444b474af3700213b3, type: 3}
   slamParticle: {fileID: 4776453545145725986, guid: 9738492c480e4574b8009111e6052563, type: 3}
-  OnPlayerAttack:
-    m_PersistentCalls:
-      m_Calls: []
   OnPlayerGrab:
     m_PersistentCalls:
       m_Calls: []

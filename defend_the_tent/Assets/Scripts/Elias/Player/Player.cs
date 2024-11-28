@@ -35,6 +35,7 @@ public class Player : MonoBehaviour, IObjectParent
     public Animator bossAnimator;
 
     [SerializeField] private GameObject followLightPrefab;
+    private GameObject followLightChild;
 
     protected bool isFrame = true;
     protected PlayerInput input;
@@ -58,11 +59,13 @@ public class Player : MonoBehaviour, IObjectParent
         }
         GameObject followLight = Instantiate(followLightPrefab, new Vector3(0, 27, 0), Quaternion.Euler(90, 0, 0));
         followLight.GetComponent<FollowingLight>().LogOn(normalPlayer);
+        followLightChild = followLight;
     }
 
     public virtual void BecomeBoss()
     {
         isBoss = true;
+        followLightChild.GetComponent<FollowingLight>().BossLogOn(bossPlayer);
     }
 
     private void Update()
