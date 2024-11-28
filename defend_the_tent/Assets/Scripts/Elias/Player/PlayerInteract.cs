@@ -142,7 +142,7 @@ public class PlayerInteract : Player
         else
         {
             // This shouldn't happen
-            Debug.LogError("Player is neither a boss nor a player");
+            //Debug.LogError("Player is neither a boss nor a player");
         }
     }
 
