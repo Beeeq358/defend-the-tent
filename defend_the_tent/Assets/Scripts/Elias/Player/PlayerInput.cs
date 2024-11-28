@@ -64,4 +64,28 @@ public class PlayerInput : MonoBehaviour
     {
         inputAttack3 = context.action.triggered;
     }
+
+    public void OnDeviceLost(PlayerInputManager input, InputDevice device)
+    {
+        if (device is Gamepad)
+        {
+
+        }
+        else if (device is Keyboard)
+        {
+
+        }
+        else
+        {
+            Debug.LogWarning("Could not recover lost device info!");
+        }
+    }
+    public void OnDeviceRegained(PlayerInput input)
+    {
+
+    }
+    public void OnDeviceChanged(PlayerInput input)
+    {
+
+    }
 }
