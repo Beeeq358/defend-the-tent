@@ -20,11 +20,21 @@ public class HealthBar : MonoBehaviour
         slider.value = newHealth;
     }
 
+    public void UpdateParent(GameObject newParentObject)
+    {
+        parent = newParentObject;
+    }
+
     private void Update()
     {
         if (parent != null)
+        {
+            transform.parent = parent.transform;
             transform.position = parent.transform.position + new Vector3(0, 4, 0);
+        }
         else if (parent == null && loggedOn)
+        {
             Destroy(gameObject);
+        }
     }
 }

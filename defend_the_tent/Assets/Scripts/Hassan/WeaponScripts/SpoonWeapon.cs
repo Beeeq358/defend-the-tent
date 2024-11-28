@@ -14,7 +14,7 @@ public class SpoonWeapon : BaseWeapon
     void Update()
     {
         attackTimer += Time.deltaTime;
-        if (objectParent != null)
+        if (objectParent != null && attackTimer < weaponSO.attackSpeed)
         { 
             playerInteract = (PlayerInteract)objectParent;
             playerInteract.OnPlayerAttack.AddListener(() => this.Attack(weaponSO.weaponDamage));
