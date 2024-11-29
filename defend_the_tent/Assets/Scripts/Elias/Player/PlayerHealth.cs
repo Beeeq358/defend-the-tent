@@ -10,6 +10,7 @@ public class PlayerHealth : Player, IDamageable
     [SerializeField] private GameObject healthBarPrefab;
 
     private GameObject myHealthBar;
+    private HealthBar healthBar;
     private int maxHealth;
 
     private void Start()
@@ -18,7 +19,8 @@ public class PlayerHealth : Player, IDamageable
         targetTransform = normalPlayer.transform;
         maxHealth = healthPoints;
         myHealthBar = Instantiate(healthBarPrefab, targetTransform.position, Camera.main.transform.rotation);
-        myHealthBar.GetComponent<HealthBar>().LogOn(targetTransform.gameObject, maxHealth);
+        healthBar = myHealthBar.GetComponent<HealthBar>();
+        healthBar.LogOn(targetTransform.gameObject, maxHealth);
         myHealthBar.SetActive(true);
     }
     void Update()
@@ -27,7 +29,7 @@ public class PlayerHealth : Player, IDamageable
         {
             Die();
         }
-        myHealthBar.GetComponent<HealthBar>().UpdateHealth(healthPoints);
+        healthBar.UpdateHealth(healthPoints);
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -40,20 +42,16 @@ public class PlayerHealth : Player, IDamageable
     public override void BecomeBoss()
     {
         base.BecomeBoss();
-
-        if (myHealthBar != null)
-        {
-            Destroy(myHealthBar);
-        }
-
-        myHealthBar = Instantiate(healthBarPrefab, targetTransform.position, Camera.main.transform.rotation);
-        myHealthBar.GetComponent<HealthBar>().LogOn(targetTransform.gameObject, maxHealth);
-        myHealthBar.SetActive(true);
         healthPoints = bossHealthPoints;
         maxHealth = healthPoints;
         targetTransform = bossPlayer.transform;
+        myHealthBar.SetActive(true);
+        healthBar.ReLog(bossPlayer, maxHealth);
     }
+    protected override void BaseClassExclusive()
+    {
 
+    }
     public void TakeDamage(int damage)
     {
         Debug.Log("Boss Damaged!");
