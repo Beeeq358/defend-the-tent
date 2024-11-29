@@ -55,13 +55,10 @@ public class PlayerMovement : Player
     {
         //play stunned animation
         //play stunned effects
-        if (!isBoss)
+        stunParticle.transform.position = targetTransform.position;
+        if (isBoss)
         {
-            stunParticle.transform.position = normalTransform.position;
-        }
-        else
-        {
-            stunParticle.transform.position = bossTransform.position + new Vector3(0,5,0);
+            stunParticle.transform.position += new Vector3(0, 5, 0);
         }
         stunParticle.SetActive(true);
         //lock player movement;
@@ -77,6 +74,10 @@ public class PlayerMovement : Player
         targetTransform.position = GetSpawnPosition(true);
         moveSpeed = 0.3f;
         base.BecomeBoss();
+    }
+    protected override void BaseClassExclusive()
+    {
+
     }
 
     public IEnumerator StunTime(float stunTime)

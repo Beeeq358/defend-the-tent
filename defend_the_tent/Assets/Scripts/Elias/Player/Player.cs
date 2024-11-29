@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.XR;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IObjectParent
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour, IObjectParent
 
     [SerializeField] private GameObject followLightPrefab;
     private GameObject followLightChild;
+    private FollowingLight fl;
 
     protected bool isFrame = true;
     protected PlayerInput input;
@@ -58,14 +60,20 @@ public class Player : MonoBehaviour, IObjectParent
             }
         }
         GameObject followLight = Instantiate(followLightPrefab, new Vector3(0, 27, 0), Quaternion.Euler(90, 0, 0));
-        followLight.GetComponent<FollowingLight>().LogOn(normalPlayer);
         followLightChild = followLight;
+        fl = followLightChild.GetComponent<FollowingLight>();
+        fl.LogOn(normalPlayer);
     }
 
     public virtual void BecomeBoss()
     {
         isBoss = true;
-        //followLightChild.GetComponent<FollowingLight>().BossLogOn(bossPlayer);
+        BaseClassExclusive();
+    }
+
+    protected virtual void BaseClassExclusive()
+    {
+        fl.BossLogOn(bossPlayer);
     }
 
     private void Update()

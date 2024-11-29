@@ -249,6 +249,10 @@ public class PlayerInteract : Player
         yield return new WaitForSeconds(2);
         isSlamming = false;
     }
+    protected override void BaseClassExclusive()
+    {
+
+    }
 
     private IEnumerator BossHalfSwipe()
     {
