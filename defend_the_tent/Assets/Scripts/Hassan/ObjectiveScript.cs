@@ -9,6 +9,7 @@ public class ObjectiveScript : MonoBehaviour, IDamageable
     [SerializeField]
     private GameObject healthBarPrefab;
     private GameObject myHealthBar;
+    private HealthBar healthBar;
 
     public UnityEvent OnObjectiveDestroyed;
 
@@ -16,14 +17,16 @@ public class ObjectiveScript : MonoBehaviour, IDamageable
     void Start()
     {
         myHealthBar = Instantiate(healthBarPrefab, transform.position, Camera.main.transform.rotation);
-        myHealthBar.GetComponent<HealthBar>().LogOn(gameObject, objectiveHealth);
+        healthBar = myHealthBar.GetComponent<HealthBar>();
+        healthBar.LogOn(gameObject, objectiveHealth);
+        healthBar.ObjectHealthbar();
         myHealthBar.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        myHealthBar.GetComponent<HealthBar>().UpdateHealth(objectiveHealth);
+        healthBar.UpdateHealth(objectiveHealth);
         Die();
     }
 
