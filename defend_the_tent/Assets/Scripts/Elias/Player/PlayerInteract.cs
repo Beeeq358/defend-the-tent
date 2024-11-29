@@ -87,6 +87,12 @@ public class PlayerInteract : Player
                             return;
                         }
                     }
+                    if (selectedChildObject.GetObjectParent() != null)
+                    {
+                        // Object is already being held
+                        Debug.LogWarning("Object is already being held");
+                        return;
+                    }
                     InteractGrab(this, selectedChildObject);
                 }
                 else

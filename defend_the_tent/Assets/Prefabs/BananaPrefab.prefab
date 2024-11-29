@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1aefd4331f687b4885bc34381a7a35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upwardForceMagnitude: 20
+  upwardForceMagnitude: 25
   objectRb: {fileID: 7822886843468307284}
 --- !u!136 &711168417620247862
 CapsuleCollider:

@@ -117,7 +117,11 @@ public class BaseWeapon : MonoBehaviour, IDamageable, IChildObject
 
     public GameObject GetObjectParent()
     {
-        return transform.parent.gameObject;
+        if (this.objectParent != null)
+        {
+            return transform.parent.gameObject;
+        }
+        return null;
     }
 
     public GameObject GetGameObject()

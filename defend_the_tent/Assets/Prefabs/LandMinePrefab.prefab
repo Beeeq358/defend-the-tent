@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1aefd4331f687b4885bc34381a7a35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upwardForceMagnitude: 5
+  upwardForceMagnitude: 25
   objectRb: {fileID: 5608463887837468722}
 --- !u!54 &5608463887837468722
 Rigidbody:

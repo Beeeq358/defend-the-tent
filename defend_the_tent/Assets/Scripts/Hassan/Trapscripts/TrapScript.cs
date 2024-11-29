@@ -59,7 +59,6 @@ public class TrapScript : MonoBehaviour, IChildObject
                 {
                     bossRB.AddExplosionForce(20f, transform.position, 10f, 2f, ForceMode.Impulse);
                     boss.GetComponentInParent<PlayerHealth>().TakeDamage(15);
-                    boss.GetComponentInParent<PlayerMovement>().IsStunned(7);
                     Instantiate(explosionVFX, transform.position, Quaternion.identity);
                     Destroy(gameObject);
                 }
@@ -131,7 +130,11 @@ public class TrapScript : MonoBehaviour, IChildObject
 
     public GameObject GetObjectParent()
     {
-        return transform.parent.gameObject;
+        if (this.objectParent != null)
+        {
+            return transform.parent.gameObject;
+        }
+        return null;
     }
 
     public GameObject GetGameObject()

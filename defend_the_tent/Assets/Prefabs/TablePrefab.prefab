@@ -54,14 +54,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectSO: {fileID: 11400000, guid: ee4ecca7fdbb3d041bd2978f732ff5ab, type: 2}
   rb: {fileID: 8971869847417903418}
-  healthPoints: 15
+  healthPoints: 10
   regularVisual: {fileID: 2608912599344008790}
   selectedVisual: {fileID: 8960233214684161241}
   mainColliders:
   - {fileID: 4625341356130861366}
   - {fileID: 8970762013283229546}
   - {fileID: 1269573953019564378}
-  _isInteractive: 1
+  isInteractive: 1
   healthBarPrefab: {fileID: 1320986284251684560, guid: aec69af910511f4438ef9fa9e65e8416, type: 3}
   buildingParticleSystem: {fileID: 6466364783773254411, guid: f7f28e20ac9b848498f805de699f44a6, type: 3}
 --- !u!114 &3045518094949472378
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1aefd4331f687b4885bc34381a7a35a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upwardForceMagnitude: 20
+  upwardForceMagnitude: 25
   objectRb: {fileID: 8971869847417903418}
 --- !u!54 &8971869847417903418
 Rigidbody:
