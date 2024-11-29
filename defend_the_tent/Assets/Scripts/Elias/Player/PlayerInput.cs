@@ -22,17 +22,27 @@ public class PlayerInput : MonoBehaviour
     }
     private void Update()
     {
-        if (moveVector.normalized != Vector3.zero)
+        // Normalize moveVector magnitude and use it to set animation parameters
+        float moveSpeed = moveVector.magnitude;
+
+        // Update animation states
+        if (moveSpeed > 0)
         {
             animator.SetBool("isWalking", true);
+            animator.SetFloat("moveSpeed", moveSpeed); // Set the speed parameter
             if (player.isBoss)
+            {
                 player.bossAnimator.SetBool("isWalking", true);
+                player.bossAnimator.SetFloat("moveSpeed", moveSpeed);
+            }
         }
-        else if (moveVector.normalized == Vector3.zero)
+        else
         {
             animator.SetBool("isWalking", false);
             if (player.isBoss)
+            {
                 player.bossAnimator.SetBool("isWalking", false);
+            }
         }
     }
     public void OnMove(InputAction.CallbackContext context)

@@ -17,15 +17,15 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
 
     public ObjectSO objectSO;
 
-    private IObjectParent objectParent;
+    protected IObjectParent objectParent;
 
     public Rigidbody rb;
 
     public int healthPoints;
     [SerializeField]
-    private GameObject regularVisual;
+    protected GameObject regularVisual;
     [SerializeField]
-    private GameObject selectedVisual;
+    protected GameObject selectedVisual;
 
     [SerializeField]
     private List<Collider> mainColliders = new List<Collider>();
@@ -92,9 +92,9 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
         return gameObject;
     }
 
-    public void SetSelectedVisual(bool isActive)
+    public virtual void SetSelectedVisual(bool isActive)
     {
-        if (selectedVisual != null)
+        if (selectedVisual != null && objectParent == null)
         {
             selectedVisual.SetActive(isActive);
         }

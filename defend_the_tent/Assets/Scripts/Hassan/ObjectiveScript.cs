@@ -24,6 +24,7 @@ public class ObjectiveScript : MonoBehaviour, IDamageable
     void Update()
     {
         myHealthBar.GetComponent<HealthBar>().UpdateHealth(objectiveHealth);
+        Die();
     }
 
     private void OnCollisionEnter(Collision collision)
