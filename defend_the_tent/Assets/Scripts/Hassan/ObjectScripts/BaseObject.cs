@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 using System;
 using UnityEngine.Events;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public class BaseObject : MonoBehaviour, IDamageable, IChildObject
 {
@@ -25,6 +26,9 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
     private GameObject regularVisual;
     [SerializeField]
     private GameObject selectedVisual;
+
+    [SerializeField]
+    private List<Collider> mainColliders = new List<Collider>();
 
     private void Start()
     {
@@ -48,6 +52,10 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
         transform.localRotation = Quaternion.identity;
         rb.isKinematic = true;
         rb.useGravity = false;
+        foreach (Collider collider in mainColliders)
+        {
+            collider.enabled = false;
+        }
         parent.SetObject(this);
 
         // Debug the assignment
@@ -60,6 +68,10 @@ public class BaseObject : MonoBehaviour, IDamageable, IChildObject
         {
             rb.useGravity = true;
             rb.isKinematic = false;
+            foreach (Collider collider in mainColliders)
+            {
+                collider.enabled = true;
+            }
             this.objectParent.ClearObject();
             transform.parent = null;
             this.objectParent = null;
