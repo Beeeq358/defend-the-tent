@@ -72,8 +72,11 @@ public class BaseWeapon : MonoBehaviour, IDamageable, IChildObject
             !collision.gameObject.CompareTag("Scenery") &&
             !collision.gameObject.CompareTag("Player"))
         {
-            TakeDamage(1);
-            Attack(weaponSO.weaponDamage, collision.gameObject);
+            if (objectParent != null)
+            {
+                TakeDamage(1);
+                Attack(weaponSO.weaponDamage, collision.gameObject);
+            }
         }
     }
 

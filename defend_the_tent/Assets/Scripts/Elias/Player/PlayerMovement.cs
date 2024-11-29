@@ -87,7 +87,7 @@ public class PlayerMovement : Player
         if (isBoss)
         {
             stunTime *= 3;
-            bossRB.mass = 0.1f;
+            //bossRB.mass = 0.1f;
         }
         yield return new WaitForSeconds(stunTime);
         isStunned = false;
