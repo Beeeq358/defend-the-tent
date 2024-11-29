@@ -57,6 +57,7 @@ public class TrapScript : MonoBehaviour, IChildObject
             case TrapType.Landmine:
                 if (objectParent == null)
                 {
+                    bossRB.mass = 4f;
                     bossRB.AddExplosionForce(20f, transform.position, 10f, 2f, ForceMode.Impulse);
                     boss.GetComponentInParent<PlayerHealth>().TakeDamage(15);
                     Instantiate(explosionVFX, transform.position, Quaternion.identity);
