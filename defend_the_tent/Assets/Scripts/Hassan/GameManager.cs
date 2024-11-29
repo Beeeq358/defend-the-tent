@@ -149,10 +149,14 @@ public class GameManager : MonoBehaviour
         bossChosen = true;
         players = GetPlayers();
         int chosenPlayer = Random.Range(0, players.Count);
-        players[chosenPlayer].GetComponent<Player>().BecomeBoss();
-        players[chosenPlayer].GetComponent<PlayerInteract>().isBoss = true;
-        players[chosenPlayer].GetComponent<PlayerMovement>().BecomeBoss();
-        players[chosenPlayer].GetComponent<PlayerHealth>().BecomeBoss();
+
+        // Fetch all derived Player components and call BecomeBoss
+        Player[] playerScripts = players[chosenPlayer].GetComponents<Player>();
+        foreach (Player script in playerScripts)
+        {
+            script.BecomeBoss();
+            new WaitForEndOfFrame();
+        }
     }
 
     public List<GameObject> GetPlayers()

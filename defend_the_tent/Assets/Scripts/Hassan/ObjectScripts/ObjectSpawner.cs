@@ -28,10 +28,10 @@ public class ObjectSpawner : MonoBehaviour
     {
         while (true)
         {
-            spawnTime = Random.Range(2f, 6f);
+            spawnTime = Random.Range(4f, 8f);
             if (playerCount > 2)
             {
-                spawnTime = Random.Range(1.5f, 4f);
+                spawnTime = Random.Range(3.5f, 6f);
             }
             int randomSpawnPointIndex = Random.Range(0, spawnPoints.Count);
 
