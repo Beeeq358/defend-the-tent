@@ -54,6 +54,8 @@ MonoBehaviour:
   healthPoints: 1
   regularVisual: {fileID: 5138583057310498881}
   selectedVisual: {fileID: 527180600207730624}
+  mainColliders:
+  - {fileID: 3025300605640652993}
   objectDamage: 1
   explosionVFX: {fileID: 0}
   type: 0

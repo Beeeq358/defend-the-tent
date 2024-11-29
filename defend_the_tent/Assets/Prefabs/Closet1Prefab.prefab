@@ -144,6 +144,8 @@ MonoBehaviour:
   healthPoints: 20
   regularVisual: {fileID: 154983930467616375}
   selectedVisual: {fileID: 1825399931421501054}
+  mainColliders:
+  - {fileID: 7194074750150362263}
   _isInteractive: 1
   healthBarPrefab: {fileID: 1320986284251684560, guid: aec69af910511f4438ef9fa9e65e8416, type: 3}
   buildingParticleSystem: {fileID: 6466364783773254411, guid: f7f28e20ac9b848498f805de699f44a6, type: 3}

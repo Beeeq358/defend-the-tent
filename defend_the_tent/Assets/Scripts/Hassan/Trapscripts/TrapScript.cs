@@ -1,5 +1,7 @@
+using NUnit.Framework;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TrapScript : MonoBehaviour, IChildObject
@@ -18,6 +20,9 @@ public class TrapScript : MonoBehaviour, IChildObject
 
     [SerializeField]
     private GameObject explosionVFX;
+
+    [SerializeField]
+    private List<Collider> mainColliders = new List<Collider>();
 
     public enum TrapType
     {
@@ -50,11 +55,14 @@ public class TrapScript : MonoBehaviour, IChildObject
         switch (type) 
         {
             case TrapType.Landmine:
-                bossRB.AddExplosionForce(20f, transform.position, 10f, 2f, ForceMode.Impulse);
-                boss.GetComponentInParent<PlayerHealth>().TakeDamage(15);
-                boss.GetComponentInParent<PlayerMovement>().IsStunned(7);
-                Instantiate(explosionVFX, transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                if (objectParent == null)
+                {
+                    bossRB.AddExplosionForce(20f, transform.position, 10f, 2f, ForceMode.Impulse);
+                    boss.GetComponentInParent<PlayerHealth>().TakeDamage(15);
+                    boss.GetComponentInParent<PlayerMovement>().IsStunned(7);
+                    Instantiate(explosionVFX, transform.position, Quaternion.identity);
+                    Destroy(gameObject);
+                }
                 break;
             case TrapType.Glue:
                 StartCoroutine(GlueCoroutine(bossRB));
@@ -91,6 +99,10 @@ public class TrapScript : MonoBehaviour, IChildObject
         transform.localRotation = Quaternion.identity;
         rb.isKinematic = true;
         rb.useGravity = false;
+        foreach (Collider collider in mainColliders)
+        {
+            collider.enabled = false;
+        }
         parent.SetObject(this);
 
         // Debug the assignment
@@ -103,6 +115,10 @@ public class TrapScript : MonoBehaviour, IChildObject
         {
             rb.useGravity = true;
             rb.isKinematic = false;
+            foreach (Collider collider in mainColliders)
+            {
+                collider.enabled = true;
+            }
             this.objectParent.ClearObject();
             transform.parent = null;
             this.objectParent = null;

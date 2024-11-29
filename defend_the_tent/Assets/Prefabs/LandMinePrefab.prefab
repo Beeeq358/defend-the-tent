@@ -51,6 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5608463887837468722}
   explosionVFX: {fileID: 2857516914855092709, guid: 6cee250bb53a71f4cb6e3e5fbaf8847f, type: 3}
+  mainColliders:
+  - {fileID: 5442901249093985683}
   type: 0
   visual: {fileID: 1112495700999243811}
 --- !u!114 &2557746488222440967
