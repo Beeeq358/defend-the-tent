@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BuildableObject : BaseObject, IBuildable
 {
-    public bool _isInteractive = true;
+    public bool isInteractive = true;
 
     [SerializeField]
     private GameObject healthBarPrefab;
@@ -31,7 +31,7 @@ public class BuildableObject : BaseObject, IBuildable
         }
         else
         {
-            if (!_isInteractive)
+            if (!isInteractive)
             {
                 TakeDamage(1);
             }
@@ -43,12 +43,36 @@ public class BuildableObject : BaseObject, IBuildable
     {
         return rb.isKinematic;
     }
+
+    public override void SetSelectedVisual(bool isActive)
+    {
+        if (!isInteractive)
+        {
+            regularVisual?.SetActive(true);
+            return;
+        }
+
+        if (selectedVisual != null && objectParent == null && isInteractive)
+        {
+            selectedVisual.SetActive(isActive);
+        }
+
+        if (regularVisual != null)
+        {
+            regularVisual.SetActive(!isActive);
+        }
+    }
+
+
+
     public void SetKinematic(bool isKinematic)
     {
         GameObject buildingParticles = Instantiate(buildingParticleSystem, transform.position, Quaternion.identity);
         Destroy(buildingParticles, 3f);
         rb.isKinematic = isKinematic;
-        _isInteractive = false;
+        isInteractive = false;
+        Destroy(selectedVisual);
+        selectedVisual = null;
         myHealthBar.SetActive(true);
     }
 

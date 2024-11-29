@@ -60,7 +60,7 @@ public class PlayerInteract : Player
                     BaseObject baseObject = (BaseObject)selectedChildObject;
                     if (selectedChildObject != null && baseObject.objectSO.objectType == ObjectType.Buildable && !isBoss)
                     {
-                        if (selectedChildObject is BuildableObject buildableObject  && buildableObject._isInteractive == true)
+                        if (selectedChildObject is BuildableObject buildableObject  && buildableObject.isInteractive == true)
                         {
                             InteractBuild(this, buildableObject);
                         }
@@ -81,7 +81,7 @@ public class PlayerInteract : Player
                 {
                     if (selectedChildObject is BuildableObject buildableObject)
                     {
-                        if (!buildableObject._isInteractive)
+                        if (!buildableObject.isInteractive)
                         {
                             Debug.LogWarning("This object is not interactive!");
                             return;
