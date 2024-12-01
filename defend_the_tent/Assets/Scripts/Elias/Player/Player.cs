@@ -42,6 +42,16 @@ public class Player : MonoBehaviour, IObjectParent
     protected bool isFrame = true;
     protected PlayerInput input;
 
+    private void OnEnable()
+    {
+        GameManager.Instance.RegisterPlayer(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.DeregisterPlayer(gameObject);
+    }
+
     private void Awake()
     {
         gameManager = FindFirstObjectByType<GameManager>();

@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     public enum GamePhase
     {
         PreGame,
@@ -41,6 +43,17 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> players = new();
     private bool bossChosen;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("Multiple GameManager instances found!");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     void Start()
     {
@@ -147,7 +160,13 @@ public class GameManager : MonoBehaviour
     private void ChooseBoss()
     {
         bossChosen = true;
-        players = GetPlayers();
+
+        if (players.Count == 0)
+        {
+            Debug.LogWarning("No players available to choose a boss from!");
+            return;
+        }
+
         int chosenPlayer = Random.Range(0, players.Count);
 
         // Fetch all derived Player components and call BecomeBoss
@@ -155,7 +174,6 @@ public class GameManager : MonoBehaviour
         foreach (Player script in playerScripts)
         {
             script.BecomeBoss();
-            new WaitForEndOfFrame();
         }
     }
 
@@ -168,6 +186,18 @@ public class GameManager : MonoBehaviour
                 activePlayers.Add(player);
         }
         return activePlayers;
+    }
+
+    public void RegisterPlayer(GameObject player)
+    {
+        if (!players.Contains(player))
+            players.Add(player);
+    }
+
+    public void DeregisterPlayer(GameObject player)
+    {
+        if (players.Contains(player))
+            players.Remove(player);
     }
 
     private IEnumerator CountDownActionPhase()
