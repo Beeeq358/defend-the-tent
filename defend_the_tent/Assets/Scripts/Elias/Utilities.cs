@@ -14,9 +14,10 @@ public class Utilities : MonoBehaviour
     public void EveryonesIn()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        if (gameManager.GetPlayers().Count > 1)
+        if (gameManager.players.Count > 1)
         {
             gameManager.gamePhase = GameManager.GamePhase.Preparation;
+            gameManager.TransitionToPhase(gameManager.gamePhase);
             everyonesInButton = GameObject.Find("Everyone's In");
             everyonesInButton.SetActive(false);
         }

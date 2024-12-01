@@ -76,53 +76,14 @@ public class GameManager : MonoBehaviour
                 break;
             case GamePhase.Preparation:
                 // Perform preparation actions
-                timeLeft.text = "Time left to prepare: " + preparationTime.ToString("F0");
-
-                if (!startedSpawning)
-                {
-                    objectSpawner.SetActive(true);
-                    objectSpawner.GetComponent<ObjectSpawner>().StartSpawning(players.Count);
-                    startedSpawning = true;
-                }
-                StartCoroutine(CountDownPreparationPhase());
+                UpdatePreparationPhase();
                 break;
             case GamePhase.Action:
                 // Perform action phase actions
-                timeLeft.text = "Time left to defend: " + actionTime.ToString("F0");
-                StartCoroutine(CountDownActionPhase());
-                if (!bossChosen)
-                    ChooseBoss();
-                if (objectiveDestroyed)
-                {
-                    StopCoroutine(CountDownActionPhase());
-                    gamePhase = GamePhase.PostAction;
-                }
+                UpdateActionPhase();
                 break;
             case GamePhase.PostAction:
-                // Perform post-action actions
-                if (objectiveDestroyed)
-                {
-                    bossWon = true;
-                }
-                else
-                {
-                    playersWon = true;
-                }
-
-                if (playersWon && !gameEnded)
-                {
-                    // Perform player win logic
-                    PlayerPrefs.SetInt("Winner", 0);
-                    PlayerPrefs.Save();
-                    SceneManager.LoadScene("End Screen");
-                }
-                else if (bossWon && !gameEnded)
-                {
-                    // Perform boss win logic
-                    PlayerPrefs.SetInt("Winner", 1);
-                    PlayerPrefs.Save();
-                    SceneManager.LoadScene("End Screen");
-                }
+              
                 break;
         }
     }
@@ -177,17 +138,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public List<GameObject> GetPlayers()
-    {
-        List<GameObject> activePlayers = new();
-        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
-        {
-            if (player.GetComponent<Player>() != null)
-                activePlayers.Add(player);
-        }
-        return activePlayers;
-    }
-
     public void RegisterPlayer(GameObject player)
     {
         if (!players.Contains(player))
@@ -208,6 +158,87 @@ public class GameManager : MonoBehaviour
         {
             gamePhase = GamePhase.PostAction;
             StopCoroutine(CountDownActionPhase());
+        }
+    }
+
+    private void UpdatePreparationPhase()
+    {
+        if (preparationTime > 0)
+        {
+            preparationTime -= Time.deltaTime;
+            timeLeft.text = "Time left to prepare: " + Mathf.Ceil(preparationTime).ToString();
+
+            if (preparationTime <= 0)
+            {
+                TransitionToPhase(GamePhase.Action);
+            }
+        }
+    }
+
+    private void UpdateActionPhase()
+    {
+        if (actionTime > 0)
+        {
+            actionTime -= Time.deltaTime;
+            timeLeft.text = "Time left to defend: " + Mathf.Ceil(actionTime).ToString();
+
+            if (actionTime <= 0)
+            {
+                TransitionToPhase(GamePhase.PostAction);
+            }
+        }
+
+        if (!bossChosen)
+        {
+            ChooseBoss();
+            bossChosen = true;
+        }
+    }
+
+    public void TransitionToPhase(GamePhase newPhase)
+    {
+        gamePhase = newPhase;
+
+        if (newPhase == GamePhase.Preparation)
+        {
+            objectSpawner.SetActive(true);
+            objectSpawner.GetComponent<ObjectSpawner>().StartSpawning(players.Count);
+        }
+        else if (newPhase == GamePhase.Action)
+        {
+
+        }
+        else if (newPhase == GamePhase.PostAction)
+        {
+            EndGame();
+        }
+    }
+
+    private void EndGame()
+    {
+        // Perform post-action actions
+        if (objectiveDestroyed)
+        {
+            bossWon = true;
+        }
+        else
+        {
+            playersWon = true;
+        }
+
+        if (playersWon && !gameEnded)
+        {
+            // Perform player win logic
+            PlayerPrefs.SetInt("Winner", 0);
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("End Screen");
+        }
+        else if (bossWon && !gameEnded)
+        {
+            // Perform boss win logic
+            PlayerPrefs.SetInt("Winner", 1);
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("End Screen");
         }
     }
 }
