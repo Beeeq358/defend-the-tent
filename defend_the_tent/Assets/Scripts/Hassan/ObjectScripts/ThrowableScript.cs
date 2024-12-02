@@ -1,4 +1,3 @@
-using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class ThrowableScript : BaseObject
@@ -36,6 +35,7 @@ public class ThrowableScript : BaseObject
         {
             case ThrowableTypes.Tomato:
                 playerHealth.TakeDamage(damage);
+                AudioManager.Instance.Play("Tomato");
                 Destroy(gameObject);
                 break;
             case ThrowableTypes.TNT:

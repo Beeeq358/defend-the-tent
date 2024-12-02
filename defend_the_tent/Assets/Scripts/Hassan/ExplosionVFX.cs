@@ -4,6 +4,6 @@ public class ExplosionVFX : MonoBehaviour
 {
     private void Start()
     {
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 1.5f);
     }
 }

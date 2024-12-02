@@ -81,6 +81,11 @@ public class GameManager : MonoBehaviour
             case GamePhase.Action:
                 // Perform action phase actions
                 UpdateActionPhase();
+                if (objectiveDestroyed)
+                {
+                    bossWon = true;
+                    EndGame();
+                }
                 break;
             case GamePhase.PostAction:
               
@@ -107,17 +112,6 @@ public class GameManager : MonoBehaviour
         popupObj.SetActive(false);
     }
 
-    private IEnumerator CountDownPreparationPhase()
-    {
-        preparationTime -= Time.deltaTime;
-        yield return new WaitForSeconds(preparationTime);
-        if (preparationTime <= 0)
-        {
-            gamePhase = GamePhase.Action;
-            StopCoroutine(CountDownPreparationPhase());
-        }
-    }
-
     private void ChooseBoss()
     {
         bossChosen = true;
@@ -141,23 +135,17 @@ public class GameManager : MonoBehaviour
     public void RegisterPlayer(GameObject player)
     {
         if (!players.Contains(player))
+        {
             players.Add(player);
+            AudioManager.Instance.Play("Crowd Cheer");
+        }
     }
 
     public void DeregisterPlayer(GameObject player)
     {
         if (players.Contains(player))
-            players.Remove(player);
-    }
-
-    private IEnumerator CountDownActionPhase()
-    {
-        actionTime -= Time.deltaTime;
-        yield return new WaitForSeconds(actionTime);
-        if (actionTime <= 0)
         {
-            gamePhase = GamePhase.PostAction;
-            StopCoroutine(CountDownActionPhase());
+            players.Remove(player);
         }
     }
 
@@ -179,11 +167,13 @@ public class GameManager : MonoBehaviour
     {
         if (actionTime > 0)
         {
+            AudioManager.Instance.Play("Action Theme");
             actionTime -= Time.deltaTime;
             timeLeft.text = "Time left to defend: " + Mathf.Ceil(actionTime).ToString();
 
             if (actionTime <= 0)
             {
+                AudioManager.Instance.Stop("Action Theme");
                 TransitionToPhase(GamePhase.PostAction);
             }
         }

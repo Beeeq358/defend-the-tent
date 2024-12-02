@@ -1,5 +1,3 @@
-using System.Collections;
-using UnityEditor.XR;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IObjectParent

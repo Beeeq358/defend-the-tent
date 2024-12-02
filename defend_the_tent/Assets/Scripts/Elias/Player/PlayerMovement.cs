@@ -61,6 +61,7 @@ public class PlayerMovement : Player
             stunParticle.transform.position += new Vector3(0, 5, 0);
         }
         stunParticle.SetActive(true);
+        AudioManager.Instance.Play("Stunned");
         //lock player movement;
         StartCoroutine(StunTime(strength));
     }

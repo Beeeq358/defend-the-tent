@@ -1,9 +1,5 @@
 using UnityEngine;
-using System.Collections;
-using UnityEngine.UIElements;
 using System;
-using UnityEngine.Events;
-using Unity.VisualScripting;
 using System.Collections.Generic;
 
 public class BaseObject : MonoBehaviour, IDamageable, IChildObject

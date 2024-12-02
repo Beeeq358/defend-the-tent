@@ -108,7 +108,7 @@ public class PlayerInteract : Player
             Rigidbody tempRB = childObject.GetGameObject().GetComponent<Rigidbody>();
             childObject.ClearObjectParent(this);
             tempRB.isKinematic = false;
-            tempRB.AddForce(recentGrabStrength * throwStrength * (targetTransform.forward + new Vector3(0, throwHeight, 0)), ForceMode.Impulse);
+            tempRB.AddForce(recentGrabStrength * throwStrength * (targetTransform.forward * 2 + new Vector3(0, throwHeight, 0)), ForceMode.Impulse);
         }
     }
 
@@ -265,7 +265,7 @@ public class PlayerInteract : Player
         isSwiping = true;
         bossAnimator.SetTrigger("Swipe");
         yield return new WaitForSeconds(bossSwipeCooldown);
-        //start slam VFX
+        AudioManager.Instance.Play("Boss Swipe");
         DamageColliders(bossSwipeDamage, halfcircleHB);
         yield return new WaitForSeconds(1);
         isSwiping = false;
