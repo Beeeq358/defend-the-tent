@@ -1450,21 +1450,31 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     audioSource: {fileID: 0}
+    isLooping: 0
   - name: Crowd Cheer
     audioClip: {fileID: 8300000, guid: f852c4605d888974c94299255913ba9c, type: 3}
     volume: 1
     pitch: 1
     audioSource: {fileID: 0}
+    isLooping: 0
   - name: Stunned
     audioClip: {fileID: 8300000, guid: a4e4da3ba43ee4041b9591a144975628, type: 3}
     volume: 1
     pitch: 1
     audioSource: {fileID: 0}
+    isLooping: 0
   - name: Tomato
     audioClip: {fileID: 8300000, guid: 9294f676dfc0af74d90e81e67f113e21, type: 3}
     volume: 1
     pitch: 1
     audioSource: {fileID: 0}
+    isLooping: 0
+  - name: Tomato
+    audioClip: {fileID: 8300000, guid: 9294f676dfc0af74d90e81e67f113e21, type: 3}
+    volume: 1
+    pitch: 1
+    audioSource: {fileID: 0}
+    isLooping: 0
 --- !u!1001 &1280916819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2406,6 +2416,10 @@ PrefabInstance:
     - target: {fileID: 514941209021195271, guid: 994a2ddddeeb00d4a8309c1752491570, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345678734978320580, guid: 994a2ddddeeb00d4a8309c1752491570, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
