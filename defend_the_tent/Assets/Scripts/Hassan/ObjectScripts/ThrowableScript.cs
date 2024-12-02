@@ -13,7 +13,7 @@ public class ThrowableScript : BaseObject
     }
 
     [SerializeField]
-    private GameObject explosionVFX;
+    private GameObject explosionVFX, explosionLight;
 
     [SerializeField]
     private ThrowableTypes type;
@@ -42,6 +42,7 @@ public class ThrowableScript : BaseObject
                 bossRB.AddExplosionForce(20f, transform.position, 10f, 2f, ForceMode.Impulse);
                 playerHealth.TakeDamage(damage);
                 Instantiate(explosionVFX, transform.position, Quaternion.identity);
+                Instantiate(explosionLight, transform.position, Quaternion.identity);
                 Destroy(gameObject);
                 break;
         }
