@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7822886843468307284}
   explosionVFX: {fileID: 0}
+  explosionLight: {fileID: 0}
   mainColliders:
   - {fileID: 711168417620247862}
   type: 2
@@ -195,7 +196,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 480551d9cee384b47b20d7cd2625050f, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 559328792dadbb54897c1e19b7ad3362, type: 2}
+      objectReference: {fileID: -876546973899608171, guid: bd7432271603a5a4295ced9681f3b231, type: 3}
     - target: {fileID: 919132149155446097, guid: 480551d9cee384b47b20d7cd2625050f, type: 3}
       propertyPath: m_Name
       value: Mesh_Banana
