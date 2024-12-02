@@ -18,7 +18,7 @@ public class TrapScript : MonoBehaviour, IChildObject
     private Rigidbody rb;
 
     [SerializeField]
-    private GameObject explosionVFX;
+    private GameObject explosionVFX, explosionLight;
 
     [SerializeField]
     private List<Collider> mainColliders = new List<Collider>();
@@ -60,6 +60,7 @@ public class TrapScript : MonoBehaviour, IChildObject
                     bossRB.AddExplosionForce(20f, transform.position, 10f, 2f, ForceMode.Impulse);
                     boss.GetComponentInParent<PlayerHealth>().TakeDamage(15);
                     Instantiate(explosionVFX, transform.position, Quaternion.identity);
+                    Instantiate(explosionLight, transform.position, Quaternion.identity);
                     Destroy(gameObject);
                 }
                 break;

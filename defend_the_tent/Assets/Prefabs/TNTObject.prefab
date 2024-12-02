@@ -59,6 +59,7 @@ MonoBehaviour:
   - {fileID: 8433988251894985734}
   objectDamage: 5
   explosionVFX: {fileID: 2857516914855092709, guid: 6cee250bb53a71f4cb6e3e5fbaf8847f, type: 3}
+  explosionLight: {fileID: 9004078492050260152, guid: a93bb10106ceb7c408dc7b4491a574bf, type: 3}
   type: 1
 --- !u!54 &8049447402007472436
 Rigidbody:
