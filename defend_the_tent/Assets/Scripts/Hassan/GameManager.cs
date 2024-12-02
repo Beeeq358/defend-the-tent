@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     private bool playersWon;
     private bool startedSpawning;
     private bool gameEnded;
+    private bool isPlaying;
 
     public List<GameObject> players = new();
     private bool bossChosen;
@@ -73,6 +74,9 @@ public class GameManager : MonoBehaviour
         {
             case GamePhase.PreGame:
                 // Perform pre game actions
+                if (!isPlaying)
+                    AudioManager.Instance.Play("Pre Game Ambience");
+                isPlaying = true;
                 break;
             case GamePhase.Preparation:
                 // Perform preparation actions
@@ -153,12 +157,15 @@ public class GameManager : MonoBehaviour
     {
         if (preparationTime > 0)
         {
-            AudioManager.Instance.Play("Preperation Theme");
+            if (!isPlaying)
+                AudioManager.Instance.Play("Preperation Theme");
+            isPlaying = true;
             preparationTime -= Time.deltaTime;
             timeLeft.text = "Time left to prepare: " + Mathf.Ceil(preparationTime).ToString();
 
             if (preparationTime <= 0)
             {
+                isPlaying = false;
                 AudioManager.Instance.Stop("Preperation Theme");
                 TransitionToPhase(GamePhase.Action);
             }
@@ -169,12 +176,15 @@ public class GameManager : MonoBehaviour
     {
         if (actionTime > 0)
         {
-            AudioManager.Instance.Play("Action Theme");
+            if (!isPlaying)
+                AudioManager.Instance.Play("Action Theme");
+            isPlaying = true;
             actionTime -= Time.deltaTime;
             timeLeft.text = "Time left to defend: " + Mathf.Ceil(actionTime).ToString();
 
             if (actionTime <= 0)
             {
+                isPlaying = false;
                 AudioManager.Instance.Stop("Action Theme");
                 TransitionToPhase(GamePhase.PostAction);
             }
@@ -193,6 +203,8 @@ public class GameManager : MonoBehaviour
 
         if (newPhase == GamePhase.Preparation)
         {
+            isPlaying = false;
+            AudioManager.Instance.Stop("Pre Game Ambience");
             objectSpawner.SetActive(true);
             objectSpawner.GetComponent<ObjectSpawner>().StartSpawning(players.Count);
         }

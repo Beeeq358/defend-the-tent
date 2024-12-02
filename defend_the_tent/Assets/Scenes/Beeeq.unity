@@ -1205,7 +1205,7 @@ MonoBehaviour:
     isLooping: 0
   - name: Crowd Cheer
     audioClip: {fileID: 8300000, guid: f852c4605d888974c94299255913ba9c, type: 3}
-    volume: 1
+    volume: 0.66
     pitch: 1
     audioSource: {fileID: 0}
     isLooping: 0
@@ -1223,13 +1223,19 @@ MonoBehaviour:
     isLooping: 0
   - name: Action Theme
     audioClip: {fileID: 8300000, guid: 26d5f69679af79c4d999d4b561b3689b, type: 3}
-    volume: 1
+    volume: 0.67
     pitch: 1
     audioSource: {fileID: 0}
     isLooping: 1
   - name: Preperation Theme
     audioClip: {fileID: 8300000, guid: 462098b40ce65174aae581dcff5ebcac, type: 3}
-    volume: 1
+    volume: 0.66
+    pitch: 1
+    audioSource: {fileID: 0}
+    isLooping: 1
+  - name: Pre Game Ambience
+    audioClip: {fileID: 8300000, guid: 28e5ee4b0a891ec41a330bd90cc22d01, type: 3}
+    volume: 0.31
     pitch: 1
     audioSource: {fileID: 0}
     isLooping: 1
