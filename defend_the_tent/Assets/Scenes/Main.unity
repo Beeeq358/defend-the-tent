@@ -11725,6 +11725,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Circus tent
       objectReference: {fileID: 0}
+    - target: {fileID: 4946959623675759095, guid: a0657e2874c09214fa09ae0b9bdc5eb5, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: bd7432271603a5a4295ced9681f3b231, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
