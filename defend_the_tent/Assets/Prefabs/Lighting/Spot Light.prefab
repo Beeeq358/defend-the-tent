@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2520557050697011785}
+  lightType: 0
 --- !u!1 &7140343986468479878
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,8 +93,8 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 4000
   m_Range: 35.57
-  m_SpotAngle: 91.326645
-  m_InnerSpotAngle: 39.148293
+  m_SpotAngle: 116.37618
+  m_InnerSpotAngle: 64.19783
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
