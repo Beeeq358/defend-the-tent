@@ -1221,12 +1221,18 @@ MonoBehaviour:
     pitch: 1
     audioSource: {fileID: 0}
     isLooping: 0
-  - name: Tomato
-    audioClip: {fileID: 8300000, guid: 9294f676dfc0af74d90e81e67f113e21, type: 3}
+  - name: Action Theme
+    audioClip: {fileID: 8300000, guid: 26d5f69679af79c4d999d4b561b3689b, type: 3}
     volume: 1
     pitch: 1
     audioSource: {fileID: 0}
-    isLooping: 0
+    isLooping: 1
+  - name: Preperation Theme
+    audioClip: {fileID: 8300000, guid: 462098b40ce65174aae581dcff5ebcac, type: 3}
+    volume: 1
+    pitch: 1
+    audioSource: {fileID: 0}
+    isLooping: 1
 --- !u!1001 &1280916819
 PrefabInstance:
   m_ObjectHideFlags: 0

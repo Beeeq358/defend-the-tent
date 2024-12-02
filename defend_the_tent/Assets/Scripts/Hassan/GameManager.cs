@@ -153,11 +153,13 @@ public class GameManager : MonoBehaviour
     {
         if (preparationTime > 0)
         {
+            AudioManager.Instance.Play("Preperation Theme");
             preparationTime -= Time.deltaTime;
             timeLeft.text = "Time left to prepare: " + Mathf.Ceil(preparationTime).ToString();
 
             if (preparationTime <= 0)
             {
+                AudioManager.Instance.Stop("Preperation Theme");
                 TransitionToPhase(GamePhase.Action);
             }
         }
