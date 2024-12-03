@@ -52,14 +52,22 @@ public class PlayerMovement : Player
         isFrame = false;
     }
 
-    public void IsStunned(float strength)
+    public void IsStunned(float strength, bool isBanana)
     {
         animator.SetBool("isStunned", true);
         stunParticle.transform.position = targetTransform.position;
         if (isBoss)
         {
             stunParticle.transform.position += new Vector3(0, 5, 0);
-            bossAnimator.SetBool("isStunned", true);
+            if (isBanana)
+            {
+                bossAnimator.SetTrigger("Banana");
+            }
+            else
+            {
+                bossAnimator.SetBool("isStunned", true);
+            }
+
         }
         stunParticle.SetActive(true);
         AudioManager.Instance.Play("Stunned");

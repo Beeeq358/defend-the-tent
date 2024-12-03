@@ -63,7 +63,7 @@ public class PlayerHealth : Player, IDamageable
     }
     public void Die()
     {
-        GetComponent<PlayerMovement>().IsStunned(3);
+        GetComponent<PlayerMovement>().IsStunned(3, false);
         healthPoints = maxHealth;
     }
     public bool IsDead()

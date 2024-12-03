@@ -68,7 +68,7 @@ public class TrapScript : MonoBehaviour, IChildObject
                 StartCoroutine(GlueCoroutine(bossRB));
                 break;
             case TrapType.Banana:
-                playerMovement.IsStunned(1);
+                playerMovement.IsStunned(3, true);
                 Destroy(gameObject);
                 break;
             default:

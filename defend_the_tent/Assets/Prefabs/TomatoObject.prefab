@@ -56,8 +56,9 @@ MonoBehaviour:
   selectedVisual: {fileID: 527180600207730624}
   mainColliders:
   - {fileID: 3025300605640652993}
-  objectDamage: 1
+  objectDamage: 6
   explosionVFX: {fileID: 0}
+  explosionLight: {fileID: 0}
   type: 0
 --- !u!114 &2356276780101784546
 MonoBehaviour:

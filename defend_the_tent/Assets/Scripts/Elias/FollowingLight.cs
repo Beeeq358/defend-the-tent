@@ -3,11 +3,11 @@ using UnityEngine;
 public class FollowingLight : MonoBehaviour
 {
     private GameObject parent;
-    private Light light;
+    private Light followingLight;
 
     private void Awake()
     {
-        light = GetComponent<Light>();
+        followingLight = GetComponent<Light>();
     }
     public void LogOn(GameObject parentObject)
     {
@@ -15,9 +15,9 @@ public class FollowingLight : MonoBehaviour
     }
     public void BossLogOn(GameObject bossObject)
     {
-        light.intensity *= 1.2f;
-        light.range += 10;
-        light.enableSpotReflector = true;
+        followingLight.intensity *= 1.2f;
+        followingLight.range += 10;
+        followingLight.enableSpotReflector = true;
         parent = bossObject;
     }
 
