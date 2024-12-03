@@ -29,88 +29,91 @@ public class PlayerInteract : Player
 
     private void Update()
     {
-        if (!isBoss)
+        if (!playerMovement.isStunned)
         {
-            HandleInteractions();
-        }
-        base.PlayerUpdate();
-        if (input.inputAttack1)
-        {
-            InteractStandardAttack();
-        }
-        if (isBoss)
-        {
-            if (input.inputAttack2 && !isSlamming && !isSwiping && !isShockwave && !this.playerMovement.isStunned)
+            if (!isBoss)
             {
-                StartCoroutine(BossHalfSwipe());
+                HandleInteractions();
             }
-            if (input.inputAttack3 && !isSlamming && !isSwiping && !isShockwave && !this.playerMovement.isStunned)
+            base.PlayerUpdate();
+            if (input.inputAttack1)
             {
-                StartCoroutine(BossShockWave());
+                InteractStandardAttack();
             }
-        }
+            if (isBoss)
+            {
+                if (input.inputAttack2 && !isSlamming && !isSwiping && !isShockwave && !this.playerMovement.isStunned)
+                {
+                    StartCoroutine(BossHalfSwipe());
+                }
+                if (input.inputAttack3 && !isSlamming && !isSwiping && !isShockwave && !this.playerMovement.isStunned)
+                {
+                    StartCoroutine(BossShockWave());
+                }
+            }
 
 
-        if (input.inputBuilded)
-        {
             if (input.inputBuilded)
             {
-                if (selectedChildObject is BaseObject && childObject == null)
+                if (input.inputBuilded)
                 {
-                    BaseObject baseObject = (BaseObject)selectedChildObject;
-                    if (selectedChildObject != null && baseObject.objectSO.objectType == ObjectType.Buildable && !isBoss)
+                    if (selectedChildObject is BaseObject && childObject == null)
                     {
-                        if (selectedChildObject is BuildableObject buildableObject  && buildableObject.isInteractive == true)
+                        BaseObject baseObject = (BaseObject)selectedChildObject;
+                        if (selectedChildObject != null && baseObject.objectSO.objectType == ObjectType.Buildable && !isBoss)
                         {
-                            InteractBuild(this, buildableObject);
-                        }
-                        else
-                        {
-                            Debug.LogWarning("Selected object is not a BuildableObject!");
+                            if (selectedChildObject is BuildableObject buildableObject && buildableObject.isInteractive == true)
+                            {
+                                InteractBuild(this, buildableObject);
+                            }
+                            else
+                            {
+                                Debug.LogWarning("Selected object is not a BuildableObject!");
+                            }
                         }
                     }
-                }
 
+                }
             }
-        }
-        if (input.inputGrabStrength > 0)
-        {
-            if (childObject == null && !isBoss)
+            if (input.inputGrabStrength > 0)
             {
-                if (selectedChildObject != null)
+                if (childObject == null && !isBoss)
                 {
-                    if (selectedChildObject is BuildableObject buildableObject)
+                    if (selectedChildObject != null)
                     {
-                        if (!buildableObject.isInteractive)
+                        if (selectedChildObject is BuildableObject buildableObject)
                         {
-                            Debug.LogWarning("This object is not interactive!");
+                            if (!buildableObject.isInteractive)
+                            {
+                                Debug.LogWarning("This object is not interactive!");
+                                return;
+                            }
+                        }
+                        if (selectedChildObject.GetObjectParent() != null)
+                        {
+                            // Object is already being held
+                            Debug.LogWarning("Object is already being held");
                             return;
                         }
+                        InteractGrab(this, selectedChildObject);
                     }
-                    if (selectedChildObject.GetObjectParent() != null)
+                    else
                     {
-                        // Object is already being held
-                        Debug.LogWarning("Object is already being held");
-                        return;
+                        Debug.LogWarning("No Object selected!");
                     }
-                    InteractGrab(this, selectedChildObject);
                 }
-                else
-                {
-                    Debug.LogWarning("No Object selected!");
-                }
-            }
 
-        }
-        if (input.inputGrabStrength == 0 && childObject != null && !isBoss)
-        {
-            OnPlayerStopGrab.Invoke();
-            Rigidbody tempRB = childObject.GetGameObject().GetComponent<Rigidbody>();
-            childObject.ClearObjectParent(this);
-            tempRB.isKinematic = false;
-            float grabMultiplier = 1.1f;
-            tempRB.AddForce(recentGrabStrength * throwStrength * 
-                (targetTransform.forward * grabMultiplier + new Vector3(0, throwHeight, 0)), ForceMode.Impulse);
+            }
+            if (input.inputGrabStrength == 0 && childObject != null && !isBoss)
+            {
+                OnPlayerStopGrab.Invoke();
+                Rigidbody tempRB = childObject.GetGameObject().GetComponent<Rigidbody>();
+                childObject.ClearObjectParent(this);
+                tempRB.isKinematic = false;
+                float grabMultiplier = 1.1f;
+                tempRB.AddForce(recentGrabStrength * throwStrength *
+                    (targetTransform.forward * grabMultiplier + new Vector3(0, throwHeight, 0)), ForceMode.Impulse);
+            }
         }
     }
 
