@@ -1144,6 +1144,7 @@ MonoBehaviour:
   moveSpeed: 0.5
   targetRB: {fileID: 0}
   stunParticle: {fileID: 2756978300668733982}
+  animator: {fileID: 7895086234552852900}
   isStunned: 0
 --- !u!114 &4862214175029492387
 MonoBehaviour:

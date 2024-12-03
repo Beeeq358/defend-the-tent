@@ -8,6 +8,7 @@ public class PlayerMovement : Player
     private Player player;
     public Rigidbody targetRB;
     public GameObject stunParticle;
+    public Animator animator;
 
     public bool isStunned;
     private void Start()
@@ -53,16 +54,15 @@ public class PlayerMovement : Player
 
     public void IsStunned(float strength)
     {
-        //play stunned animation
-        //play stunned effects
+        animator.SetBool("isStunned", true);
         stunParticle.transform.position = targetTransform.position;
         if (isBoss)
         {
             stunParticle.transform.position += new Vector3(0, 5, 0);
+            bossAnimator.SetBool("isStunned", true);
         }
         stunParticle.SetActive(true);
         AudioManager.Instance.Play("Stunned");
-        //lock player movement;
         StartCoroutine(StunTime(strength));
     }
 
@@ -93,8 +93,11 @@ public class PlayerMovement : Player
         yield return new WaitForSeconds(stunTime);
         isStunned = false;
         if (isBoss)
+        {
             bossRB.mass = originalMass;
-
+            bossAnimator.SetBool("isStunned", false);
+        }
+        animator.SetBool("isStunned", false);
         StopStunParticles();
     }
 
