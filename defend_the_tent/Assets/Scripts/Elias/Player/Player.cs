@@ -3,10 +3,14 @@ using UnityEngine;
 public class Player : MonoBehaviour, IObjectParent
 {
     [Header("Config")]
-    protected float spawnRange = 3;
-    protected float bossSpawnRange = 25;
-    protected float throwStrength = 7;
-    protected float throwHeight = 2;
+    [SerializeField]
+    protected float spawnRange;
+    [SerializeField]
+    protected float bossSpawnRange;
+    [SerializeField]
+    protected float throwStrength;
+    [SerializeField]
+    protected float throwHeight;
 
     [SerializeField]
     protected IChildObject selectedChildObject;

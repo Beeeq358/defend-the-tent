@@ -40,11 +40,11 @@ public class PlayerInteract : Player
         }
         if (isBoss)
         {
-            if (input.inputAttack2 && !isSlamming && !isSwiping && !isShockwave)
+            if (input.inputAttack2 && !isSlamming && !isSwiping && !isShockwave && !this.playerMovement.isStunned)
             {
                 StartCoroutine(BossHalfSwipe());
             }
-            if (input.inputAttack3 && !isSlamming && !isSwiping && !isShockwave)
+            if (input.inputAttack3 && !isSlamming && !isSwiping && !isShockwave && !this.playerMovement.isStunned)
             {
                 StartCoroutine(BossShockWave());
             }
@@ -108,7 +108,9 @@ public class PlayerInteract : Player
             Rigidbody tempRB = childObject.GetGameObject().GetComponent<Rigidbody>();
             childObject.ClearObjectParent(this);
             tempRB.isKinematic = false;
-            tempRB.AddForce(recentGrabStrength * throwStrength * (targetTransform.forward * 2 + new Vector3(0, throwHeight, 0)), ForceMode.Impulse);
+            float grabMultiplier = 1.1f;
+            tempRB.AddForce(recentGrabStrength * throwStrength * 
+                (targetTransform.forward * grabMultiplier + new Vector3(0, throwHeight, 0)), ForceMode.Impulse);
         }
     }
 
@@ -139,7 +141,7 @@ public class PlayerInteract : Player
     {
         if (isBoss)
         {
-            if (!isSlamming && !isSwiping && !isShockwave)
+            if (!isSlamming && !isSwiping && !isShockwave && !this.playerMovement.isStunned)
             {
                 Debug.Log("Started Coroutine bossfrontslam");
                 StartCoroutine(BossFrontSlam());
@@ -152,6 +154,7 @@ public class PlayerInteract : Player
         }
     }
 
+    // Handles player interaction with objects through the usage of a boxcast
     private void HandleInteractions()
     {
         Vector2 inputVector = GetMovementVectorNormalized();
