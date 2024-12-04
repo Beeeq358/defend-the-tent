@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject popupObj;
 
     [SerializeField]
+    private GameObject instructionMessage;
+
+    [SerializeField]
     private TextMeshProUGUI timeLeft;
 
     [SerializeField]
@@ -158,8 +161,11 @@ public class GameManager : MonoBehaviour
         if (preparationTime > 0)
         {
             if (!isPlaying)
+            {
                 AudioManager.Instance.Play("Preperation Theme");
-            isPlaying = true;
+                instructionMessage.SetActive(true);
+                isPlaying = true;
+            }
             preparationTime -= Time.deltaTime;
             timeLeft.text = "Time left to prepare: " + Mathf.Ceil(preparationTime).ToString();
 
